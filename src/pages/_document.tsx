@@ -17,12 +17,12 @@ class MyDocument extends Document {
       <Html lang="en">
         <Head>
           <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
-          <script
+          {/* <script
             async
             defer
             data-domain={process.env.NEXTAUTH_URL}
             src="https://plausible.io/js/plausible.js"
-          ></script>
+          ></script> */}
         </Head>
         <body>
           <Main />

@@ -11,7 +11,11 @@
     "prettier": "prettier --ignore-path .gitignore --write \"**/*.+(js|json|ts|tsx)\"",
     "format": "npm run prettier -- --write",
     "check-format": "npm run prettier -- --list-different",
-    "validate": "npm-run-all --parallel check-types check-format lint build"
+    "validate": "npm-run-all --parallel check-types check-format lint build",
+    "studio": "yarn prisma studio",
+    "migrate:save": "yarn prisma migrate save --experimental",
+    "migrate:up": "yarn prisma migrate up --experimental",
+    "migrate:down": "yarn prisma migrate down --experimental"
   },
   "dependencies": {
     "@headlessui/react": "0.2.0",
