@@ -2,6 +2,7 @@ import { useSession } from 'next-auth/client'
 import Image from 'next/image'
 import { PrismaClient } from '@prisma/client'
 import { extendJobsData } from '../utils'
+import { JobPreviewTile } from '../components'
 
 export default function Home({ jobs }) {
   const [session] = useSession()
@@ -17,6 +18,10 @@ export default function Home({ jobs }) {
             </p>
           )}
         </div>
+
+        {jobs.map((job) => {
+          return <JobPreviewTile job={job}></JobPreviewTile>
+        })}
 
         <div className="grid grid-cols-1 sm:grid-cols-2 sm:px-8 sm:py-12 sm:gap-x-8 md:py-16">
           <div className="relative z-10 col-start-1 row-start-1 px-4 pt-40 pb-3 bg-gradient-to-t from-black sm:bg-none">
