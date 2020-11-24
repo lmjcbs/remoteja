@@ -1,8 +1,12 @@
 import { useSession } from 'next-auth/client'
 import Image from 'next/image'
+import { PrismaClient } from '@prisma/client'
+import { extendJobsData } from '../utils'
 
-export default function Home() {
+export default function Home({ jobs }) {
   const [session] = useSession()
+
+  console.log(jobs)
   return (
     <div className="divide-y divide-gray-100">
       <main>
@@ -92,4 +96,27 @@ export default function Home() {
       </main>
     </div>
   )
+}
+
+export const getStaticProps = async () => {
+  const prisma = new PrismaClient()
+  const rawData = await prisma.job.findMany({
+    include: { location: true, category: true, tags: true },
+    orderBy: [{ pinned: 'desc' }, { epoch: 'desc' }],
+  })
+
+  // getStaticProps Fails to Serialize Date Object
+  const stringifiedData = JSON.stringify(rawData)
+  const data = JSON.parse(stringifiedData)
+
+  // Adds .daysSinceEpoch & .urlSlug
+  const extendedJobsData = extendJobsData(data)
+
+  await prisma.$disconnect()
+
+  return {
+    props: {
+      jobs: extendedJobsData,
+    },
+  }
 }
