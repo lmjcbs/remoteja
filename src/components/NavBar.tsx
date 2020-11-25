@@ -1,18 +1,25 @@
 import Link from 'next/link'
+import CategoriesDropdown from './CategoriesDropdown'
 
 export default function NavBar() {
   return (
     <nav>
-      <div className="w-screen flex flex-row items-center p-4 justify-between bg-gray-100">
-        <div className="ml-8">
+      <div className="mx-auto max-w-6xl flex flex-row items-center py-4 justify-between">
+        <div className="ml-3 md:ml-8">
           <Link href="/">
             <a className="text-indigo-600 text-xl">
               remote
-              <span className="bg-indigo-600 rounded-md p-1 text-white font-semibold">
+              <span className="bg-indigo-600 rounded-md p-1 m-1 text-white font-semibold">
                 Ja
               </span>
             </a>
           </Link>
+        </div>
+        <div className="flex flex-row items-center">
+          <CategoriesDropdown />
+          <div className="mx-4 bg-indigo-600 text-white rounded-md py-1 px-2 hover:shadow-lg">
+            Post a Job
+          </div>
         </div>
       </div>
     </nav>
