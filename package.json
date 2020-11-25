@@ -18,6 +18,9 @@
     "migrate:down": "yarn prisma migrate down --experimental"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.32",
+    "@fortawesome/free-solid-svg-icons": "^5.15.1",
+    "@fortawesome/react-fontawesome": "^0.1.13",
     "@headlessui/react": "0.2.0",
     "@prisma/client": "2.11.0",
     "classnames": "2.2.6",
@@ -25,8 +28,7 @@
     "next-auth": "3.1.0",
     "react": "17.0.1",
     "react-dom": "17.0.1",
-    "react-query": "2.26.3",
-    "tabler-icons": "1.35.0"
+    "react-query": "2.26.3"
   },
   "devDependencies": {
     "@prisma/cli": "2.11.0",
