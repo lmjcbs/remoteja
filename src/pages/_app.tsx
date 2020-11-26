@@ -5,6 +5,7 @@ import { ReactQueryDevtools } from 'react-query-devtools'
 import type { AppProps } from 'next/app'
 import { Provider } from 'next-auth/client'
 import { NavBar, Footer } from '../components'
+import '@fortawesome/fontawesome-svg-core/styles.css'
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -26,7 +27,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         />
       </Head>
       <NavBar />
-      <div className="px-2 mx-auto max-w-7xl sm:px-6 lg:px-8">
+      <div className="px-2 mx-auto max-w-5xl sm:px-6 lg:px-8">
         <Component {...pageProps} />
       </div>
       <Footer />
