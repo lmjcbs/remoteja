@@ -14,7 +14,7 @@ export default function JobPreviewTile({ job }) {
     tags,
   } = job
   return (
-    <Link href={`http://localhost:3000/remote-jobs/${urlSlug}`}>
+    <Link href={`/remote-jobs/${urlSlug}`}>
       <div
         className={`${
           pinned ? 'bg-yellow-100' : 'bg-white'
