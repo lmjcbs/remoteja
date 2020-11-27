@@ -34,13 +34,13 @@ export default function JobPage({ job, relatedJobs }) {
         <Link href="/">
           <div className="flex flex-row items-center space-x-2 cursor-pointer">
             <ArrowLeftIcon />
-            <a className="text-base font-medium">All Remote Jobs</a>
+            <a className="text-left text-base font-medium">All Remote Jobs</a>
           </div>
         </Link>
 
         <Link href={`/categories/${job.category.name}`}>
           <div className="flex flex-row items-center space-x-2 cursor-pointer">
-            <a className="capitalize text-base font-medium">
+            <a className="text-right capitalize text-base font-medium">
               More Remote {job.category.name} Jobs
             </a>
             <ArrowRightIcon />

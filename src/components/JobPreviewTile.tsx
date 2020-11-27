@@ -17,9 +17,9 @@ export default function JobPreviewTile({ job }) {
       <div
         className={`${
           pinned
-            ? 'bg-yellow-100 hover:bg-yellow-200 hover:bg-opacity-75'
+            ? 'bg-yellow-100 hover:bg-yellow-200 border-yellow-200 hover:bg-opacity-75'
             : 'bg-white hover:bg-gray-50'
-        } border rounded-lg shadow-md px-2 lg:my-3 md:px-4 xl:px-6 py-2 my-2 flex justify-between cursor-pointer`}
+        } rounded-lg border shadow-md px-2 lg:my-3 md:px-4 xl:px-6 py-2 my-2 flex justify-between cursor-pointer`}
       >
         <div>
           <div className="text-xs md:text-sm text-gray-600">{companyName}</div>
