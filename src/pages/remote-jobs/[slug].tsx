@@ -20,13 +20,13 @@ import {
 export default function JobPage({ job, relatedJobs }) {
   const router = useRouter()
 
-  const twitterShareLink = getJobTwitterShareLink(job)
-
   // If the page is not yet generated, this will be displayed
   // initially until getStaticProps() finishes running
   if (router.isFallback) {
     return <div>Loading...</div>
   }
+
+  const twitterShareLink = getJobTwitterShareLink(job)
 
   return (
     <main className="px-1 md:px-2 lg:px-4">
