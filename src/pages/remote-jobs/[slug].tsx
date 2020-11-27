@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 import { PrismaClient } from '@prisma/client'
 import { getUrlSlug, serializeDateObjects, extendJobsData } from '../../utils'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -10,6 +11,14 @@ import {
 import { JobPreviewTile } from '../../components'
 
 export default function JobPage({ job, relatedJobs }) {
+  const router = useRouter()
+
+  // If the page is not yet generated, this will be displayed
+  // initially until getStaticProps() finishes running
+  if (router.isFallback) {
+    return <div>Loading...</div>
+  }
+
   return (
     <main>
       <div className="flex flex-row justify-between">
