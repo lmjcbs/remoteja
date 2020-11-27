@@ -1,0 +1,28 @@
+{
+  "version": "0.3.14-fixed",
+  "steps": [
+    {
+      "tag": "DeleteField",
+      "model": "Job",
+      "field": "applyInfo"
+    },
+    {
+      "tag": "UpdateField",
+      "model": "Job",
+      "field": "salaryCurrency",
+      "arity": "Optional"
+    },
+    {
+      "tag": "UpdateField",
+      "model": "Job",
+      "field": "salaryMax",
+      "arity": "Optional"
+    },
+    {
+      "tag": "UpdateField",
+      "model": "Job",
+      "field": "salaryMin",
+      "arity": "Optional"
+    }
+  ]
+}
