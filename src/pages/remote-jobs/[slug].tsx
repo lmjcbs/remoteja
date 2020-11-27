@@ -1,17 +1,26 @@
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { PrismaClient } from '@prisma/client'
-import { getUrlSlug, serializeDateObjects, extendJobsData } from '../../utils'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {
-  faArrowLeft,
-  faArrowRight,
-  faMapMarkerAlt,
-} from '@fortawesome/free-solid-svg-icons'
 import { JobPreviewTile } from '../../components'
+import {
+  getUrlSlug,
+  serializeDateObjects,
+  extendJobsData,
+  getJobTwitterShareLink,
+  numberWithCommas,
+} from '../../utils'
+import {
+  ArrowLeftIcon,
+  ArrowRightIcon,
+  MailtoIcon,
+  MapMarkerIcon,
+  TwitterIcon,
+} from '../../lib/svg'
 
 export default function JobPage({ job, relatedJobs }) {
   const router = useRouter()
+
+  const twitterShareLink = getJobTwitterShareLink(job)
 
   // If the page is not yet generated, this will be displayed
   // initially until getStaticProps() finishes running
@@ -20,42 +29,41 @@ export default function JobPage({ job, relatedJobs }) {
   }
 
   return (
-    <main>
-      <div className="flex flex-row justify-between">
-        <div>
-          <FontAwesomeIcon
-            className="mx-2"
-            icon={faArrowLeft}
-          ></FontAwesomeIcon>
-          <Link href="/">
-            <a>Back To All Remote Jobs</a>
-          </Link>
-        </div>
-        <div>
-          <Link href={`/categories/${job.category.name}`}>
-            <a className="capitalize">
-              View More Remote {job.category.name} Jobs
+    <main className="px-1 md:px-2 lg:px-4">
+      <div className="flex flex-row justify-between mt-6">
+        <Link href="/">
+          <div className="flex flex-row items-center space-x-2 cursor-pointer">
+            <ArrowLeftIcon />
+            <a className="text-base font-medium">All Remote Jobs</a>
+          </div>
+        </Link>
+
+        <Link href={`/categories/${job.category.name}`}>
+          <div className="flex flex-row items-center space-x-2 cursor-pointer">
+            <a className="capitalize text-base font-medium">
+              More Remote {job.category.name} Jobs
             </a>
-          </Link>
-          <FontAwesomeIcon
-            className="mx-2"
-            icon={faArrowRight}
-          ></FontAwesomeIcon>
-        </div>
+            <ArrowRightIcon />
+          </div>
+        </Link>
       </div>
 
       <div className="pt-10">
-        <h2 className="font-medium text-gray-600">{job.companyName}</h2>
+        <h2 className="md:text-lg lg:text-xl font-semibold text-gray-600">
+          {job.companyName}
+        </h2>
       </div>
 
-      <div className="pt-2">
-        <h1 className="font-bold text-2xl text-gray-800">{job.title}</h1>
+      <div className="pt-1">
+        <h1 className="text-2xl lg:text-3xl font-bold text-gray-800">
+          {job.title}
+        </h1>
       </div>
 
-      <div className="py-3">
+      <div className="mt-2 space-x-1 lg:space-x-2">
         {job.tags.map(({ name, id }) => (
           <Link key={id} href={`/tags/${name}`}>
-            <a className="inline-block bg-indigo-300 hover:bg-indigo-400 border-2 hover:border-indigo-400 border-indigo-300 rounded-md px-1 md:px-2 py-0 text-sm md:font-medium text-gray-700 mr-1 mb-1 shadow-md tracking-wide">
+            <a className="inline-block bg-indigo-200 hover:bg-indigo-300 border-2 hover:border-indigo-300 border-indigo-200 rounded-md px-1 md:px-2 py-0 text-sm font-medium text-gray-700 shadow-md tracking-wide">
               <span className="font-bold">#</span>
               {name}
             </a>
@@ -63,20 +71,39 @@ export default function JobPage({ job, relatedJobs }) {
         ))}
       </div>
 
-      <div className="flex flex-row items-center mb-6">
-        <FontAwesomeIcon
-          className="mx-1 text-indigo-500"
-          icon={faMapMarkerAlt}
-        ></FontAwesomeIcon>
-        <p className="capitalize">{job.location.name}</p>
+      <div className="flex flex-row items-center space-x-1 my-3">
+        <MapMarkerIcon />
+        <Link href={`/locations/${job.location.name}`}>
+          <a className="text-base capitalize font-medium text-gray-800 hover:underline">
+            {job.location.name}
+          </a>
+        </Link>
+
+        <div className="mx-1 text-base">·</div>
+        <Link href={`/categories/${job.category.name}`}>
+          <a className="text-base capitalize font-medium text-gray-800 hover:underline">
+            {job.category.name}
+          </a>
+        </Link>
       </div>
 
+      <div className="mb-4 ml-1">
+        <p className="font-medium text-gray-800">
+          {job?.salaryCurrency}
+          {numberWithCommas(job?.salaryMin)}
+          {!!job.salaryMin ? ' - ' : null}
+          {numberWithCommas(job?.salaryMax)}
+        </p>
+      </div>
+
+      <h3 className="font-semibold text-xl mb-2 mt-6">About the Role</h3>
+
       <div
-        className="space-y-4 text-gray-800"
+        className="space-y-3 text-base lg:space-y-4 text-gray-800"
         dangerouslySetInnerHTML={{ __html: job.description }}
       ></div>
 
-      <div className="flex flex-row justify-between my-6">
+      <div className="flex flex-row items-center justify-between my-6">
         <Link href={`${job.applyUrl}?ref=remoteja.com`}>
           <a target="_blank" rel="noopener">
             <div className="px-2 py-1 bg-indigo-500 rounded-md text-white font-semibold hover:bg-indigo-600 shadow-lg">
@@ -84,11 +111,26 @@ export default function JobPage({ job, relatedJobs }) {
             </div>
           </a>
         </Link>
+        <div className="flex flex-row items-center space-x-2 mr-4 lg:mr-8">
+          <p className="block text-base lg:text-lg font-semibold text-gray-700">
+            Share
+          </p>
+          <div className="flex flex-row space-x-2 w-full m-auto">
+            <Link href="mailto:">
+              <MailtoIcon />
+            </Link>
+            <Link href={twitterShareLink}>
+              <a target="_blank" rel="noopener">
+                <TwitterIcon />
+              </a>
+            </Link>
+          </div>
+        </div>
       </div>
 
-      <div className="w-1/2 mt-12">
-        <h4 className="text-xl font-semibold text-gray-700">Related Jobs</h4>
-        <div className="w full">
+      <div className="w-full mt-12">
+        <h4 className="text-xl font-semibold text-gray-700">Similar Jobs</h4>
+        <div>
           {relatedJobs.map((job) => (
             <JobPreviewTile job={job}></JobPreviewTile>
           ))}
@@ -137,8 +179,9 @@ export async function getStaticProps({ params }) {
     where: {
       categoryId: rawData.categoryId,
     },
+    orderBy: [{ pinned: 'desc' }, { epoch: 'desc' }],
     include: { location: true, category: true, tags: true },
-    take: 4,
+    take: 3,
   })
 
   // getStaticProps Fails to Serialize Date Object
