@@ -25,7 +25,7 @@ export default function JobPage({ job, relatedJobs }) {
         <div>
           <Link href={`/categories/${job.category.name}`}>
             <a className="capitalize">
-              View More {job.category.name} Remote Jobs
+              View More Remote {job.category.name} Jobs
             </a>
           </Link>
           <FontAwesomeIcon
@@ -62,9 +62,10 @@ export default function JobPage({ job, relatedJobs }) {
         <p className="capitalize">{job.location.name}</p>
       </div>
 
-      <div>
-        <p>{job.description}</p>
-      </div>
+      <div
+        className="space-y-4 text-gray-800"
+        dangerouslySetInnerHTML={{ __html: job.description }}
+      ></div>
 
       <div className="flex flex-row justify-between my-6">
         <Link href={`${job.applyUrl}?ref=remoteja.com`}>
@@ -143,5 +144,7 @@ export async function getStaticProps({ params }) {
       // Adds .daysSinceEpoch property to job
       relatedJobs: extendJobsData(relatedJobs),
     },
+    // Attempt to re-generate page on request at most once every second
+    revalidate: 1,
   }
 }
