@@ -56,7 +56,7 @@ export const getStaticProps = async ({ params }) => {
   const rawData = await prisma.job.findMany({
     where: { tags: { some: { name: { contains: params.name } } } },
     include: { location: true, category: true, tags: true },
-    orderBy: [{ pinned: 'desc' }, { epoch: 'desc' }],
+    orderBy: [{ featured: 'desc' }, { epoch: 'desc' }],
   })
 
   // getStaticProps Fails to Serialize Date Object

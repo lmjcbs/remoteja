@@ -5,9 +5,9 @@ import { JobPreviewTile } from '../components'
 export default function Home({ jobs }) {
   return (
     <main>
-      <div className="py-4 px-1 md:px-2">
-        <h2 className="text-xl font-semibold text-gray-800 capitalize">
-          Showing All Remote Jobs
+      <div className="w-full py-4 px-1 md:px-2">
+        <h2 className="text-lg md:text-xl font-semibold text-gray-800 capitalize">
+          Showing The Latest Remote Jobs
         </h2>
       </div>
 
@@ -24,7 +24,7 @@ export const getStaticProps = async () => {
   const prisma = new PrismaClient()
   const rawData = await prisma.job.findMany({
     include: { location: true, category: true, tags: true },
-    orderBy: [{ pinned: 'desc' }, { epoch: 'desc' }],
+    orderBy: [{ featured: 'desc' }, { epoch: 'desc' }],
   })
 
   // getStaticProps Fails to Serialize Date Object

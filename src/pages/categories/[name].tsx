@@ -4,14 +4,14 @@ import { JobPreviewTile } from '../../components'
 
 export default function Categories({ jobs, category }) {
   return (
-    <main>
-      <div className="py-4 px-1 md:px-2">
+    <main className="py-4 px-1 md:px-2">
+      <div>
         <h2 className="text-xl font-semibold text-gray-800 capitalize">
           Remote {category} Jobs
         </h2>
       </div>
 
-      <div>
+      <div className="w-full">
         {jobs.map((job) => (
           <JobPreviewTile job={job} />
         ))}
@@ -47,7 +47,7 @@ export const getStaticProps = async ({ params }) => {
   const rawData = await prisma.job.findMany({
     where: { category: { name: { contains: params.name } } },
     include: { location: true, category: true, tags: true },
-    orderBy: [{ pinned: 'desc' }, { epoch: 'desc' }],
+    orderBy: [{ featured: 'desc' }, { epoch: 'desc' }],
   })
 
   // getStaticProps Fails to Serialize Date Object

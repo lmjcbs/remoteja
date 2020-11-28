@@ -25,11 +25,13 @@ function MyApp({ Component, pageProps }: AppProps) {
           key="viewport"
         />
       </Head>
-      <NavBar />
-      <div className="px-2 mx-auto max-w-5xl sm:px-6 lg:px-8">
-        <Component {...pageProps} />
+      <div id="wrapper" className="h-full flex flex-col">
+        <NavBar />
+        <div className="flex-grow w-full mx-auto justify-center max-w-5xl px-2 sm:px-6 lg:px-8">
+          <Component {...pageProps} />
+        </div>
+        <Footer />
       </div>
-      <Footer />
       <ReactQueryDevtools initialIsOpen={false} />
     </Provider>
   )
