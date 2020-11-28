@@ -96,63 +96,6 @@
       "arity": "Optional"
     },
     {
-      "tag": "CreateDirective",
-      "location": {
-        "path": {
-          "tag": "Field",
-          "model": "Job",
-          "field": "applyEmail"
-        },
-        "directive": "map"
-      }
-    },
-    {
-      "tag": "CreateArgument",
-      "location": {
-        "tag": "Directive",
-        "path": {
-          "tag": "Field",
-          "model": "Job",
-          "field": "applyEmail"
-        },
-        "directive": "map"
-      },
-      "argument": "",
-      "value": "\"apply_email\""
-    },
-    {
-      "tag": "CreateField",
-      "model": "Job",
-      "field": "applyInfo",
-      "type": "String",
-      "arity": "Required"
-    },
-    {
-      "tag": "CreateDirective",
-      "location": {
-        "path": {
-          "tag": "Field",
-          "model": "Job",
-          "field": "applyInfo"
-        },
-        "directive": "map"
-      }
-    },
-    {
-      "tag": "CreateArgument",
-      "location": {
-        "tag": "Directive",
-        "path": {
-          "tag": "Field",
-          "model": "Job",
-          "field": "applyInfo"
-        },
-        "directive": "map"
-      },
-      "argument": "",
-      "value": "\"apply_info\""
-    },
-    {
       "tag": "CreateField",
       "model": "Job",
       "field": "applyUrl",
@@ -160,98 +103,16 @@
       "arity": "Optional"
     },
     {
-      "tag": "CreateDirective",
-      "location": {
-        "path": {
-          "tag": "Field",
-          "model": "Job",
-          "field": "applyUrl"
-        },
-        "directive": "map"
-      }
-    },
-    {
-      "tag": "CreateArgument",
-      "location": {
-        "tag": "Directive",
-        "path": {
-          "tag": "Field",
-          "model": "Job",
-          "field": "applyUrl"
-        },
-        "directive": "map"
-      },
-      "argument": "",
-      "value": "\"apply_url\""
-    },
-    {
       "tag": "CreateField",
       "model": "Job",
       "field": "companyName",
       "type": "String",
-      "arity": "Required"
-    },
-    {
-      "tag": "CreateDirective",
-      "location": {
-        "path": {
-          "tag": "Field",
-          "model": "Job",
-          "field": "companyName"
-        },
-        "directive": "map"
-      }
-    },
-    {
-      "tag": "CreateArgument",
-      "location": {
-        "tag": "Directive",
-        "path": {
-          "tag": "Field",
-          "model": "Job",
-          "field": "companyName"
-        },
-        "directive": "map"
-      },
-      "argument": "",
-      "value": "\"company_name\""
-    },
-    {
-      "tag": "CreateField",
-      "model": "Job",
-      "field": "companyLogoUrl",
-      "type": "String",
       "arity": "Optional"
     },
     {
-      "tag": "CreateDirective",
-      "location": {
-        "path": {
-          "tag": "Field",
-          "model": "Job",
-          "field": "companyLogoUrl"
-        },
-        "directive": "map"
-      }
-    },
-    {
-      "tag": "CreateArgument",
-      "location": {
-        "tag": "Directive",
-        "path": {
-          "tag": "Field",
-          "model": "Job",
-          "field": "companyLogoUrl"
-        },
-        "directive": "map"
-      },
-      "argument": "",
-      "value": "\"company_logo_url\""
-    },
-    {
       "tag": "CreateField",
       "model": "Job",
-      "field": "description",
+      "field": "descriptionAsHTML",
       "type": "String",
       "arity": "Required"
     },
@@ -265,47 +126,15 @@
     {
       "tag": "CreateField",
       "model": "Job",
-      "field": "pinned",
-      "type": "Boolean",
-      "arity": "Required"
-    },
-    {
-      "tag": "CreateField",
-      "model": "Job",
-      "field": "salaryCurrency",
+      "field": "datePosted",
       "type": "String",
       "arity": "Required"
     },
     {
-      "tag": "CreateDirective",
-      "location": {
-        "path": {
-          "tag": "Field",
-          "model": "Job",
-          "field": "salaryCurrency"
-        },
-        "directive": "map"
-      }
-    },
-    {
-      "tag": "CreateArgument",
-      "location": {
-        "tag": "Directive",
-        "path": {
-          "tag": "Field",
-          "model": "Job",
-          "field": "salaryCurrency"
-        },
-        "directive": "map"
-      },
-      "argument": "",
-      "value": "\"salary_currency\""
-    },
-    {
       "tag": "CreateField",
       "model": "Job",
-      "field": "salaryMax",
-      "type": "Int",
+      "field": "featured",
+      "type": "Boolean",
       "arity": "Required"
     },
     {
@@ -314,9 +143,9 @@
         "path": {
           "tag": "Field",
           "model": "Job",
-          "field": "salaryMax"
+          "field": "featured"
         },
-        "directive": "map"
+        "directive": "default"
       }
     },
     {
@@ -326,44 +155,12 @@
         "path": {
           "tag": "Field",
           "model": "Job",
-          "field": "salaryMax"
+          "field": "featured"
         },
-        "directive": "map"
+        "directive": "default"
       },
       "argument": "",
-      "value": "\"salary_max\""
-    },
-    {
-      "tag": "CreateField",
-      "model": "Job",
-      "field": "salaryMin",
-      "type": "Int",
-      "arity": "Required"
-    },
-    {
-      "tag": "CreateDirective",
-      "location": {
-        "path": {
-          "tag": "Field",
-          "model": "Job",
-          "field": "salaryMin"
-        },
-        "directive": "map"
-      }
-    },
-    {
-      "tag": "CreateArgument",
-      "location": {
-        "tag": "Directive",
-        "path": {
-          "tag": "Field",
-          "model": "Job",
-          "field": "salaryMin"
-        },
-        "directive": "map"
-      },
-      "argument": "",
-      "value": "\"salary_min\""
+      "value": "false"
     },
     {
       "tag": "CreateField",
@@ -380,31 +177,6 @@
       "arity": "Required"
     },
     {
-      "tag": "CreateDirective",
-      "location": {
-        "path": {
-          "tag": "Field",
-          "model": "Job",
-          "field": "locationId"
-        },
-        "directive": "map"
-      }
-    },
-    {
-      "tag": "CreateArgument",
-      "location": {
-        "tag": "Directive",
-        "path": {
-          "tag": "Field",
-          "model": "Job",
-          "field": "locationId"
-        },
-        "directive": "map"
-      },
-      "argument": "",
-      "value": "\"location_id\""
-    },
-    {
       "tag": "CreateField",
       "model": "Job",
       "field": "categoryId",
@@ -412,29 +184,11 @@
       "arity": "Required"
     },
     {
-      "tag": "CreateDirective",
-      "location": {
-        "path": {
-          "tag": "Field",
-          "model": "Job",
-          "field": "categoryId"
-        },
-        "directive": "map"
-      }
-    },
-    {
-      "tag": "CreateArgument",
-      "location": {
-        "tag": "Directive",
-        "path": {
-          "tag": "Field",
-          "model": "Job",
-          "field": "categoryId"
-        },
-        "directive": "map"
-      },
-      "argument": "",
-      "value": "\"category_id\""
+      "tag": "CreateField",
+      "model": "Job",
+      "field": "companyId",
+      "type": "Int",
+      "arity": "Optional"
     },
     {
       "tag": "CreateField",
@@ -531,6 +285,52 @@
     {
       "tag": "CreateField",
       "model": "Job",
+      "field": "company",
+      "type": "Company",
+      "arity": "Optional"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "Job",
+          "field": "company"
+        },
+        "directive": "relation"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Job",
+          "field": "company"
+        },
+        "directive": "relation"
+      },
+      "argument": "fields",
+      "value": "[companyId]"
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Job",
+          "field": "company"
+        },
+        "directive": "relation"
+      },
+      "argument": "references",
+      "value": "[id]"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Job",
       "field": "tags",
       "type": "Tag",
       "arity": "List"
@@ -593,31 +393,6 @@
       "value": "now()"
     },
     {
-      "tag": "CreateDirective",
-      "location": {
-        "path": {
-          "tag": "Field",
-          "model": "Job",
-          "field": "createdAt"
-        },
-        "directive": "map"
-      }
-    },
-    {
-      "tag": "CreateArgument",
-      "location": {
-        "tag": "Directive",
-        "path": {
-          "tag": "Field",
-          "model": "Job",
-          "field": "createdAt"
-        },
-        "directive": "map"
-      },
-      "argument": "",
-      "value": "\"created_at\""
-    },
-    {
       "tag": "CreateField",
       "model": "Job",
       "field": "updatedAt",
@@ -634,31 +409,6 @@
         },
         "directive": "updatedAt"
       }
-    },
-    {
-      "tag": "CreateDirective",
-      "location": {
-        "path": {
-          "tag": "Field",
-          "model": "Job",
-          "field": "updatedAt"
-        },
-        "directive": "map"
-      }
-    },
-    {
-      "tag": "CreateArgument",
-      "location": {
-        "tag": "Directive",
-        "path": {
-          "tag": "Field",
-          "model": "Job",
-          "field": "updatedAt"
-        },
-        "directive": "map"
-      },
-      "argument": "",
-      "value": "\"updated_at\""
     },
     {
       "tag": "CreateDirective",
@@ -828,31 +578,6 @@
       "value": "now()"
     },
     {
-      "tag": "CreateDirective",
-      "location": {
-        "path": {
-          "tag": "Field",
-          "model": "Category",
-          "field": "createdAt"
-        },
-        "directive": "map"
-      }
-    },
-    {
-      "tag": "CreateArgument",
-      "location": {
-        "tag": "Directive",
-        "path": {
-          "tag": "Field",
-          "model": "Category",
-          "field": "createdAt"
-        },
-        "directive": "map"
-      },
-      "argument": "",
-      "value": "\"created_at\""
-    },
-    {
       "tag": "CreateField",
       "model": "Category",
       "field": "updatedAt",
@@ -869,31 +594,6 @@
         },
         "directive": "updatedAt"
       }
-    },
-    {
-      "tag": "CreateDirective",
-      "location": {
-        "path": {
-          "tag": "Field",
-          "model": "Category",
-          "field": "updatedAt"
-        },
-        "directive": "map"
-      }
-    },
-    {
-      "tag": "CreateArgument",
-      "location": {
-        "tag": "Directive",
-        "path": {
-          "tag": "Field",
-          "model": "Category",
-          "field": "updatedAt"
-        },
-        "directive": "map"
-      },
-      "argument": "",
-      "value": "\"updated_at\""
     },
     {
       "tag": "CreateDirective",
@@ -1023,31 +723,6 @@
       "value": "now()"
     },
     {
-      "tag": "CreateDirective",
-      "location": {
-        "path": {
-          "tag": "Field",
-          "model": "Location",
-          "field": "createdAt"
-        },
-        "directive": "map"
-      }
-    },
-    {
-      "tag": "CreateArgument",
-      "location": {
-        "tag": "Directive",
-        "path": {
-          "tag": "Field",
-          "model": "Location",
-          "field": "createdAt"
-        },
-        "directive": "map"
-      },
-      "argument": "",
-      "value": "\"created_at\""
-    },
-    {
       "tag": "CreateField",
       "model": "Location",
       "field": "updatedAt",
@@ -1064,31 +739,6 @@
         },
         "directive": "updatedAt"
       }
-    },
-    {
-      "tag": "CreateDirective",
-      "location": {
-        "path": {
-          "tag": "Field",
-          "model": "Location",
-          "field": "updatedAt"
-        },
-        "directive": "map"
-      }
-    },
-    {
-      "tag": "CreateArgument",
-      "location": {
-        "tag": "Directive",
-        "path": {
-          "tag": "Field",
-          "model": "Location",
-          "field": "updatedAt"
-        },
-        "directive": "map"
-      },
-      "argument": "",
-      "value": "\"updated_at\""
     },
     {
       "tag": "CreateDirective",
@@ -1243,31 +893,6 @@
       "value": "now()"
     },
     {
-      "tag": "CreateDirective",
-      "location": {
-        "path": {
-          "tag": "Field",
-          "model": "Tag",
-          "field": "createdAt"
-        },
-        "directive": "map"
-      }
-    },
-    {
-      "tag": "CreateArgument",
-      "location": {
-        "tag": "Directive",
-        "path": {
-          "tag": "Field",
-          "model": "Tag",
-          "field": "createdAt"
-        },
-        "directive": "map"
-      },
-      "argument": "",
-      "value": "\"created_at\""
-    },
-    {
       "tag": "CreateField",
       "model": "Tag",
       "field": "updatedAt",
@@ -1284,31 +909,6 @@
         },
         "directive": "updatedAt"
       }
-    },
-    {
-      "tag": "CreateDirective",
-      "location": {
-        "path": {
-          "tag": "Field",
-          "model": "Tag",
-          "field": "updatedAt"
-        },
-        "directive": "map"
-      }
-    },
-    {
-      "tag": "CreateArgument",
-      "location": {
-        "tag": "Directive",
-        "path": {
-          "tag": "Field",
-          "model": "Tag",
-          "field": "updatedAt"
-        },
-        "directive": "map"
-      },
-      "argument": "",
-      "value": "\"updated_at\""
     },
     {
       "tag": "CreateDirective",
@@ -1332,6 +932,243 @@
       },
       "argument": "name",
       "value": "\"tags\""
+    },
+    {
+      "tag": "CreateModel",
+      "model": "Company"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Company",
+      "field": "id",
+      "type": "Int",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "Company",
+          "field": "id"
+        },
+        "directive": "id"
+      }
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "Company",
+          "field": "id"
+        },
+        "directive": "default"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Company",
+          "field": "id"
+        },
+        "directive": "default"
+      },
+      "argument": "",
+      "value": "autoincrement()"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Company",
+      "field": "cid",
+      "type": "String",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "Company",
+          "field": "cid"
+        },
+        "directive": "unique"
+      }
+    },
+    {
+      "tag": "CreateField",
+      "model": "Company",
+      "field": "email",
+      "type": "String",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "Company",
+          "field": "email"
+        },
+        "directive": "unique"
+      }
+    },
+    {
+      "tag": "CreateField",
+      "model": "Company",
+      "field": "descriptionAsHTML",
+      "type": "String",
+      "arity": "Optional"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Company",
+      "field": "headquaters",
+      "type": "String",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Company",
+      "field": "logoUrl",
+      "type": "String",
+      "arity": "Optional"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Company",
+      "field": "name",
+      "type": "String",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Company",
+      "field": "statement",
+      "type": "String",
+      "arity": "Optional"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Company",
+      "field": "verified",
+      "type": "Boolean",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "Company",
+          "field": "verified"
+        },
+        "directive": "default"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Company",
+          "field": "verified"
+        },
+        "directive": "default"
+      },
+      "argument": "",
+      "value": "false"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Company",
+      "field": "websiteUrl",
+      "type": "String",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Company",
+      "field": "jobs",
+      "type": "Job",
+      "arity": "List"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Company",
+      "field": "createdAt",
+      "type": "DateTime",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "Company",
+          "field": "createdAt"
+        },
+        "directive": "default"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Company",
+          "field": "createdAt"
+        },
+        "directive": "default"
+      },
+      "argument": "",
+      "value": "now()"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Company",
+      "field": "updatedAt",
+      "type": "DateTime",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "Company",
+          "field": "updatedAt"
+        },
+        "directive": "updatedAt"
+      }
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Model",
+          "model": "Company"
+        },
+        "directive": "map"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Model",
+          "model": "Company"
+        },
+        "directive": "map"
+      },
+      "argument": "name",
+      "value": "\"companies\""
     }
   ]
 }
