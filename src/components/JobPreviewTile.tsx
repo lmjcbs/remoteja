@@ -44,13 +44,13 @@ const JobPreviewTile: FC<JobPreviewTileProps> = ({ job }) => {
                 featured ? 'text-yellow-300' : 'text-gray-500'
               }`}
             />
-            <Link href={`/locations/${location.name}`}>
+            <Link href={`/locations/${location.name.replace(' ', '-')}`}>
               <a className="text-xs md:text-sm ml-0.5 hover:underline capitalize">
                 {location.name}
               </a>
             </Link>
             <div className="mx-1 text-based">·</div>
-            <Link href={`/categories/${category.name}`}>
+            <Link href={`/categories/${category.name.replace(' ', '-')}`}>
               <a className="text-xs md:text-sm hover:underline capitalize">
                 {category.name}
               </a>
