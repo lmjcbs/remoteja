@@ -96,6 +96,7 @@ export default function JobPage({ job, relatedJobs }) {
       <h3 className="font-semibold text-xl mb-2 mt-6">About the Role</h3>
 
       <div
+        id="description"
         className="space-y-3 lg:space-y-4 text-gray-800"
         dangerouslySetInnerHTML={{ __html: job.descriptionAsHTML }}
       ></div>
