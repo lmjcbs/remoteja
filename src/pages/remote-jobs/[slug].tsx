@@ -23,9 +23,10 @@ import {
 type JobsProps = {
   job: Models.JobWithRelations
   relatedJobs: Models.JobWithRelations[]
+  twitterShareLink: string
 }
 
-const Jobs: FC<JobsProps> = ({ job, relatedJobs }) => {
+const Job: FC<JobsProps> = ({ job, relatedJobs, twitterShareLink }) => {
   const router = useRouter()
 
   // If the page is not yet generated, this will be displayed
@@ -33,8 +34,6 @@ const Jobs: FC<JobsProps> = ({ job, relatedJobs }) => {
   if (router.isFallback) {
     return <div>Loading...</div>
   }
-
-  const twitterShareLink = getJobTwitterShareLink(job)
 
   return (
     <main className="px-1 md:px-2 lg:px-4">
@@ -85,14 +84,14 @@ const Jobs: FC<JobsProps> = ({ job, relatedJobs }) => {
 
       <div className="flex flex-row items-center space-x-1 my-3">
         <MapMarkerIcon size={18} className="fill-current text-gray-600" />
-        <Link href={`/locations/${job.location.name}`}>
+        <Link href={`/locations/${job.location.name.replace(' ', '-')}`}>
           <a className="text-base capitalize font-medium text-gray-800 hover:underline">
             {job.location.name}
           </a>
         </Link>
 
         <div className="mx-1 text-base">·</div>
-        <Link href={`/categories/${job.category.name}`}>
+        <Link href={`/categories/${job.category.name.replace(' ', '-')}`}>
           <a className="text-base capitalize font-medium text-gray-800 hover:underline">
             {job.category.name}
           </a>
@@ -212,20 +211,21 @@ export const getStaticProps: GetStaticProps = async (context) => {
   })
 
   // getStaticProps Fails to Serialize Date Object
-  const jobsData = serializeDateObjects(rawData)
+  const job = serializeDateObjects(rawData)
   const relatedJobs = serializeDateObjects(rawRelatedJobs)
 
   await prisma.$disconnect()
 
   return {
     props: {
-      job: jobsData,
+      job: job,
       // Adds .daysSinceEpoch property to job
       relatedJobs: extendJobsData(relatedJobs),
+      twitterShareLink: getJobTwitterShareLink(job),
     },
     // Attempt to re-generate page on request at most once every second
     revalidate: 1,
   }
 }
 
-export default Jobs
+export default Job
