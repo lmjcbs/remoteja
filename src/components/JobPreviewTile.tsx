@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { ArrowRightIcon, MapMarkerIcon, ThumbtackIcon } from '../lib/svg'
+import { ArrowRightIcon, MapMarkerIcon } from '../lib/svg'
 
 export default function JobPreviewTile({ job }) {
   const {
@@ -25,7 +25,7 @@ export default function JobPreviewTile({ job }) {
           <div className="text-sm md:text-base font-medium text-gray-700">
             {companyName}
           </div>
-          <h3 className="text-sm md:text-lg font-semibold capitalize tracking-wide text-gray-800">
+          <h3 className="text-sm md:text-lg max-w-xs md:max-w-lg lg:max-w-2xl font-semibold capitalize tracking-wide text-gray-800">
             {title}
           </h3>
           <div className="flex items-center text-gray-800 font-medium tracking-wide md:mb-1">
@@ -57,17 +57,18 @@ export default function JobPreviewTile({ job }) {
             </Link>
           ))}
         </div>
-        {featured ? (
-          <div className="text-gray-700 text-xs md:text-sm font-semibold border-2 border-yellow-300 bg-yellow-300 my-auto px-1 rounded-md text-center">
-            Featured
-          </div>
-        ) : null}
+
         <div className="flex justify-end">
-          <div className="flex flex-col">
+          <div className="relative flex flex-col">
             <div className="justify-items-end text-gray-700 font-medium mr-1 mt-0. text-xs md:text-sm mb-5">
               {daysSinceEpoch}
               <span>d</span>
             </div>
+            {featured ? (
+              <div className="absolute mt-10 -ml-24 md:-ml-36 text-gray-700 text-xs md:text-sm font-semibold border-2 border-yellow-300 bg-yellow-300 px-1 rounded-md text-center">
+                Featured
+              </div>
+            ) : null}
             <ArrowRightIcon
               size="24"
               className="opacity-0 group-hover:opacity-100 fill-current text-gray-700"
