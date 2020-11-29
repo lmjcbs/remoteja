@@ -1,7 +1,16 @@
+import { FC } from 'react'
 import Link from 'next/link'
 import { ArrowRightIcon, MapMarkerIcon } from '../lib/svg'
 
-export default function JobPreviewTile({ job }) {
+type JobPreviewTileProps = {
+  job: Models.Job & {
+    category: Models.Category
+    location: Models.Location
+    tags: Models.Tag[]
+  }
+}
+
+const JobPreviewTile: FC<JobPreviewTileProps> = ({ job }) => {
   const {
     urlSlug,
     category,
@@ -30,7 +39,7 @@ export default function JobPreviewTile({ job }) {
           </h3>
           <div className="flex items-center text-gray-800 font-medium tracking-wide md:mb-1">
             <MapMarkerIcon
-              size="18"
+              size={18}
               className={`fill-current ${
                 featured ? 'text-yellow-300' : 'text-gray-500'
               }`}
@@ -70,7 +79,7 @@ export default function JobPreviewTile({ job }) {
               </div>
             ) : null}
             <ArrowRightIcon
-              size="24"
+              size={24}
               className="opacity-0 group-hover:opacity-100 fill-current text-gray-700"
             />
           </div>
@@ -79,3 +88,5 @@ export default function JobPreviewTile({ job }) {
     </Link>
   )
 }
+
+export default JobPreviewTile

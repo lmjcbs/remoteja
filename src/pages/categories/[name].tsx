@@ -1,8 +1,16 @@
+import { FC } from 'react'
+import { GetStaticPaths, GetStaticProps } from 'next'
 import { PrismaClient } from '@prisma/client'
 import { extendJobsData } from '../../utils'
 import { JobPreviewTile } from '../../components'
+import { ParsedUrlQuery } from 'querystring'
 
-export default function Categories({ jobs, category }) {
+type CategoriesProps = {
+  jobs: Models.JobWithRelations[]
+  category: string
+}
+
+const Categories: FC<CategoriesProps> = ({ jobs, category }) => {
   return (
     <main className="py-4 px-1 md:px-2">
       <div>
@@ -20,7 +28,7 @@ export default function Categories({ jobs, category }) {
   )
 }
 
-export const getStaticPaths = async () => {
+export const getStaticPaths: GetStaticPaths = async () => {
   const prisma = new PrismaClient()
 
   const categories = await prisma.category.findMany()
@@ -41,7 +49,14 @@ export const getStaticPaths = async () => {
   }
 }
 
-export const getStaticProps = async ({ params }) => {
+interface Params extends ParsedUrlQuery {
+  name: string
+}
+
+export const getStaticProps: GetStaticProps<CategoriesProps, Params> = async (
+  context
+) => {
+  const params = context.params as Params
   const prisma = new PrismaClient()
 
   const rawData = await prisma.job.findMany({
@@ -68,3 +83,5 @@ export const getStaticProps = async ({ params }) => {
     revalidate: 1,
   }
 }
+
+export default Categories

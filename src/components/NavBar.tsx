@@ -1,7 +1,8 @@
+import { FC } from 'react'
 import Link from 'next/link'
 import CategoriesDropdown from './CategoriesDropdown'
 
-export default function NavBar() {
+const NavBar: FC = () => {
   return (
     <nav>
       <div className="mx-auto max-w-6xl flex flex-row items-center py-4 justify-between">
@@ -25,3 +26,5 @@ export default function NavBar() {
     </nav>
   )
 }
+
+export default NavBar

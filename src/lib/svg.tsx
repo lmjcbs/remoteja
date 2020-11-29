@@ -1,4 +1,11 @@
-export const ArrowLeftIcon = ({ size, className }) => {
+import { FC } from 'react'
+
+type ArrowLeftIconProps = {
+  size: number
+  className: string
+}
+
+export const ArrowLeftIcon: FC<ArrowLeftIconProps> = ({ size, className }) => {
   return (
     <svg
       className={className}
@@ -12,7 +19,15 @@ export const ArrowLeftIcon = ({ size, className }) => {
   )
 }
 
-export const ArrowRightIcon = ({ size, className }) => {
+type ArrowRightIconProps = {
+  size: number
+  className: string
+}
+
+export const ArrowRightIcon: FC<ArrowRightIconProps> = ({
+  size,
+  className,
+}) => {
   return (
     <svg
       className={className}
@@ -26,7 +41,11 @@ export const ArrowRightIcon = ({ size, className }) => {
   )
 }
 
-export const TwitterIcon = ({ size }) => {
+type TwitterIconProps = {
+  size: number
+}
+
+export const TwitterIcon: FC<TwitterIconProps> = ({ size }) => {
   return (
     <svg
       className="fill-current text-gray-500 hover:text-indigo-500 cursor-pointer"
@@ -40,7 +59,11 @@ export const TwitterIcon = ({ size }) => {
   )
 }
 
-export const MailtoIcon = ({ size }) => {
+type MailtoIconProps = {
+  size: number
+}
+
+export const MailtoIcon: FC<MailtoIconProps> = ({ size }) => {
   return (
     <svg
       className="fill-current text-gray-500 hover:text-indigo-500 cursor-pointer"
@@ -54,7 +77,12 @@ export const MailtoIcon = ({ size }) => {
   )
 }
 
-export const MapMarkerIcon = ({ size, className }) => {
+type MapMarkerIconProps = {
+  size: number
+  className: string
+}
+
+export const MapMarkerIcon: FC<MapMarkerIconProps> = ({ size, className }) => {
   return (
     <svg
       className={className}
@@ -64,20 +92,6 @@ export const MapMarkerIcon = ({ size, className }) => {
       viewBox="0 0 24 24"
     >
       <path d="M12 0c-4.198 0-8 3.403-8 7.602 0 4.198 3.469 9.21 8 16.398 4.531-7.188 8-12.2 8-16.398 0-4.199-3.801-7.602-8-7.602zm0 11c-1.657 0-3-1.343-3-3s1.343-3 3-3 3 1.343 3 3-1.343 3-3 3z" />
-    </svg>
-  )
-}
-
-export const ThumbtackIcon = () => {
-  return (
-    <svg
-      className="fill-current text-indigo-400"
-      xmlns="http://www.w3.org/2000/svg"
-      width="22"
-      height="22"
-      viewBox="0 0 24 24"
-    >
-      <path d="M11 17h2v5l-2 2v-7zm3.571-12c0-2.903 2.36-3.089 2.429-5h-10c.068 1.911 2.429 2.097 2.429 5 0 3.771-3.429 3.291-3.429 10h12c0-6.709-3.429-6.229-3.429-10z" />
     </svg>
   )
 }

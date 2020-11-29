@@ -1,3 +1,6 @@
+import { FC } from 'react'
+import { GetStaticPaths, GetStaticProps } from 'next'
+import { ParsedUrlQuery } from 'querystring'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { PrismaClient } from '@prisma/client'
@@ -17,7 +20,12 @@ import {
   TwitterIcon,
 } from '../../lib/svg'
 
-export default function JobPage({ job, relatedJobs }) {
+type JobsProps = {
+  job: Models.JobWithRelations
+  relatedJobs: Models.JobWithRelations[]
+}
+
+const Jobs: FC<JobsProps> = ({ job, relatedJobs }) => {
   const router = useRouter()
 
   // If the page is not yet generated, this will be displayed
@@ -33,7 +41,7 @@ export default function JobPage({ job, relatedJobs }) {
       <div className="flex flex-row justify-between mt-6">
         <Link href="/">
           <div className="flex flex-row items-center space-x-2 cursor-pointer">
-            <ArrowLeftIcon size="20" className="fill-current text-gray-700" />
+            <ArrowLeftIcon size={20} className="fill-current text-gray-700" />
             <a className="text-left text-base font-medium">All Remote Jobs</a>
           </div>
         </Link>
@@ -43,7 +51,7 @@ export default function JobPage({ job, relatedJobs }) {
             <a className="text-right capitalize text-base font-medium">
               More Remote {job.category.name} Jobs
             </a>
-            <ArrowRightIcon size="20" className="fill-current text-gray-700" />
+            <ArrowRightIcon size={20} className="fill-current text-gray-700" />
           </div>
         </Link>
       </div>
@@ -121,7 +129,7 @@ export default function JobPage({ job, relatedJobs }) {
             </Link>
             <Link href={twitterShareLink}>
               <a target="_blank" rel="noopener">
-                <TwitterIcon size="24" />
+                <TwitterIcon size={24} />
               </a>
             </Link>
           </div>
@@ -140,10 +148,12 @@ export default function JobPage({ job, relatedJobs }) {
   )
 }
 
-export async function getStaticPaths() {
+export const getStaticPaths: GetStaticPaths = async () => {
   const prisma = new PrismaClient()
 
-  const jobs = await prisma.job.findMany()
+  const jobs = await prisma.job.findMany({
+    include: { location: true, category: true, tags: true },
+  })
 
   const paths = jobs.map((job) => {
     return {
@@ -161,7 +171,12 @@ export async function getStaticPaths() {
   }
 }
 
-export async function getStaticProps({ params }) {
+interface Params extends ParsedUrlQuery {
+  slug: string
+}
+
+export const getStaticProps: GetStaticProps = async (context) => {
+  const params = context.params as Params
   const prisma = new PrismaClient()
 
   // jid Located at End of Url Slug
@@ -173,6 +188,18 @@ export async function getStaticProps({ params }) {
     },
     include: { location: true, category: true, tags: true },
   })
+
+  if (rawData === null) {
+    await prisma.$disconnect()
+
+    return {
+      props: {
+        job: null,
+        relatedJobs: null,
+      },
+      revalidate: 1,
+    }
+  }
 
   // related jobs preview
   const rawRelatedJobs = await prisma.job.findMany({
@@ -200,3 +227,5 @@ export async function getStaticProps({ params }) {
     revalidate: 1,
   }
 }
+
+export default Jobs

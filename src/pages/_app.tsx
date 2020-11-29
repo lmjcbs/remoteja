@@ -1,12 +1,14 @@
 import 'tailwindcss/tailwind.css'
 import '../styles/globals.css'
+
+import { FC } from 'react'
 import Head from 'next/head'
-import { ReactQueryDevtools } from 'react-query-devtools'
 import type { AppProps } from 'next/app'
 import { Provider } from 'next-auth/client'
 import { NavBar, Footer } from '../components'
+import { ReactQueryDevtools } from 'react-query-devtools'
 
-function MyApp({ Component, pageProps }: AppProps) {
+const MyApp: FC<AppProps> = ({ Component, pageProps }) => {
   return (
     <Provider session={pageProps.session}>
       <Head>
