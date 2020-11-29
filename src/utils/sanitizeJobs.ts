@@ -1,6 +1,6 @@
 import { getUrlSlug } from './getUrlSlug'
 
-export const extendJobsData = (jobs) => {
+export const extendJobsData = (jobs: Models.JobWithRelations[]) => {
   return jobs.map((job) => {
     return {
       ...job,

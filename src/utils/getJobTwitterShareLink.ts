@@ -1,6 +1,8 @@
 import { getUrlSlug } from './getUrlSlug'
 
-export const getJobTwitterShareLink = (job): string => {
+export const getJobTwitterShareLink = (
+  job: Models.JobWithRelations
+): string => {
   return `https://twitter.com/intent/tweet?related=remoteja&text=%E2%9C%A8%20${
     job.companyName
   }%20is%20hiring%20for%20a%20${
