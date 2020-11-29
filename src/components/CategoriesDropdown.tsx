@@ -4,8 +4,8 @@ import Link from 'next/link'
 export default function CategoriesDropdown() {
   const [isOpen, setIsOpen] = useState(false)
 
-  // TODO: Analyst, Customer Support, Administration
-  const categories = ['developer', 'marketing', 'product', 'design', 'sales']
+  // TODO: Customer Support, Administration, 'marketing', 'product', 'design',
+  const categories = ['developer', 'sales', 'analyst']
 
   const handleClick = () => {
     setIsOpen(!isOpen)
