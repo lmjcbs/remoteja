@@ -24,6 +24,7 @@ function MyApp({ Component, pageProps }: AppProps) {
           content="initial-scale=1.0, width=device-width"
           key="viewport"
         />
+        <link rel="icon" type="image/x-icon" href="favicon.ico" />
       </Head>
       <div id="wrapper" className="h-full flex flex-col">
         <NavBar />
