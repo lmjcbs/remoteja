@@ -1,4 +1,4 @@
-export const getUrlSlug = (job): string => {
+export const getUrlSlug = (job: Models.JobWithRelations): string => {
   const slug = `${job.title} ${job.companyName} ${job.jid}`
   const sanitizedSlug = slug
     .toLowerCase()

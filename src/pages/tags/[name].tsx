@@ -1,9 +1,17 @@
+import { FC } from 'react'
+import { GetStaticPaths, GetStaticProps } from 'next'
+import { ParsedUrlQuery } from 'querystring'
 import { PrismaClient } from '@prisma/client'
 import { extendJobsData } from '../../utils'
 import { JobPreviewTile } from '../../components'
 import { useRouter } from 'next/router'
 
-export default function Categories({ jobs, tag }) {
+type TagsProps = {
+  jobs: Models.JobWithRelations[]
+  tag: string
+}
+
+const Tags: FC<TagsProps> = ({ jobs, tag }) => {
   const router = useRouter()
 
   // If the page is not yet generated, this will be displayed
@@ -29,7 +37,7 @@ export default function Categories({ jobs, tag }) {
   )
 }
 
-export const getStaticPaths = async () => {
+export const getStaticPaths: GetStaticPaths = async () => {
   const prisma = new PrismaClient()
 
   const tags = await prisma.tag.findMany()
@@ -50,13 +58,20 @@ export const getStaticPaths = async () => {
   }
 }
 
-export const getStaticProps = async ({ params }) => {
+interface Params extends ParsedUrlQuery {
+  name: string
+}
+
+export const getStaticProps: GetStaticProps<TagsProps, Params> = async (
+  context
+) => {
+  const params = context.params as Params
   const prisma = new PrismaClient()
 
   const rawData = await prisma.job.findMany({
     where: { tags: { some: { name: { contains: params.name } } } },
-    include: { location: true, category: true, tags: true },
-    orderBy: [{ pinned: 'desc' }, { epoch: 'desc' }],
+    include: { location: true, category: true, tags: true, company: true },
+    orderBy: [{ featured: 'desc' }, { epoch: 'desc' }],
   })
 
   // getStaticProps Fails to Serialize Date Object
@@ -77,3 +92,5 @@ export const getStaticProps = async ({ params }) => {
     revalidate: 1,
   }
 }
+
+export default Tags

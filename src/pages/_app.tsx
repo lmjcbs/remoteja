@@ -1,12 +1,14 @@
 import 'tailwindcss/tailwind.css'
 import '../styles/globals.css'
+
+import { FC } from 'react'
 import Head from 'next/head'
-import { ReactQueryDevtools } from 'react-query-devtools'
 import type { AppProps } from 'next/app'
 import { Provider } from 'next-auth/client'
 import { NavBar, Footer } from '../components'
+import { ReactQueryDevtools } from 'react-query-devtools'
 
-function MyApp({ Component, pageProps }: AppProps) {
+const MyApp: FC<AppProps> = ({ Component, pageProps }) => {
   return (
     <Provider session={pageProps.session}>
       <Head>
@@ -24,12 +26,15 @@ function MyApp({ Component, pageProps }: AppProps) {
           content="initial-scale=1.0, width=device-width"
           key="viewport"
         />
+        <link rel="icon" type="image/x-icon" href="favicon.ico" />
       </Head>
-      <NavBar />
-      <div className="px-2 mx-auto max-w-5xl sm:px-6 lg:px-8">
-        <Component {...pageProps} />
+      <div id="wrapper" className="h-full flex flex-col">
+        <NavBar />
+        <div className="flex-grow w-full mx-auto justify-center max-w-5xl px-2 sm:px-6 lg:px-8">
+          <Component {...pageProps} />
+        </div>
+        <Footer />
       </div>
-      <Footer />
       <ReactQueryDevtools initialIsOpen={false} />
     </Provider>
   )

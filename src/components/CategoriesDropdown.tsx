@@ -1,18 +1,18 @@
-import { useState, useEffect } from 'react'
+import { FC, useState, useEffect } from 'react'
 import Link from 'next/link'
 
-export default function CategoriesDropdown() {
+const CategoriesDropdown: FC = () => {
   const [isOpen, setIsOpen] = useState(false)
 
-  // TODO: Analyst, Customer Support, Administration
-  const categories = ['developer', 'marketing', 'product', 'design', 'sales']
+  // TODO: Customer Support, Administration, 'marketing', 'product', 'design',
+  const categories = ['developer', 'sales', 'analyst']
 
   const handleClick = () => {
     setIsOpen(!isOpen)
   }
 
-  const handleEscape = ({ key }) => {
-    if (key === 'Esc' || key === 'Escape') {
+  const handleEscape = (e: KeyboardEvent) => {
+    if (e.key === 'Esc' || e.key === 'Escape') {
       setIsOpen(false)
     }
   }
@@ -60,3 +60,5 @@ export default function CategoriesDropdown() {
     </div>
   )
 }
+
+export default CategoriesDropdown
