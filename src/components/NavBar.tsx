@@ -18,9 +18,11 @@ const NavBar: FC = () => {
         </div>
         <div className="flex flex-row items-center">
           <CategoriesDropdown />
-          {/* <div className="mx-4 bg-indigo-500 hover:bg-indigo-600 text-white rounded-md py-1 px-2 font-semibold shadow-lg">
-            Post a Job
-          </div> */}
+          <Link href="/post-job">
+            <div className="mx-4 bg-indigo-500 hover:bg-indigo-600 text-white rounded-md py-1 px-2 font-semibold cursor-pointer shadow-lg">
+              Post a Job
+            </div>
+          </Link>
         </div>
       </div>
     </nav>
