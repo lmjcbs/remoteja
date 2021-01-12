@@ -204,6 +204,9 @@ export const getStaticProps: GetStaticProps = async (context) => {
   const rawRelatedJobs = await prisma.job.findMany({
     where: {
       categoryId: rawData.categoryId,
+      jid: {
+        not: jid,
+      },
     },
     orderBy: [{ featured: 'desc' }, { epoch: 'desc' }],
     include: { location: true, category: true, tags: true },
