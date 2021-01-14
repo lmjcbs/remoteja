@@ -144,14 +144,18 @@ const Job: FC<JobsProps> = ({ job, relatedJobs, twitterShareLink }) => {
           </div>
         </div>
 
-        <div className="mt-12">
-          <h4 className="text-xl font-semibold text-gray-700">Similar Jobs</h4>
-          <div>
-            {relatedJobs.map((job) => (
-              <JobPreviewTile job={job}></JobPreviewTile>
-            ))}
+        {relatedJobs.length > 0 ? (
+          <div className="mt-12">
+            <h4 className="text-xl font-semibold text-gray-700">
+              Similar Jobs
+            </h4>
+            <div>
+              {relatedJobs.map((job) => (
+                <JobPreviewTile job={job}></JobPreviewTile>
+              ))}
+            </div>
           </div>
-        </div>
+        ) : null}
       </main>
     </>
   )
