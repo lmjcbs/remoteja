@@ -1,14 +1,28 @@
 import 'tailwindcss/tailwind.css'
 import '../styles/globals.css'
 
-import { FC } from 'react'
+import { FC, useEffect } from 'react'
 import Head from 'next/head'
+import { useRouter } from 'next/router'
 import type { AppProps } from 'next/app'
 import { Provider } from 'next-auth/client'
 import { NavBar, Footer } from '../components'
 import { ReactQueryDevtools } from 'react-query-devtools'
 
+import * as gtag from '../lib/gtag'
+
 const MyApp: FC<AppProps> = ({ Component, pageProps }) => {
+  const router = useRouter()
+  useEffect(() => {
+    const handleRouteChange = (url: string) => {
+      gtag.pageview(url)
+    }
+    router.events.on('routeChangeComplete', handleRouteChange)
+    return () => {
+      router.events.off('routeChangeComplete', handleRouteChange)
+    }
+  }, [router.events])
+
   return (
     <Provider session={pageProps.session}>
       <Head>
