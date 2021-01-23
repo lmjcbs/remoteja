@@ -26,20 +26,35 @@ const MyApp: FC<AppProps> = ({ Component, pageProps }) => {
   return (
     <Provider session={pageProps.session}>
       <Head>
-        <title>Remoteja</title>
-        <meta property="og:title" content="Remoteja" key="title" />
-        <meta
-          property="og:description"
-          name="description"
-          key="description"
-          content=""
-        />
         <meta charSet="utf-8" key="charSet" />
         <meta
           name="viewport"
           content="initial-scale=1.0, width=device-width"
           key="viewport"
         />
+        <title>
+          Remoteja | Remote Jobs in Programming, Marketing, Design and more
+        </title>
+        <meta
+          property="title"
+          content="Remoteja | Remote Jobs in Programming, Marketing, Design and more"
+        />
+        <meta
+          property="description"
+          content="Say yes to remote working and start hiring the best talent from all corners of the world today. Remoteja has the lastest listings for remote jobs in Programming, Sales, Maketing, Design and more."
+        />
+        <meta
+          property="og:title"
+          content="Remoteja | Remote Jobs in Programming, Sales, Marketing, Design and more"
+        />
+        <meta
+          property="og:description"
+          content="Say yes to remote working and start hiring the best talent from all corners of the world today. Remoteja has the lastest listings for remote jobs in Programming, Sales, Maketing, Design and more."
+        />
+        <meta property="og:url" content="https://remoteja.com/" />
+        <meta property="og:site_name" content="Remoteja" />
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:site" content="@remoteja" />
         <link rel="icon" type="image/x-icon" href="favicon.ico" />
       </Head>
       <div id="wrapper" className="h-full flex flex-col">
