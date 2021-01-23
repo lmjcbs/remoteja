@@ -36,7 +36,7 @@ const generateSitemap = async () => {
         <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
           <url>
             <loc>https://remoteja.com</loc>
-            <changefreq>daily</changefreq>
+            <changefreq>hourly</changefreq>
             <priority>1.0</priority>
           </url>
 
@@ -48,7 +48,7 @@ const generateSitemap = async () => {
                               ' ',
                               '-'
                             )}`}</loc>
-                            <changefreq>daily</changefreq>
+                            <changefreq>hourly</changefreq>
                             <priority>1.0</priority>
                         </url>
                     `
@@ -63,7 +63,7 @@ const generateSitemap = async () => {
                                 ' ',
                                 '-'
                               )}`}</loc>
-                              <changefreq>daily</changefreq>
+                              <changefreq>hourly</changefreq>
                               <priority>1.0</priority>
                           </url>
                       `
@@ -78,7 +78,7 @@ const generateSitemap = async () => {
                                   ' ',
                                   '-'
                                 )}`}</loc>
-                                <changefreq>daily</changefreq>
+                                <changefreq>hourly</changefreq>
                                 <priority>1.0</priority>
                             </url>
                         `
@@ -92,7 +92,7 @@ const generateSitemap = async () => {
                                   <loc>${`https://remoteja.com/remote-jobs/${getUrlSlug(
                                     job
                                   )}`}</loc>
-                                  <changefreq>daily</changefreq>
+                                  <changefreq>weekly</changefreq>
                                   <priority>0.8</priority>
                               </url>
                           `
