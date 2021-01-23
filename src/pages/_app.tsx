@@ -37,22 +37,24 @@ const MyApp: FC<AppProps> = ({ Component, pageProps }) => {
         </title>
         <meta
           property="title"
+          key="title"
           content="Remoteja | Remote Jobs in Programming, Marketing, Design and more"
         />
         <meta
-          property="description"
-          content="Say yes to remote working and start hiring the best talent from all corners of the world today. Remoteja has the lastest listings for remote jobs in Programming, Sales, Maketing, Design and more."
-        />
-        <meta
           property="og:title"
+          key="og:title"
           content="Remoteja | Remote Jobs in Programming, Sales, Marketing, Design and more"
         />
         <meta
-          property="og:description"
+          property="description"
+          key="description"
           content="Say yes to remote working and start hiring the best talent from all corners of the world today. Remoteja has the lastest listings for remote jobs in Programming, Sales, Maketing, Design and more."
         />
-        <meta property="og:url" content="https://remoteja.com/" />
-        <meta property="og:site_name" content="Remoteja" />
+        <meta
+          property="og:description"
+          key="og:description"
+          content="Say yes to remote working and start hiring the best talent from all corners of the world today. Remoteja has the lastest listings for remote jobs in Programming, Sales, Maketing, Design and more."
+        />
         <meta name="twitter:card" content="summary" />
         <meta name="twitter:site" content="@remoteja" />
         <link rel="icon" type="image/x-icon" href="favicon.ico" />

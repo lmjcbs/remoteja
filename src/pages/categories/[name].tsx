@@ -1,4 +1,5 @@
 import { FC } from 'react'
+import Head from 'next/head'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import { PrismaClient } from '@prisma/client'
 import { extendJobsData } from '../../utils'
@@ -13,6 +14,29 @@ type CategoriesProps = {
 const Categories: FC<CategoriesProps> = ({ jobs, category }) => {
   return (
     <main className="py-4 px-1 md:px-2">
+      <Head>
+        <title>Remote {category} Jobs</title>
+        <meta
+          property="title"
+          key="title"
+          content={`Remote ${category} Jobs`}
+        />
+        <meta
+          property="og:title"
+          key="og:title"
+          content={`Remote ${category} Jobs`}
+        />
+        <meta
+          property="description"
+          key="description"
+          content={`The lastest remote ${category} jobs from companies across the world.`}
+        />
+        <meta
+          property="og:description"
+          key="og:description"
+          content={`The lastest remote ${category} jobs from companies across the world.`}
+        />
+      </Head>
       <div>
         <h2 className="text-xl font-semibold text-gray-800 capitalize">
           Remote {category} Jobs

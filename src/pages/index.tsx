@@ -1,4 +1,5 @@
 import { FC } from 'react'
+import Head from 'next/head'
 import { GetStaticProps } from 'next'
 import { PrismaClient } from '@prisma/client'
 import { extendJobsData } from '../utils'
@@ -11,12 +12,15 @@ type HomeProps = {
 const Home: FC<HomeProps> = ({ jobs }) => {
   return (
     <main>
+      <Head>
+        <meta property="og:url" content="https://remoteja.com/" />
+        <meta property="og:site_name" content="Remoteja" />
+      </Head>
       <div className="w-full py-4 px-1 md:px-2">
         <h2 className="text-lg md:text-xl font-semibold text-gray-800 capitalize">
           Showing The Latest Remote Jobs
         </h2>
       </div>
-
       <div>
         {jobs.map((job) => (
           <JobPreviewTile job={job} />
