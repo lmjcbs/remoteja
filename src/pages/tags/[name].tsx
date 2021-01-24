@@ -6,6 +6,7 @@ import { ParsedUrlQuery } from 'querystring'
 import { PrismaClient } from '@prisma/client'
 import { extendJobsData, capitalize } from '../../utils'
 import { JobPreviewTile } from '../../components'
+import { useRouter } from 'next/router'
 
 type Props = {
   jobs: Models.JobWithRelations[]
@@ -13,6 +14,11 @@ type Props = {
 }
 
 const Tags: FC<Props> = ({ jobs, tag }) => {
+  const router = useRouter()
+
+  if (router.isFallback) {
+    return <div>Loading</div>
+  }
   return (
     <main>
       <Head>
