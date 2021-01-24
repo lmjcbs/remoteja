@@ -1,4 +1,5 @@
 import { FC } from 'react'
+import Head from 'next/head'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import { ParsedUrlQuery } from 'querystring'
 import { PrismaClient } from '@prisma/client'
@@ -11,13 +12,51 @@ type LocationsProps = {
 }
 
 const Locations: FC<LocationsProps> = ({ jobs, location }) => {
+  const locationTitleMeta =
+    location === 'worldwide'
+      ? `Worldwide Remote Jobs`
+      : `${location} Remote Jobs`
+
+  const locationDescriptionMeta =
+    location === 'worldwide'
+      ? `The latest Remote Job listings from companies across the world`
+      : `The latest Remote Job listings from companies in ${location}`
+
   return (
     <main>
+      <Head>
+        <title>{locationTitleMeta} | Remoteja</title>
+        <meta
+          property="title"
+          key="title"
+          content={`${locationTitleMeta} | Remoteja`}
+        />
+        <meta
+          property="og:title"
+          key="og:title"
+          content={`${locationTitleMeta} | Remoteja`}
+        />
+        <meta
+          property="description"
+          key="description"
+          content={`${locationDescriptionMeta}`}
+        />
+        <meta
+          property="og:description"
+          key="og:description"
+          content={`${locationDescriptionMeta}`}
+        />
+      </Head>
       <div className="py-4 px-1 md:px-2">
-        <h2 className="text-xl font-semibold text-gray-800 capitalize">
+        <h1 className="text-xl font-semibold text-gray-800 capitalize">
+          {locationTitleMeta}
+        </h1>
+        <h2>
+          Looking for remote jobs
           {location === 'worldwide'
-            ? `${location} Remote Jobs`
-            : `Remote Jobs in ${location}`}
+            ? ' without any geographic restrictions'
+            : ` available to applicants in ${location}`}
+          ? View {`${locationDescriptionMeta}.`}
         </h2>
       </div>
 
