@@ -1,4 +1,5 @@
 import { FC } from 'react'
+import Head from 'next/head'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import { ParsedUrlQuery } from 'querystring'
 import { PrismaClient } from '@prisma/client'
@@ -22,9 +23,36 @@ const Tags: FC<TagsProps> = ({ jobs, tag }) => {
 
   return (
     <main>
+      <Head>
+        <title>Remote {tag} Jobs | Remoteja</title>
+        <meta
+          property="title"
+          key="title"
+          content={`Remote ${tag} Jobs | Remoteja`}
+        />
+        <meta
+          property="og:title"
+          key="og:title"
+          content={`Remote ${tag} Jobs | Remoteja`}
+        />
+        <meta
+          property="description"
+          key="description"
+          content={`The lastest remote ${tag} jobs from companies across the world.`}
+        />
+        <meta
+          property="og:description"
+          key="og:description"
+          content={`The lastest remote ${tag} jobs from companies across the world.`}
+        />
+      </Head>
       <div className="py-4 px-1 md:px-2">
-        <h2 className="text-xl font-semibold text-gray-800 capitalize">
+        <h1 className="text-xl font-semibold text-gray-800 capitalize">
           Remote {tag} Jobs
+        </h1>
+        <h2>
+          Looking for remote {tag} jobs? View the lastest job listings from
+          companies hiring for {tag} positions.
         </h2>
       </div>
 

@@ -15,16 +15,16 @@ const Categories: FC<CategoriesProps> = ({ jobs, category }) => {
   return (
     <main className="py-4 px-1 md:px-2">
       <Head>
-        <title>Remote {category} Jobs</title>
+        <title>Remote {category} Jobs | Remoteja</title>
         <meta
           property="title"
           key="title"
-          content={`Remote ${category} Jobs`}
+          content={`Remote ${category} Jobs | Remoteja`}
         />
         <meta
           property="og:title"
           key="og:title"
-          content={`Remote ${category} Jobs`}
+          content={`Remote ${category} Jobs | Remoteja`}
         />
         <meta
           property="description"
