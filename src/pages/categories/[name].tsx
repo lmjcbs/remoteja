@@ -38,8 +38,12 @@ const Categories: FC<CategoriesProps> = ({ jobs, category }) => {
         />
       </Head>
       <div>
-        <h2 className="text-xl font-semibold text-gray-800 capitalize">
+        <h1 className="text-xl font-semibold text-gray-800 capitalize">
           Remote {category} Jobs
+        </h1>
+        <h2>
+          Looking for remote {category} jobs? View the lastest job listings from
+          companies hiring for {category} positions.
         </h2>
       </div>
 
