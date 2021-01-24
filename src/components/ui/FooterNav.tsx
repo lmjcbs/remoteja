@@ -1,11 +1,10 @@
 import { FC } from 'react'
-import { Box, Flex, IconButton, Heading, Text, VStack } from '@chakra-ui/react'
+import { Box, Flex, Heading, Text, VStack } from '@chakra-ui/react'
 import Link from 'next/link'
 import { FaArrowCircleUp } from 'react-icons/fa'
 
-const categories: string[] = ['developer', 'sales']
-
-const locations: string[] = ['worldwide', 'north america', 'europe', 'asia']
+const categories = ['developer', 'sales']
+const locations = ['worldwide', 'north america', 'europe', 'asia']
 
 const FooterNav: FC = () => {
   return (
@@ -39,15 +38,12 @@ const FooterNav: FC = () => {
           <Flex
             align="center"
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+            color="gray.600"
           >
-            <Text mr={1}>Back to top</Text>
-            <IconButton
-              aria-label="scroll up"
-              icon={<FaArrowCircleUp />}
-              alignContent="center"
-              fontSize="xl"
-              bg="white"
-            />
+            <Text fontWeight="semibold" fontStyle="bold" as="h4" mr={1}>
+              Back to top
+            </Text>
+            <FaArrowCircleUp style={{ fontSize: 20, cursor: 'pointer' }} />
           </Flex>
         </Box>
       </Flex>

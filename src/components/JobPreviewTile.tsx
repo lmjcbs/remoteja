@@ -2,7 +2,7 @@ import { FC } from 'react'
 import Link from 'next/link'
 import { ArrowRightIcon, MapMarkerIcon } from '../lib/svg'
 
-type JobPreviewTileProps = {
+type Props = {
   job: Models.Job & {
     category: Models.Category
     location: Models.Location
@@ -10,7 +10,7 @@ type JobPreviewTileProps = {
   }
 }
 
-const JobPreviewTile: FC<JobPreviewTileProps> = ({ job }) => {
+const JobPreviewTile: FC<Props> = ({ job }) => {
   const {
     urlSlug,
     category,
