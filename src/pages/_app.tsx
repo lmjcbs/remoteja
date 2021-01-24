@@ -5,9 +5,9 @@ import { FC, useEffect } from 'react'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import type { AppProps } from 'next/app'
-import { Provider } from 'next-auth/client'
-import { NavBar, Footer } from '../components'
-import { ReactQueryDevtools } from 'react-query-devtools'
+import { NavBar } from '../components'
+import Footer from '../components/sections/Footer'
+import { ChakraProvider } from '@chakra-ui/react'
 
 import * as gtag from '../lib/gtag'
 
@@ -24,7 +24,7 @@ const MyApp: FC<AppProps> = ({ Component, pageProps }) => {
   }, [router.events])
 
   return (
-    <Provider session={pageProps.session}>
+    <ChakraProvider>
       <Head>
         <meta charSet="utf-8" key="charSet" />
         <meta
@@ -66,8 +66,7 @@ const MyApp: FC<AppProps> = ({ Component, pageProps }) => {
         </div>
         <Footer />
       </div>
-      <ReactQueryDevtools initialIsOpen={false} />
-    </Provider>
+    </ChakraProvider>
   )
 }
 

@@ -1,31 +1,29 @@
 import { FC } from 'react'
 import Head from 'next/head'
+import Header from '../components/sections/Header'
 import { GetStaticProps } from 'next'
 import { PrismaClient } from '@prisma/client'
 import { extendJobsData } from '../utils'
 import { JobPreviewTile } from '../components'
 
-type HomeProps = {
+type Props = {
   jobs: Models.JobWithRelations[]
 }
 
-const Home: FC<HomeProps> = ({ jobs }) => {
+const Home: FC<Props> = ({ jobs }) => {
   return (
     <main>
       <Head>
         <meta property="og:url" content="https://remoteja.com/" />
         <meta property="og:site_name" content="Remoteja" />
       </Head>
-      <div className="w-full py-4 px-1 md:px-2">
-        <h2 className="text-lg md:text-xl font-semibold text-gray-800 capitalize">
-          Showing The Latest Remote Jobs
-        </h2>
-      </div>
-      <div>
-        {jobs.map((job) => (
-          <JobPreviewTile job={job} />
-        ))}
-      </div>
+      <Header
+        h1="The Latest Remote Jobs"
+        h2="Browse thousands of jobs in Programming, Design, Sales and more from the companies hiring global talent."
+      />
+      {jobs.map((job) => (
+        <JobPreviewTile job={job} />
+      ))}
     </main>
   )
 }
