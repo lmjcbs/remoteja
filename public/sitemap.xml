@@ -169,6 +169,24 @@
   </url>
 
   <url>
+    <loc>https://remoteja.com/tags/angular</loc>
+    <changefreq>hourly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>https://remoteja.com/tags/nodejs</loc>
+    <changefreq>hourly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>https://remoteja.com/tags/graphql</loc>
+    <changefreq>hourly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
     <loc>https://remoteja.com/locations/worldwide</loc>
     <changefreq>hourly</changefreq>
     <priority>1.0</priority>
@@ -236,14 +254,6 @@
 
   <url>
     <loc
-      >https://remoteja.com/remote-jobs/full-stack-software-developer-freshcart-grocer-sdn-bhd-b53d4b831419</loc
-    >
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc
       >https://remoteja.com/remote-jobs/blockchain-core-developer-spacemesh-1587801e3fb0</loc
     >
     <changefreq>weekly</changefreq>
@@ -277,6 +287,30 @@
   <url>
     <loc
       >https://remoteja.com/remote-jobs/junior-level-saas-sales-development-rep-prehired-0342e343b7e8</loc
+    >
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc
+      >https://remoteja.com/remote-jobs/full-stack-developer-reactjs-or-angular-nodejs-soshace-5ef3172f8220</loc
+    >
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc
+      >https://remoteja.com/remote-jobs/full-stack-software-developer-freshcart-grocer-sdn-bhd-b53d4b831419</loc
+    >
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc
+      >https://remoteja.com/remote-jobs/senior-software-engineer-shrine-development-0016daa52d1f</loc
     >
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
