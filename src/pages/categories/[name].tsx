@@ -3,17 +3,18 @@ import Head from 'next/head'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import { PrismaClient } from '@prisma/client'
 import { extendJobsData, capitalize } from '../../utils'
+import Header from '../../components/sections/Header'
 import { JobPreviewTile } from '../../components'
 import { ParsedUrlQuery } from 'querystring'
 
-type CategoriesProps = {
+type Props = {
   jobs: Models.JobWithRelations[]
   category: string
 }
 
-const Categories: FC<CategoriesProps> = ({ jobs, category }) => {
+const Categories: FC<Props> = ({ jobs, category }) => {
   return (
-    <main className="py-4 px-1 md:px-2">
+    <main>
       <Head>
         <title>Remote {capitalize(category)} Jobs | Remoteja</title>
         <meta
@@ -37,21 +38,15 @@ const Categories: FC<CategoriesProps> = ({ jobs, category }) => {
           content={`The lastest remote ${category} jobs from companies across the world.`}
         />
       </Head>
-      <div>
-        <h1 className="text-xl font-semibold text-gray-800 capitalize">
-          Remote {category} Jobs
-        </h1>
-        <h2>
-          Looking for remote {category} jobs? View the lastest job listings from
-          companies hiring for {category} positions.
-        </h2>
-      </div>
+      <Header
+        h1={`Remote ${category} Jobs`}
+        h2={`Looking for remote ${category} jobs? View the lastest job listings from
+          companies hiring for ${category} positions.`}
+      />
 
-      <div className="w-full">
-        {jobs.map((job) => (
-          <JobPreviewTile job={job} />
-        ))}
-      </div>
+      {jobs.map((job) => (
+        <JobPreviewTile job={job} />
+      ))}
     </main>
   )
 }
@@ -81,7 +76,7 @@ interface Params extends ParsedUrlQuery {
   name: string
 }
 
-export const getStaticProps: GetStaticProps<CategoriesProps, Params> = async (
+export const getStaticProps: GetStaticProps<Props, Params> = async (
   context
 ) => {
   const params = context.params as Params

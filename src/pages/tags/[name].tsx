@@ -1,26 +1,18 @@
 import { FC } from 'react'
 import Head from 'next/head'
+import Header from '../../components/sections/Header'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import { ParsedUrlQuery } from 'querystring'
 import { PrismaClient } from '@prisma/client'
 import { extendJobsData, capitalize } from '../../utils'
 import { JobPreviewTile } from '../../components'
-import { useRouter } from 'next/router'
 
-type TagsProps = {
+type Props = {
   jobs: Models.JobWithRelations[]
   tag: string
 }
 
-const Tags: FC<TagsProps> = ({ jobs, tag }) => {
-  const router = useRouter()
-
-  // If the page is not yet generated, this will be displayed
-  // initially until getStaticProps() finishes running
-  if (router.isFallback) {
-    return <div>Loading...</div>
-  }
-
+const Tags: FC<Props> = ({ jobs, tag }) => {
   return (
     <main>
       <Head>
@@ -46,21 +38,14 @@ const Tags: FC<TagsProps> = ({ jobs, tag }) => {
           content={`The lastest remote ${tag} jobs from companies across the world.`}
         />
       </Head>
-      <div className="py-4 px-1 md:px-2">
-        <h1 className="text-xl font-semibold text-gray-800 capitalize">
-          Remote {tag} Jobs
-        </h1>
-        <h2>
-          Looking for remote {tag} jobs? View the lastest job listings from
-          companies hiring for {tag} positions.
-        </h2>
-      </div>
-
-      <div>
-        {jobs.map((job) => (
-          <JobPreviewTile job={job} />
-        ))}
-      </div>
+      <Header
+        h1={`Remote ${capitalize(tag)} Jobs`}
+        h2={`Looking for remote ${tag} jobs? View the lastest job listings from
+          companies hiring for ${tag} positions.`}
+      />
+      {jobs.map((job) => (
+        <JobPreviewTile job={job} />
+      ))}
     </main>
   )
 }
@@ -90,7 +75,7 @@ interface Params extends ParsedUrlQuery {
   name: string
 }
 
-export const getStaticProps: GetStaticProps<TagsProps, Params> = async (
+export const getStaticProps: GetStaticProps<Props, Params> = async (
   context
 ) => {
   const params = context.params as Params

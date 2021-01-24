@@ -1,27 +1,25 @@
 import { FC } from 'react'
 import Head from 'next/head'
+import Header from '../../components/sections/Header'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import { ParsedUrlQuery } from 'querystring'
 import { PrismaClient } from '@prisma/client'
 import { extendJobsData, capitalize } from '../../utils'
 import { JobPreviewTile } from '../../components'
 
-type LocationsProps = {
+type Props = {
   jobs: Models.JobWithRelations[]
   location: string
+  locationDescriptionMeta: string
+  locationTitleMeta: string
 }
 
-const Locations: FC<LocationsProps> = ({ jobs, location }) => {
-  const locationTitleMeta =
-    location === 'worldwide'
-      ? `Worldwide Remote Jobs`
-      : `${capitalize(location)} Remote Jobs`
-
-  const locationDescriptionMeta =
-    location === 'worldwide'
-      ? `The latest Remote Job listings from companies across the world`
-      : `The latest Remote Job listings from companies in ${location}`
-
+const Locations: FC<Props> = ({
+  jobs,
+  location,
+  locationDescriptionMeta,
+  locationTitleMeta,
+}) => {
   return (
     <main>
       <Head>
@@ -47,24 +45,20 @@ const Locations: FC<LocationsProps> = ({ jobs, location }) => {
           content={`${locationDescriptionMeta}`}
         />
       </Head>
-      <div className="py-4 px-1 md:px-2">
-        <h1 className="text-xl font-semibold text-gray-800 capitalize">
-          {locationTitleMeta}
-        </h1>
-        <h2>
-          Looking for remote jobs
-          {location === 'worldwide'
-            ? ' without any geographic restrictions'
-            : ` available to applicants in ${location}`}
-          ? View {`${locationDescriptionMeta}.`}
-        </h2>
-      </div>
+      <Header
+        h1={locationTitleMeta}
+        h2={`Looking for remote jobs
+          ${
+            location === 'worldwide'
+              ? ' without any geographic restrictions'
+              : ` available to applicants in ${location}`
+          }
+          ? View ${locationDescriptionMeta}.`}
+      ></Header>
 
-      <div>
-        {jobs.map((job) => (
-          <JobPreviewTile job={job} />
-        ))}
-      </div>
+      {jobs.map((job) => (
+        <JobPreviewTile job={job} />
+      ))}
     </main>
   )
 }
@@ -94,7 +88,7 @@ interface Params extends ParsedUrlQuery {
   name: string
 }
 
-export const getStaticProps: GetStaticProps<LocationsProps, Params> = async (
+export const getStaticProps: GetStaticProps<Props, Params> = async (
   context
 ) => {
   const params = context.params as Params
@@ -115,10 +109,24 @@ export const getStaticProps: GetStaticProps<LocationsProps, Params> = async (
 
   await prisma.$disconnect()
 
+  const location = params.name.replace('-', ' ')
+
+  const locationTitleMeta =
+    location === 'worldwide'
+      ? `Worldwide Remote Jobs`
+      : `${capitalize(location)} Remote Jobs`
+
+  const locationDescriptionMeta =
+    location === 'worldwide'
+      ? `The latest Remote Job listings from companies across the world`
+      : `The latest Remote Job listings from companies in ${location}`
+
   return {
     props: {
       jobs: extendedJobsData,
-      location: params.name.replace('-', ' '),
+      location,
+      locationTitleMeta,
+      locationDescriptionMeta,
     },
     // Attempt to re-generate page on request at most once every second
     revalidate: 1,
