@@ -3,7 +3,7 @@ import Head from 'next/head'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import { ParsedUrlQuery } from 'querystring'
 import { PrismaClient } from '@prisma/client'
-import { extendJobsData } from '../../utils'
+import { extendJobsData, capitalize } from '../../utils'
 import { JobPreviewTile } from '../../components'
 
 type LocationsProps = {
@@ -15,7 +15,7 @@ const Locations: FC<LocationsProps> = ({ jobs, location }) => {
   const locationTitleMeta =
     location === 'worldwide'
       ? `Worldwide Remote Jobs`
-      : `${location} Remote Jobs`
+      : `${capitalize(location)} Remote Jobs`
 
   const locationDescriptionMeta =
     location === 'worldwide'

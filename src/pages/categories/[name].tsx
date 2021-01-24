@@ -2,7 +2,7 @@ import { FC } from 'react'
 import Head from 'next/head'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import { PrismaClient } from '@prisma/client'
-import { extendJobsData } from '../../utils'
+import { extendJobsData, capitalize } from '../../utils'
 import { JobPreviewTile } from '../../components'
 import { ParsedUrlQuery } from 'querystring'
 
@@ -15,16 +15,16 @@ const Categories: FC<CategoriesProps> = ({ jobs, category }) => {
   return (
     <main className="py-4 px-1 md:px-2">
       <Head>
-        <title>Remote {category} Jobs | Remoteja</title>
+        <title>Remote {capitalize(category)} Jobs | Remoteja</title>
         <meta
           property="title"
           key="title"
-          content={`Remote ${category} Jobs | Remoteja`}
+          content={`Remote ${capitalize(category)} Jobs | Remoteja`}
         />
         <meta
           property="og:title"
           key="og:title"
-          content={`Remote ${category} Jobs | Remoteja`}
+          content={`Remote ${capitalize(category)} Jobs | Remoteja`}
         />
         <meta
           property="description"

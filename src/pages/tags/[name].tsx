@@ -3,7 +3,7 @@ import Head from 'next/head'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import { ParsedUrlQuery } from 'querystring'
 import { PrismaClient } from '@prisma/client'
-import { extendJobsData } from '../../utils'
+import { extendJobsData, capitalize } from '../../utils'
 import { JobPreviewTile } from '../../components'
 import { useRouter } from 'next/router'
 
@@ -24,16 +24,16 @@ const Tags: FC<TagsProps> = ({ jobs, tag }) => {
   return (
     <main>
       <Head>
-        <title>Remote {tag} Jobs | Remoteja</title>
+        <title>Remote {capitalize(tag)} Jobs | Remoteja</title>
         <meta
           property="title"
           key="title"
-          content={`Remote ${tag} Jobs | Remoteja`}
+          content={`Remote ${capitalize(tag)} Jobs | Remoteja`}
         />
         <meta
           property="og:title"
           key="og:title"
-          content={`Remote ${tag} Jobs | Remoteja`}
+          content={`Remote ${capitalize(tag)} Jobs | Remoteja`}
         />
         <meta
           property="description"
