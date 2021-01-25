@@ -1,27 +1,116 @@
 import { FC } from 'react'
-import { Box, Stack } from '@chakra-ui/react'
-import MenuItem from './MenuItem'
+import Link from 'next/link'
+import {
+  Box,
+  Flex,
+  Text,
+  Accordion,
+  AccordionItem,
+  AccordionButton,
+  AccordionIcon,
+  AccordionPanel,
+} from '@chakra-ui/react'
+import NavDropdown from '../ui/NavDropdown'
 
-type MenuLinksProps = {
+type Props = {
   isOpen: boolean
+  toggle: () => void
 }
 
-const MenuLinks: FC<MenuLinksProps> = ({ isOpen }) => {
+const categories = ['developer', 'sales']
+const locations = ['worldwide', 'north america', 'europe', 'asia']
+
+const MenuLinks: FC<Props> = ({ isOpen, toggle }) => {
   return (
-    <Box
-      display={{ base: isOpen ? 'block' : 'none', md: 'block' }}
-      flexBasis={{ base: '100%', md: 'auto' }}
-    >
-      <Stack
-        spacing={8}
-        align="center"
-        justify={['center', 'space-between', 'flex-end', 'flex-end']}
-        direction={['column', 'row', 'row', 'row']}
+    <>
+      <Box
+        display={{ base: isOpen ? 'block' : 'none' }}
+        flexBasis={{ base: '100%', md: 'auto' }}
         pt={[4, 4, 0, 0]}
       >
-        <MenuItem to="/categories/developer">Devloper Jobs</MenuItem>
-      </Stack>
-    </Box>
+        <Accordion
+          allowToggle
+          w="100%"
+          justify="center"
+          textTransform="capitalize"
+        >
+          <AccordionItem>
+            <AccordionButton>
+              <Box flex="1" textAlign="left" w="100%" mx="auto">
+                Categories
+              </Box>
+              <AccordionIcon />
+            </AccordionButton>
+            <AccordionPanel>
+              <Flex direction="column">
+                {categories.map((category) => {
+                  return (
+                    <Link href={`/categories/${category}`}>
+                      <Text
+                        as="a"
+                        w="100%"
+                        mx="auto"
+                        align="left"
+                        py={1}
+                        cursor="pointer"
+                        _hover={{ textDecoration: 'underline' }}
+                        onClick={toggle}
+                      >
+                        {category}
+                      </Text>
+                    </Link>
+                  )
+                })}
+              </Flex>
+            </AccordionPanel>
+          </AccordionItem>
+
+          <AccordionItem>
+            <AccordionButton>
+              <Box flex="1" textAlign="left">
+                Locations
+              </Box>
+              <AccordionIcon />
+            </AccordionButton>
+            <AccordionPanel>
+              <Flex direction="column">
+                {locations.map((location) => {
+                  return (
+                    <Link href={`/locations/${location.replace(' ', '-')}`}>
+                      <Text
+                        as="a"
+                        w="100%"
+                        mx="auto"
+                        align="left"
+                        py={1}
+                        cursor="pointer"
+                        _hover={{ textDecoration: 'underline' }}
+                        onClick={toggle}
+                      >
+                        {location}
+                      </Text>
+                    </Link>
+                  )
+                })}
+              </Flex>
+            </AccordionPanel>
+          </AccordionItem>
+        </Accordion>
+      </Box>
+      <Box
+        display={{ base: 'none', md: 'block' }}
+        flexBasis={{ base: '100%', md: 'auto' }}
+        pt={[4, 4, 0, 0]}
+      >
+        <Flex>
+          <NavDropdown name="categories" options={['developer', 'sales']} />
+          <NavDropdown
+            name="locations"
+            options={['worldwide', 'north america', 'europe', 'asia']}
+          />
+        </Flex>
+      </Box>
+    </>
   )
 }
 

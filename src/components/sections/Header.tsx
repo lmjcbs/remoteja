@@ -21,7 +21,12 @@ const Header: FC<HeaderProps> = ({ h1, h2 }) => {
       mb={16}
       color="gray.700"
     >
-      <Heading as="h1" fontSize={['3xl', '3xl', '4xl', '4xl']} py={8}>
+      <Heading
+        as="h1"
+        textTransform="capitalize"
+        fontSize={['3xl', '3xl', '4xl', '4xl']}
+        py={8}
+      >
         <Link href="/">
           <a>{h1}</a>
         </Link>

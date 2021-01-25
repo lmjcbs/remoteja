@@ -2,7 +2,7 @@ import { FC, useState } from 'react'
 import Link from 'next/link'
 import MenuToggle from '../ui/MenuToggle'
 import MenuLinks from '../ui/MenuLinks'
-import { Flex } from '@chakra-ui/react'
+import { Flex, Text } from '@chakra-ui/react'
 
 const NavBar: FC = (props) => {
   const [isOpen, setIsOpen] = useState(false)
@@ -15,22 +15,37 @@ const NavBar: FC = (props) => {
       align="center"
       justify="space-between"
       wrap="wrap"
-      w="100%"
-      mb={8}
-      p={8}
+      w={['90%', '95%', '85%', '85%']}
+      mx="auto"
+      mb={4}
+      py={8}
       color="gray.700"
       {...props}
     >
       <Link href="/">
-        <a className="text-indigo-500 font-medium text-xl">
+        <Text
+          as="a"
+          fontWeight="medium"
+          fontSize="2xl"
+          color="#6366F1"
+          cursor="pointer"
+        >
           remote
-          <span className="bg-indigo-500 rounded-md font-bold p-1 ml-0.5 text-white">
+          <Text
+            as="span"
+            bg="#6366F1"
+            rounded="md"
+            fontWeight="bold"
+            p={1}
+            color="white"
+            ml="2px"
+          >
             Ja
-          </span>
-        </a>
+          </Text>
+        </Text>
       </Link>
       <MenuToggle toggle={toggle} isOpen={isOpen} />
-      <MenuLinks isOpen={isOpen} />
+      <MenuLinks toggle={toggle} isOpen={isOpen} />
     </Flex>
   )
 }
