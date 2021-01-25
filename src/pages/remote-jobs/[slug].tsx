@@ -144,37 +144,40 @@ const Job: FC<JobsProps> = ({ job, relatedJobs, twitterShareLink }) => {
       />
 
       <Flex direction="row" align="center" justify="space-between">
-        <Link href={`${job.applyUrl}?ref=remoteja.com`}>
-          <Text
-            as="a"
-            target="_blank"
-            rel="noopener"
-            px={2}
-            py={1}
-            mt={8}
-            color="white"
-            rounded="md"
-            fontWeight="semibold"
-            boxShadow="lg"
-            className="bg-indigo-500 hover:bg-indigo-600"
-          >
-            Apply For This Position
-          </Text>
-        </Link>
+        <Text
+          px={2}
+          py={1}
+          mt={8}
+          color="white"
+          rounded="md"
+          fontWeight="semibold"
+          boxShadow="lg"
+          className="bg-indigo-500 hover:bg-indigo-600"
+        >
+          <Link href={`${job.applyUrl}?ref=remoteja.com`}>
+            <a target="_blank" rel="noopener">
+              Apply For This Position
+            </a>
+          </Link>
+        </Text>
+
         <Flex direction="row" items="center" p={1} mt={8}>
           <Text fontWeight="semibold" mx={1}>
             Share
           </Text>
           <Link href={getJobMailtoLink(job)}>
-            <Text as="a" rel="noopener" mx={1}>
+            <a rel="noopener">
               <MailtoIcon size={6} />
-            </Text>
+            </a>
           </Link>
-          <Link href={twitterShareLink}>
-            <Text as="a" target="_blank" rel="noopener" mx={1}>
-              <TwitterIcon size={6} />
-            </Text>
-          </Link>
+
+          <Text mx={1}>
+            <Link href={twitterShareLink}>
+              <a target="_blank" rel="noopener">
+                <TwitterIcon size={6} />
+              </a>
+            </Link>
+          </Text>
         </Flex>
       </Flex>
 
