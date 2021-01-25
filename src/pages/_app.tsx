@@ -5,7 +5,7 @@ import { FC, useEffect } from 'react'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import type { AppProps } from 'next/app'
-import { NavBar } from '../components'
+import NavBar from '../components/sections/NavBar'
 import Footer from '../components/sections/Footer'
 import { ChakraProvider } from '@chakra-ui/react'
 

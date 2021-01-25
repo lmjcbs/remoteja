@@ -1,6 +1,6 @@
 import { FC } from 'react'
 import Link from 'next/link'
-import { ArrowRightIcon, MapMarkerIcon } from '../lib/svg'
+import { MapMarkerIcon } from '../lib/svg'
 
 type Props = {
   job: Models.Job & {
@@ -40,9 +40,7 @@ const JobPreviewTile: FC<Props> = ({ job }) => {
           <div className="flex items-center text-gray-800 font-medium tracking-wide md:mb-1">
             <MapMarkerIcon
               size={18}
-              className={`fill-current ${
-                featured ? 'text-yellow-300' : 'text-gray-500'
-              }`}
+              color={featured ? '#FBD34C' : 'gray.700'}
             />
             <Link href={`/locations/${location.name.replace(' ', '-')}`}>
               <a className="text-xs md:text-sm ml-0.5 hover:underline capitalize">
@@ -78,10 +76,6 @@ const JobPreviewTile: FC<Props> = ({ job }) => {
                 Featured
               </div>
             ) : null}
-            <ArrowRightIcon
-              size={24}
-              className="opacity-0 group-hover:opacity-100 fill-current text-gray-700"
-            />
           </div>
         </div>
       </div>
