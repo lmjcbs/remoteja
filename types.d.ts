@@ -3,23 +3,27 @@ declare global {
     interface Job {
       id: number
       jid: string
-      applyEmail: string | null
-      applyUrl: string | null
+      applyCTA: string
       companyName: string | null
       descriptionAsHTML: string
-      epoch: number
+      createdEpoch: number
+      expiresEpoch: number
       datePosted: string
       featured: boolean
       title: string
       createdAt: Date
       updatedAt: Date
       urlSlug?: string
+      salaryCurrency?: string | null
+      salaryMin?: number | null
+      salaryMax?: number | null
       daysSinceEpoch?: number
     }
 
     interface JobWithRelations extends Job {
       category: Category
       location: Location
+      type: Type
       tags: Tag[]
     }
 
@@ -38,6 +42,13 @@ declare global {
     }
 
     interface Tag {
+      id: number
+      name: string
+      createdAt: Date
+      updatedAt: Date
+    }
+
+    interface Type {
       id: number
       name: string
       createdAt: Date

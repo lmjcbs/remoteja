@@ -3,17 +3,13 @@ import Link from 'next/link'
 import { MapMarkerIcon } from '../lib/svg'
 
 type Props = {
-  job: Models.Job & {
-    category: Models.Category
-    location: Models.Location
-    tags: Models.Tag[]
-  }
+  job: Models.JobWithRelations
 }
 
 const JobPreviewTile: FC<Props> = ({ job }) => {
   const {
     urlSlug,
-    category,
+    type,
     featured,
     companyName,
     location,
@@ -40,7 +36,7 @@ const JobPreviewTile: FC<Props> = ({ job }) => {
           <div className="flex items-center text-gray-800 font-medium tracking-wide md:mb-1">
             <MapMarkerIcon
               size={18}
-              color={featured ? '#FBD34C' : 'gray.700'}
+              color={featured ? '#FBD34C' : 'gray.600'}
             />
             <Link href={`/locations/${location.name.replace(' ', '-')}`}>
               <a className="text-xs md:text-sm ml-0.5 hover:underline capitalize">
@@ -48,11 +44,7 @@ const JobPreviewTile: FC<Props> = ({ job }) => {
               </a>
             </Link>
             <div className="mx-1 text-based">·</div>
-            <Link href={`/categories/${category.name.replace(' ', '-')}`}>
-              <a className="text-xs md:text-sm hover:underline capitalize">
-                {category.name}
-              </a>
-            </Link>
+            <p className="text-xs md:text-sm capitalize">{type.name}</p>
           </div>
 
           {tags.map(({ name, id }) => (

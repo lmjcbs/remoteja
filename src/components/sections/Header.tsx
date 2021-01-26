@@ -31,7 +31,7 @@ const Header: FC<HeaderProps> = ({ h1, h2 }) => {
           <a>{h1}</a>
         </Link>
       </Heading>
-      <Heading as="h2" fontSize={['md', 'md', 'lg', 'lg']}>
+      <Heading as="h2" fontSize={['md', 'md', 'xl', 'xl']}>
         {h2}
       </Heading>
     </Flex>

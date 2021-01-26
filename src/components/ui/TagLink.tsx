@@ -17,14 +17,13 @@ const TagLink: FC<Props> = ({ id, tag }) => {
         bg="#C7D2FD"
         rounded="md"
         px={2}
-        py={[0, 0, 1, 1]}
+        py={0}
         boxShadow="lg"
         cursor="pointer"
-        fontWeight="semibold"
-        textTransform="capitalize"
+        fontWeight={['medium', 'medium', 'semibold', 'semibold']}
         _hover={{ bg: '#A5B4FB' }}
       >
-        {tag}
+        #{tag}
       </Text>
     </Link>
   )

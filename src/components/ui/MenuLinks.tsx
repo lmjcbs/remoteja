@@ -17,7 +17,7 @@ type Props = {
   toggle: () => void
 }
 
-const categories = ['developer', 'sales']
+const categories = ['developer', 'sales', 'marketing', 'finance']
 const locations = ['worldwide', 'north america', 'europe', 'asia']
 
 const MenuLinks: FC<Props> = ({ isOpen, toggle }) => {
@@ -103,11 +103,8 @@ const MenuLinks: FC<Props> = ({ isOpen, toggle }) => {
         pt={[4, 4, 0, 0]}
       >
         <Flex>
-          <NavDropdown name="categories" options={['developer', 'sales']} />
-          <NavDropdown
-            name="locations"
-            options={['worldwide', 'north america', 'europe', 'asia']}
-          />
+          <NavDropdown name="categories" options={categories} />
+          <NavDropdown name="locations" options={locations} />
         </Flex>
       </Box>
     </>

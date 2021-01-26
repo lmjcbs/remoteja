@@ -20,6 +20,8 @@ import {
   MailtoIcon,
   MapMarkerIcon,
   TwitterIcon,
+  ContractIcon,
+  SalaryIcon,
 } from '../../lib/svg'
 import { Box, Flex, Heading, Text } from '@chakra-ui/react'
 
@@ -31,6 +33,44 @@ type JobsProps = {
 
 const Job: FC<JobsProps> = ({ job, relatedJobs, twitterShareLink }) => {
   const router = useRouter()
+
+  const emailRegEx = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/
+
+  let formatter
+
+  switch (job?.salaryCurrency) {
+    case 'GBP':
+      formatter = Intl.NumberFormat('en-UK', {
+        style: 'currency',
+        currency: 'GBP',
+        minimumFractionDigits: 0,
+      })
+      break
+
+    case 'EUR':
+      formatter = Intl.NumberFormat('de-DE', {
+        style: 'currency',
+        currency: 'EUR',
+        minimumFractionDigits: 0,
+      })
+      break
+
+    case 'USD':
+      formatter = Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+        minimumFractionDigits: 0,
+      })
+      break
+
+    default:
+      formatter = Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+        minimumFractionDigits: 0,
+      })
+      break
+  }
 
   // If the page is not yet generated, this will be displayed
   // initially until getStaticProps() finishes running
@@ -44,17 +84,12 @@ const Job: FC<JobsProps> = ({ job, relatedJobs, twitterShareLink }) => {
         <title>Remote {job.title}</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
-      <Flex
-        direction="row"
-        justify="space-between"
-        mt={6}
-        fontWeight="semibold"
-      >
+      <Flex direction="row" justify="space-between" fontWeight="semibold">
         <Link href="/">
           <Flex direction="row" align="center" cursor="pointer">
             <ArrowLeftIcon size={6} color="gray.700" />
             <Text as="a" ml={1}>
-              All Jobs
+              All Remote Jobs
             </Text>
           </Flex>
         </Link>
@@ -98,39 +133,48 @@ const Job: FC<JobsProps> = ({ job, relatedJobs, twitterShareLink }) => {
           </Flex>
 
           <Flex
-            align="center"
+            direction="column"
             textTransform="capitalize"
             fontWeight="semibold"
-            mt={2}
+            mt={1}
           >
-            <MapMarkerIcon size={5} color="gray.600" />
-            <Link href={`/locations/${job.location.name.replace(' ', '-')}`}>
-              <Text
-                as="a"
-                ml={1}
-                cursor="pointer"
-                _hover={{ textDecoration: 'underline' }}
-              >
-                {job.location.name}
-              </Text>
-            </Link>
-            <Text as="span" mx={1} fontWeight="extrabold">
-              ·
-            </Text>
-            <Link href={`/categories/${job.category.name.replace(' ', '-')}`}>
-              <Text
-                as="a"
-                cursor="pointer"
-                _hover={{ textDecoration: 'underline' }}
-              >
-                {job.category.name}
-              </Text>
-            </Link>
+            <Box>
+              <MapMarkerIcon size={5} color="gray.600" />
+              <Link href={`/locations/${job.location.name.replace(' ', '-')}`}>
+                <Text
+                  as="a"
+                  ml={1}
+                  cursor="pointer"
+                  _hover={{ textDecoration: 'underline' }}
+                >
+                  {job.location.name}
+                </Text>
+              </Link>
+            </Box>
+            <Flex mt={1} align="center">
+              <ContractIcon size={5} />
+              <Text ml={1}>{job.type.name}</Text>
+            </Flex>
+            {job.salaryCurrency !== undefined &&
+            job.salaryCurrency !== null &&
+            job.salaryMin !== undefined &&
+            job.salaryMin !== null &&
+            job.salaryMax !== undefined &&
+            job.salaryMax !== null ? (
+              <Flex align="center" mt={1}>
+                <SalaryIcon size={5} />
+                <Text ml={1}>
+                  <Text as="span" fontWeight="medium" ml={1}>
+                    {`${formatter.format(job.salaryMin)} - ${formatter.format(
+                      job.salaryMax
+                    )}`}
+                  </Text>
+                </Text>
+              </Flex>
+            ) : null}
           </Flex>
         </Flex>
       </Flex>
-
-      {/* Check for Salary */}
 
       <Box className="border-b-2 py-2" />
 
@@ -154,30 +198,42 @@ const Job: FC<JobsProps> = ({ job, relatedJobs, twitterShareLink }) => {
           boxShadow="lg"
           className="bg-indigo-500 hover:bg-indigo-600"
         >
-          <Link href={`${job.applyUrl}?ref=remoteja.com`}>
-            <a target="_blank" rel="noopener">
-              Apply For This Position
-            </a>
-          </Link>
+          {emailRegEx.test(job.applyCTA) ? (
+            <Link
+              href={`mailto:${job.applyCTA}?subject=Application%20for%20${job.title}%20at%20${job.companyName}%20via%20remoteja.com`}
+            >
+              <a target="_blank" rel="noopener">
+                Apply For This Position
+              </a>
+            </Link>
+          ) : (
+            <Link href={`${job.applyCTA}?ref=remoteja.com`}>
+              <a target="_blank" rel="noopener">
+                Apply For This Position
+              </a>
+            </Link>
+          )}
         </Text>
 
         <Flex direction="row" items="center" p={1} mt={8}>
           <Text fontWeight="semibold" mx={1}>
             Share
           </Text>
-          <Link href={getJobMailtoLink(job)}>
-            <a rel="noopener">
-              <MailtoIcon size={6} />
-            </a>
-          </Link>
+          <Box mx={1}>
+            <Link href={getJobMailtoLink(job)}>
+              <a rel="noopener">
+                <MailtoIcon size={6} />
+              </a>
+            </Link>
+          </Box>
 
-          <Text mx={1}>
+          <Box mx={1}>
             <Link href={twitterShareLink}>
               <a target="_blank" rel="noopener">
                 <TwitterIcon size={6} />
               </a>
             </Link>
-          </Text>
+          </Box>
         </Flex>
       </Flex>
 
@@ -199,7 +255,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const prisma = new PrismaClient()
 
   const jobs = await prisma.job.findMany({
-    include: { location: true, category: true, tags: true },
+    include: { location: true, category: true, tags: true, type: true },
   })
 
   const paths = jobs.map((job) => {
@@ -233,7 +289,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
     where: {
       jid,
     },
-    include: { location: true, category: true, tags: true },
+    include: { location: true, category: true, tags: true, type: true },
   })
 
   if (rawData === null) {
@@ -256,8 +312,8 @@ export const getStaticProps: GetStaticProps = async (context) => {
         not: jid,
       },
     },
-    orderBy: [{ featured: 'desc' }, { epoch: 'desc' }],
-    include: { location: true, category: true, tags: true },
+    orderBy: [{ featured: 'desc' }, { createdEpoch: 'desc' }],
+    include: { location: true, category: true, tags: true, type: true },
     take: 3,
   })
 
