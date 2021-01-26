@@ -19,97 +19,13 @@
   </url>
 
   <url>
-    <loc>https://remoteja.com/tags/php</loc>
+    <loc>https://remoteja.com/categories/marketing</loc>
     <changefreq>hourly</changefreq>
     <priority>1.0</priority>
   </url>
 
   <url>
-    <loc>https://remoteja.com/tags/laravel</loc>
-    <changefreq>hourly</changefreq>
-    <priority>1.0</priority>
-  </url>
-
-  <url>
-    <loc>https://remoteja.com/tags/vue</loc>
-    <changefreq>hourly</changefreq>
-    <priority>1.0</priority>
-  </url>
-
-  <url>
-    <loc>https://remoteja.com/tags/backend</loc>
-    <changefreq>hourly</changefreq>
-    <priority>1.0</priority>
-  </url>
-
-  <url>
-    <loc>https://remoteja.com/tags/linux</loc>
-    <changefreq>hourly</changefreq>
-    <priority>1.0</priority>
-  </url>
-
-  <url>
-    <loc>https://remoteja.com/tags/golang</loc>
-    <changefreq>hourly</changefreq>
-    <priority>1.0</priority>
-  </url>
-
-  <url>
-    <loc>https://remoteja.com/tags/kubernetes</loc>
-    <changefreq>hourly</changefreq>
-    <priority>1.0</priority>
-  </url>
-
-  <url>
-    <loc>https://remoteja.com/tags/senior</loc>
-    <changefreq>hourly</changefreq>
-    <priority>1.0</priority>
-  </url>
-
-  <url>
-    <loc>https://remoteja.com/tags/blockchain</loc>
-    <changefreq>hourly</changefreq>
-    <priority>1.0</priority>
-  </url>
-
-  <url>
-    <loc>https://remoteja.com/tags/startup</loc>
-    <changefreq>hourly</changefreq>
-    <priority>1.0</priority>
-  </url>
-
-  <url>
-    <loc>https://remoteja.com/tags/react</loc>
-    <changefreq>hourly</changefreq>
-    <priority>1.0</priority>
-  </url>
-
-  <url>
-    <loc>https://remoteja.com/tags/javascript</loc>
-    <changefreq>hourly</changefreq>
-    <priority>1.0</priority>
-  </url>
-
-  <url>
-    <loc>https://remoteja.com/tags/frontend</loc>
-    <changefreq>hourly</changefreq>
-    <priority>1.0</priority>
-  </url>
-
-  <url>
-    <loc>https://remoteja.com/tags/redux</loc>
-    <changefreq>hourly</changefreq>
-    <priority>1.0</priority>
-  </url>
-
-  <url>
-    <loc>https://remoteja.com/tags/aviation</loc>
-    <changefreq>hourly</changefreq>
-    <priority>1.0</priority>
-  </url>
-
-  <url>
-    <loc>https://remoteja.com/tags/OOD</loc>
+    <loc>https://remoteja.com/categories/finance</loc>
     <changefreq>hourly</changefreq>
     <priority>1.0</priority>
   </url>
@@ -121,7 +37,13 @@
   </url>
 
   <url>
-    <loc>https://remoteja.com/tags/devops</loc>
+    <loc>https://remoteja.com/tags/senior</loc>
+    <changefreq>hourly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>https://remoteja.com/tags/django</loc>
     <changefreq>hourly</changefreq>
     <priority>1.0</priority>
   </url>
@@ -133,31 +55,49 @@
   </url>
 
   <url>
-    <loc>https://remoteja.com/tags/fullstack</loc>
+    <loc>https://remoteja.com/tags/shopify</loc>
     <changefreq>hourly</changefreq>
     <priority>1.0</priority>
   </url>
 
   <url>
-    <loc>https://remoteja.com/tags/saas</loc>
+    <loc>https://remoteja.com/tags/tax</loc>
     <changefreq>hourly</changefreq>
     <priority>1.0</priority>
   </url>
 
   <url>
-    <loc>https://remoteja.com/tags/software</loc>
+    <loc>https://remoteja.com/tags/seo</loc>
     <changefreq>hourly</changefreq>
     <priority>1.0</priority>
   </url>
 
   <url>
-    <loc>https://remoteja.com/tags/junior</loc>
+    <loc>https://remoteja.com/tags/accounting</loc>
     <changefreq>hourly</changefreq>
     <priority>1.0</priority>
   </url>
 
   <url>
-    <loc>https://remoteja.com/tags/angular</loc>
+    <loc>https://remoteja.com/tags/backend</loc>
+    <changefreq>hourly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>https://remoteja.com/tags/go</loc>
+    <changefreq>hourly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>https://remoteja.com/tags/php</loc>
+    <changefreq>hourly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>https://remoteja.com/tags/java</loc>
     <changefreq>hourly</changefreq>
     <priority>1.0</priority>
   </url>
@@ -169,7 +109,25 @@
   </url>
 
   <url>
-    <loc>https://remoteja.com/tags/graphql</loc>
+    <loc>https://remoteja.com/tags/.net</loc>
+    <changefreq>hourly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>https://remoteja.com/tags/c#</loc>
+    <changefreq>hourly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>https://remoteja.com/tags/react</loc>
+    <changefreq>hourly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>https://remoteja.com/tags/js</loc>
     <changefreq>hourly</changefreq>
     <priority>1.0</priority>
   </url>
@@ -181,13 +139,13 @@
   </url>
 
   <url>
-    <loc>https://remoteja.com/locations/europe</loc>
+    <loc>https://remoteja.com/locations/north-america</loc>
     <changefreq>hourly</changefreq>
     <priority>1.0</priority>
   </url>
 
   <url>
-    <loc>https://remoteja.com/locations/north-america</loc>
+    <loc>https://remoteja.com/locations/europe</loc>
     <changefreq>hourly</changefreq>
     <priority>1.0</priority>
   </url>
@@ -205,12 +163,6 @@
   </url>
 
   <url>
-    <loc>https://remoteja.com/locations/africa</loc>
-    <changefreq>hourly</changefreq>
-    <priority>1.0</priority>
-  </url>
-
-  <url>
     <loc>https://remoteja.com/locations/oceania</loc>
     <changefreq>hourly</changefreq>
     <priority>1.0</priority>
@@ -218,7 +170,7 @@
 
   <url>
     <loc
-      >https://remoteja.com/remote-jobs/rd-software-developer-general-dynamics-uk-9319ed04248d</loc
+      >https://remoteja.com/remote-jobs/data-engineer-podsights-75e9d0769374</loc
     >
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -226,7 +178,7 @@
 
   <url>
     <loc
-      >https://remoteja.com/remote-jobs/senior-software-engineer-iterative-2bc605c96d13</loc
+      >https://remoteja.com/remote-jobs/senior-python-django-developer-zibasec-858c2c0ff6ed</loc
     >
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -234,7 +186,7 @@
 
   <url>
     <loc
-      >https://remoteja.com/remote-jobs/software-engineer-cert-manager-jetstack-9fc76abf21ba</loc
+      >https://remoteja.com/remote-jobs/senior-shopify-developer-remote-flexible-storetasker-16500e03d44c</loc
     >
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -242,7 +194,7 @@
 
   <url>
     <loc
-      >https://remoteja.com/remote-jobs/blockchain-core-developer-spacemesh-1587801e3fb0</loc
+      >https://remoteja.com/remote-jobs/sales-and-customer-champion-greenback-expat-tax-services-ca2def62e539</loc
     >
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -250,7 +202,7 @@
 
   <url>
     <loc
-      >https://remoteja.com/remote-jobs/senior-backend-engineer-spruce-36fc95033dc3</loc
+      >https://remoteja.com/remote-jobs/marketing-manager-resource-guru-5c37797d3dfe</loc
     >
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -258,7 +210,7 @@
 
   <url>
     <loc
-      >https://remoteja.com/remote-jobs/frontend-engineer-es8reactreduxsaga-filescom-0597bb6efd9c</loc
+      >https://remoteja.com/remote-jobs/digital-marketing-manager-carthook-443f236add69</loc
     >
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -266,7 +218,7 @@
 
   <url>
     <loc
-      >https://remoteja.com/remote-jobs/senior-fullstack-software-engineer-strattic-4108c346ba4a</loc
+      >https://remoteja.com/remote-jobs/senior-accountant-shogun-a8b0e34ca407</loc
     >
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -274,7 +226,7 @@
 
   <url>
     <loc
-      >https://remoteja.com/remote-jobs/junior-level-saas-sales-development-rep-prehired-0342e343b7e8</loc
+      >https://remoteja.com/remote-jobs/backend-software-architect-toggl-9b6085a3273d</loc
     >
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -282,7 +234,7 @@
 
   <url>
     <loc
-      >https://remoteja.com/remote-jobs/full-stack-developer-reactjs-or-angular-nodejs-soshace-5ef3172f8220</loc
+      >https://remoteja.com/remote-jobs/senior-php-developer-laravel-interaction-design-foundation-573c90277364</loc
     >
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -290,7 +242,7 @@
 
   <url>
     <loc
-      >https://remoteja.com/remote-jobs/full-stack-software-developer-freshcart-grocer-sdn-bhd-b53d4b831419</loc
+      >https://remoteja.com/remote-jobs/senior-full-stack-software-engineer-binary-star-929d6c768a75</loc
     >
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -298,7 +250,55 @@
 
   <url>
     <loc
-      >https://remoteja.com/remote-jobs/senior-software-engineer-shrine-development-0016daa52d1f</loc
+      >https://remoteja.com/remote-jobs/senior-java-engineer-abel-healthcare-enterprises-llc-5e03bef3615e</loc
+    >
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc
+      >https://remoteja.com/remote-jobs/senior-python-engineer-datakitchen-174be359e28c</loc
+    >
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc
+      >https://remoteja.com/remote-jobs/senior-python-engineer-everyonesocial-53b8d516bf8d</loc
+    >
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc
+      >https://remoteja.com/remote-jobs/senior-backend-laravel-engineer-carthook-5b664ed60819</loc
+    >
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc
+      >https://remoteja.com/remote-jobs/aspnet-mvc-software-engineer-goskills-adcb091086c2</loc
+    >
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc
+      >https://remoteja.com/remote-jobs/senior-web-developer-komoot-1d5134ebedbc</loc
+    >
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc
+      >https://remoteja.com/remote-jobs/wordpress-developer-phpjs-awesome-motive-inc-915bef366510</loc
     >
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>

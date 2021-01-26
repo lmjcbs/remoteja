@@ -1,6 +1,38 @@
 import { FC } from 'react'
 import { Icon } from '@chakra-ui/react'
-import { FaReddit, FaCoffee } from 'react-icons/fa'
+import { FaReddit, FaCoffee, FaFileContract, FaMoneyBill } from 'react-icons/fa'
+
+export const SalaryIcon: FC<ContractIconProps> = ({ size }) => {
+  return (
+    <Icon
+      as={FaMoneyBill}
+      aria-label="reddit icon"
+      color="gray.600"
+      xmlns="http://www.w3.org/2000/svg"
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+    />
+  )
+}
+
+type ContractIconProps = {
+  size: number
+}
+
+export const ContractIcon: FC<ContractIconProps> = ({ size }) => {
+  return (
+    <Icon
+      as={FaFileContract}
+      aria-label="reddit icon"
+      color="gray.600"
+      xmlns="http://www.w3.org/2000/svg"
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+    />
+  )
+}
 
 type ArrowLeftIconProps = {
   size: number

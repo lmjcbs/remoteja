@@ -31,8 +31,14 @@ const Home: FC<Props> = ({ jobs }) => {
 export const getStaticProps: GetStaticProps = async () => {
   const prisma = new PrismaClient()
   const rawData = await prisma.job.findMany({
-    include: { location: true, category: true, tags: true, company: true },
-    orderBy: [{ featured: 'desc' }, { epoch: 'desc' }],
+    include: {
+      location: true,
+      category: true,
+      tags: true,
+      company: true,
+      type: true,
+    },
+    orderBy: [{ featured: 'desc' }, { createdEpoch: 'desc' }],
   })
 
   // getStaticProps Fails to Serialize Date Object
