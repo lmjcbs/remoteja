@@ -6,7 +6,6 @@ import FooterBase from '../ui/FooterBase'
 const Footer: FC = () => {
   return (
     <Flex
-      border="sm"
       as="footer"
       wrap="wrap"
       direction="column"
