@@ -1,7 +1,7 @@
 import { FC } from 'react'
 import Link from 'next/link'
 import { Flex, Heading, Text } from '@chakra-ui/react'
-import { TwitterIcon, RedditIcon } from '../../lib/svg'
+import { TwitterIcon, RedditIcon, CoffeeIcon } from '../../lib/svg'
 
 const FooterBase: FC = () => {
   return (
@@ -19,6 +19,11 @@ const FooterBase: FC = () => {
           <Link href="https://reddit.com/r/remoteja">
             <a target="_blank" rel="noopener">
               <RedditIcon size={6} />
+            </a>
+          </Link>
+          <Link href="https://www.buymeacoffee.com/remoteja">
+            <a target="_blank" rel="noopener">
+              <CoffeeIcon size={6} />
             </a>
           </Link>
         </Flex>

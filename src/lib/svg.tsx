@@ -1,6 +1,6 @@
 import { FC } from 'react'
 import { Icon } from '@chakra-ui/react'
-import { FaReddit } from 'react-icons/fa'
+import { FaReddit, FaCoffee } from 'react-icons/fa'
 
 type ArrowLeftIconProps = {
   size: number
@@ -55,6 +55,27 @@ export const RedditIcon: FC<RedditProps> = ({ size }) => {
     <Icon
       as={FaReddit}
       aria-label="reddit icon"
+      color="gray.600"
+      cursor="pointer"
+      xmlns="http://www.w3.org/2000/svg"
+      width={size}
+      height={size}
+      ml={2}
+      viewBox="0 0 24 24"
+      _hover={{ color: '#6366F1' }}
+    />
+  )
+}
+
+type CoffeeProps = {
+  size: number
+}
+
+export const CoffeeIcon: FC<CoffeeProps> = ({ size }) => {
+  return (
+    <Icon
+      as={FaCoffee}
+      aria-label="buy me a coffee icon"
       color="gray.600"
       cursor="pointer"
       xmlns="http://www.w3.org/2000/svg"
