@@ -22,7 +22,7 @@ const MenuLinks: FC<Props> = ({ isOpen, toggle }) => {
   return (
     <>
       <Box
-        display={{ base: isOpen ? 'block' : 'none' }}
+        display={{ base: isOpen ? 'block' : 'none', md: 'none' }}
         flexBasis={{ base: '100%', md: 'auto' }}
         pt={[4, 4, 0, 0]}
       >

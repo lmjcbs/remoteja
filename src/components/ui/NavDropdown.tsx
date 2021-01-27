@@ -8,7 +8,6 @@ type Props = {
 }
 
 const NavDropdown: FC<Props> = ({ name, options }) => {
-  // const [isShown, setIsShown] = useState(false)
   const [leftHeader, setLeftHeader] = useState(true)
   const [leftDropdown, setLeftDropdown] = useState(true)
 
@@ -35,6 +34,7 @@ const NavDropdown: FC<Props> = ({ name, options }) => {
           ml={-2}
           position="absolute"
           rounded="lg"
+          bg="white"
           boxShadow="lg"
           borderWidth={1}
           cursor="pointer"
