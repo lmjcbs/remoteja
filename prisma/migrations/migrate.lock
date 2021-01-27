@@ -1,3 +1,5 @@
 # Prisma Migrate lockfile v1
 
 20210126122945-base_models
+20210127135953-add_slug_col
+20210127143646-model_slug_unique

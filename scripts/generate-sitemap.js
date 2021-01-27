@@ -44,10 +44,7 @@ const generateSitemap = async () => {
               .map((category) => {
                 return `
                         <url>
-                            <loc>${`https://remoteja.com/categories/${category.name.replace(
-                              ' ',
-                              '-'
-                            )}`}</loc>
+                            <loc>${`https://remoteja.com/categories/${category.slug}`}</loc>
                             <changefreq>hourly</changefreq>
                             <priority>1.0</priority>
                         </url>
@@ -59,10 +56,7 @@ const generateSitemap = async () => {
                 .map((tag) => {
                   return `
                           <url>
-                              <loc>${`https://remoteja.com/tags/${tag.name.replace(
-                                ' ',
-                                '-'
-                              )}`}</loc>
+                              <loc>${`https://remoteja.com/tags/${tag.slug}`}</loc>
                               <changefreq>hourly</changefreq>
                               <priority>1.0</priority>
                           </url>
@@ -74,10 +68,7 @@ const generateSitemap = async () => {
                   .map((location) => {
                     return `
                             <url>
-                                <loc>${`https://remoteja.com/locations/${location.name.replace(
-                                  ' ',
-                                  '-'
-                                )}`}</loc>
+                                <loc>${`https://remoteja.com/locations/${location.slug}`}</loc>
                                 <changefreq>hourly</changefreq>
                                 <priority>1.0</priority>
                             </url>
@@ -113,27 +104,3 @@ const generateSitemap = async () => {
 }
 
 generateSitemap()
-
-// ${tags
-//   .map((route) => {
-//     return `
-//             <url>
-//                 <loc>${`https://quizquestionlist.com/questions/${route}`}</loc
-//                 <changefreq>daily</changefreq>
-//                 <priority>1.0</priority>
-//             </url>
-//         `
-//   })
-//   .join('')}
-
-//   ${jobs
-//     .map((route) => {
-//       return `
-//               <url>
-//                   <loc>${`https://remoteja.com/`}</loc>
-//                   <changefreq>monthly</changefreq>
-//                   <priority>0.8</priority>
-//               </url>
-//           `
-//     })
-//     .join('')}
