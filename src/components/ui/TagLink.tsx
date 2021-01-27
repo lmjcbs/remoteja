@@ -5,11 +5,12 @@ import { Text } from '@chakra-ui/react'
 type Props = {
   id: string
   tag: string
+  slug: string
 }
 
-const TagLink: FC<Props> = ({ id, tag }) => {
+const TagLink: FC<Props> = ({ id, tag, slug }) => {
   return (
-    <Link key={id} href={`/tags/${tag}`}>
+    <Link key={id} href={`/tags/${slug}`}>
       <Text
         as="a"
         mr={1}
