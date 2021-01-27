@@ -133,6 +133,18 @@
   </url>
 
   <url>
+    <loc>https://remoteja.com/tags/manager</loc>
+    <changefreq>hourly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>https://remoteja.com/tags/google-ads</loc>
+    <changefreq>hourly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
     <loc>https://remoteja.com/locations/worldwide</loc>
     <changefreq>hourly</changefreq>
     <priority>1.0</priority>
@@ -178,7 +190,15 @@
 
   <url>
     <loc
-      >https://remoteja.com/remote-jobs/senior-python-django-developer-zibasec-858c2c0ff6ed</loc
+      >https://remoteja.com/remote-jobs/senior-backend-data-engineer-clevertech-e56c4d5bc7a9</loc
+    >
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc
+      >https://remoteja.com/remote-jobs/digital-strategist-yoko-co-25e243ec34f8</loc
     >
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -235,6 +255,14 @@
   <url>
     <loc
       >https://remoteja.com/remote-jobs/senior-php-developer-laravel-interaction-design-foundation-573c90277364</loc
+    >
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc
+      >https://remoteja.com/remote-jobs/marketing-campaign-manager-agencyanalytics-64b34216557a</loc
     >
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>

@@ -2,9 +2,7 @@ import { FC } from 'react'
 import { Box, Flex, Heading, Text, VStack } from '@chakra-ui/react'
 import Link from 'next/link'
 import { FaArrowCircleUp } from 'react-icons/fa'
-
-const categories = ['developer', 'sales', 'marketing', 'finance']
-const locations = ['worldwide', 'north america', 'europe', 'asia']
+import { categories, locations } from '../../lib/constants'
 
 const FooterNav: FC = () => {
   return (

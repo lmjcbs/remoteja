@@ -11,14 +11,12 @@ import {
   AccordionPanel,
 } from '@chakra-ui/react'
 import NavDropdown from '../ui/NavDropdown'
+import { categories, locations } from '../../lib/constants'
 
 type Props = {
   isOpen: boolean
   toggle: () => void
 }
-
-const categories = ['developer', 'sales', 'marketing', 'finance']
-const locations = ['worldwide', 'north america', 'europe', 'asia']
 
 const MenuLinks: FC<Props> = ({ isOpen, toggle }) => {
   return (
