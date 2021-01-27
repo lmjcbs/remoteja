@@ -135,8 +135,8 @@ const Job: FC<JobsProps> = ({ job, relatedJobs, twitterShareLink }) => {
             {job.title}
           </Heading>
           <Flex wrap="wrap" my={3}>
-            {job.tags.map(({ name }) => (
-              <TagLink id={name} tag={name} />
+            {job.tags.map(({ name, slug }) => (
+              <TagLink id={name} tag={name} slug={slug} />
             ))}
           </Flex>
 
