@@ -3,7 +3,7 @@
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
+  url = "***"
 }
 
 generator client {
@@ -51,7 +51,7 @@ model Category {
   id        Int      @id @default(autoincrement())
   name      String   @unique
   jobs      Job[]
-  slug      String   @default("") @unique
+  slug      String   @default("")
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
@@ -80,7 +80,7 @@ model Location {
   id        Int      @id @default(autoincrement())
   name      String   @unique
   jobs      Job[]
-  slug      String   @default("") @unique
+  slug      String   @default("")
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
@@ -91,7 +91,7 @@ model Tag {
   id        Int      @id @default(autoincrement())
   name      String   @unique
   jobs      Job[]    @relation(references: [id])
-  slug      String   @default("") @unique
+  slug      String   @default("")
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 

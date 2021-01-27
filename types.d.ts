@@ -30,6 +30,7 @@ declare global {
     interface Category {
       id: number
       name: string
+      slug: string
       createdAt: Date
       updatedAt: Date
     }
@@ -37,6 +38,7 @@ declare global {
     interface Location {
       id: number
       name: string
+      slug: string
       createdAt: Date
       updatedAt: Date
     }
@@ -44,6 +46,7 @@ declare global {
     interface Tag {
       id: number
       name: string
+      slug: string
       createdAt: Date
       updatedAt: Date
     }

@@ -56,10 +56,10 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
   const categories = await prisma.category.findMany()
 
-  const paths = categories.map(({ name }) => {
+  const paths = categories.map(({ slug }) => {
     return {
       params: {
-        name: name.replace(' ', '-'),
+        name: slug,
       },
     }
   })
@@ -83,7 +83,7 @@ export const getStaticProps: GetStaticProps<Props, Params> = async (
   const prisma = new PrismaClient()
 
   const rawData = await prisma.job.findMany({
-    where: { category: { name: { contains: params.name.replace('-', ' ') } } },
+    where: { category: { slug: { contains: params.name } } },
     include: { location: true, category: true, tags: true, type: true },
     orderBy: [{ featured: 'desc' }, { createdEpoch: 'desc' }],
   })
@@ -100,7 +100,7 @@ export const getStaticProps: GetStaticProps<Props, Params> = async (
   return {
     props: {
       jobs: extendedJobsData,
-      category: params.name.replace('-', ' '),
+      category: params.name,
     },
     // Attempt to re-generate page on request at most once every second
     revalidate: 1,
