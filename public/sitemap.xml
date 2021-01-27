@@ -31,6 +31,12 @@
   </url>
 
   <url>
+    <loc>https://remoteja.com/categories/design</loc>
+    <changefreq>hourly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
     <loc>https://remoteja.com/tags/python</loc>
     <changefreq>hourly</changefreq>
     <priority>1.0</priority>
@@ -133,6 +139,36 @@
   </url>
 
   <url>
+    <loc>https://remoteja.com/tags/manager</loc>
+    <changefreq>hourly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>https://remoteja.com/tags/google-ads</loc>
+    <changefreq>hourly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>https://remoteja.com/tags/ruby</loc>
+    <changefreq>hourly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>https://remoteja.com/tags/blockchain</loc>
+    <changefreq>hourly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>https://remoteja.com/tags/junior</loc>
+    <changefreq>hourly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
     <loc>https://remoteja.com/locations/worldwide</loc>
     <changefreq>hourly</changefreq>
     <priority>1.0</priority>
@@ -178,7 +214,23 @@
 
   <url>
     <loc
-      >https://remoteja.com/remote-jobs/senior-python-django-developer-zibasec-858c2c0ff6ed</loc
+      >https://remoteja.com/remote-jobs/senior-backend-data-engineer-clevertech-e56c4d5bc7a9</loc
+    >
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc
+      >https://remoteja.com/remote-jobs/digital-strategist-yoko-co-25e243ec34f8</loc
+    >
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc
+      >https://remoteja.com/remote-jobs/senior-backend-engineer-chartmogul-238d285d6b36</loc
     >
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -235,6 +287,22 @@
   <url>
     <loc
       >https://remoteja.com/remote-jobs/senior-php-developer-laravel-interaction-design-foundation-573c90277364</loc
+    >
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc
+      >https://remoteja.com/remote-jobs/marketing-campaign-manager-agencyanalytics-64b34216557a</loc
+    >
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc
+      >https://remoteja.com/remote-jobs/senior-software-engineer-metrika-inc-53037f714d8c</loc
     >
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -299,6 +367,22 @@
   <url>
     <loc
       >https://remoteja.com/remote-jobs/wordpress-developer-phpjs-awesome-motive-inc-915bef366510</loc
+    >
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc
+      >https://remoteja.com/remote-jobs/junior-full-stack-software-engineer-our-hometown-inc-18242beda111</loc
+    >
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc
+      >https://remoteja.com/remote-jobs/senior-product-designer-contra-263713510fb3</loc
     >
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>

@@ -63,6 +63,14 @@ const Job: FC<JobsProps> = ({ job, relatedJobs, twitterShareLink }) => {
       })
       break
 
+    case 'CAD':
+      formatter = Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'CAD',
+        minimumFractionDigits: 0,
+      })
+      break
+
     default:
       formatter = Intl.NumberFormat('en-US', {
         style: 'currency',
@@ -85,7 +93,7 @@ const Job: FC<JobsProps> = ({ job, relatedJobs, twitterShareLink }) => {
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
       <Flex direction="row" justify="space-between" fontWeight="semibold">
-        <Link href="/">
+        <Link href="/" scroll={false}>
           <Flex direction="row" align="center" cursor="pointer">
             <ArrowLeftIcon size={6} color="gray.700" />
             <Text as="a" ml={1}>
