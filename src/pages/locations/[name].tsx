@@ -68,10 +68,10 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
   const locations = await prisma.location.findMany()
 
-  const paths = locations.map(({ name }) => {
+  const paths = locations.map(({ slug }) => {
     return {
       params: {
-        name: name.replace(' ', '-'),
+        name: slug,
       },
     }
   })
@@ -95,7 +95,7 @@ export const getStaticProps: GetStaticProps<Props, Params> = async (
   const prisma = new PrismaClient()
 
   const rawData = await prisma.job.findMany({
-    where: { location: { name: { contains: params.name.replace('-', ' ') } } },
+    where: { location: { slug: { contains: params.name } } },
     include: {
       location: true,
       category: true,

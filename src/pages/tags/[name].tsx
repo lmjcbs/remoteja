@@ -61,10 +61,10 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
   const tags = await prisma.tag.findMany()
 
-  const paths = tags.map(({ name }) => {
+  const paths = tags.map(({ slug }) => {
     return {
       params: {
-        name,
+        name: slug,
       },
     }
   })
@@ -88,7 +88,7 @@ export const getStaticProps: GetStaticProps<Props, Params> = async (
   const prisma = new PrismaClient()
 
   const rawData = await prisma.job.findMany({
-    where: { tags: { some: { name: { contains: params.name } } } },
+    where: { tags: { some: { slug: { contains: params.name } } } },
     include: { location: true, category: true, tags: true, type: true },
     orderBy: [{ featured: 'desc' }, { createdEpoch: 'desc' }],
   })

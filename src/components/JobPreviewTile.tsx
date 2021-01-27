@@ -38,7 +38,7 @@ const JobPreviewTile: FC<Props> = ({ job }) => {
               size={18}
               color={featured ? '#FBD34C' : 'gray.600'}
             />
-            <Link href={`/locations/${location.name.replace(' ', '-')}`}>
+            <Link href={`/locations/${location.slug}`}>
               <a className="text-xs md:text-sm ml-0.5 hover:underline capitalize">
                 {location.name}
               </a>
@@ -47,8 +47,8 @@ const JobPreviewTile: FC<Props> = ({ job }) => {
             <p className="text-xs md:text-sm capitalize">{type.name}</p>
           </div>
 
-          {tags.map(({ name, id }) => (
-            <Link key={id} href={`/tags/${name}`}>
+          {tags.map(({ name, slug, id }) => (
+            <Link key={id} href={`/tags/${slug}`}>
               <a className="inline-block bg-indigo-200 hover:bg-indigo-300 border-2 hover:border-indigo-300 border-indigo-200 rounded-md px-1 md:px-2 py-0 text-xs md:text-sm font-medium text-gray-700 mr-1 mb-1 shadow-md tracking-wide">
                 <span className="font-semibold">#</span>
                 {name}
