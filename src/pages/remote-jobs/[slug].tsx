@@ -1,18 +1,15 @@
-import { FC } from 'react'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import { ParsedUrlQuery } from 'querystring'
 import Link from 'next/link'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
-import { PrismaClient } from '@prisma/client'
 import { JobPreviewTile } from '../../components'
 import TagLink from '../../components/ui/TagLink'
 import {
   getUrlSlug,
-  serializeDateObjects,
-  extendJobsData,
   getJobTwitterShareLink,
   getJobMailtoLink,
+  dateStripped,
 } from '../../utils'
 import {
   ArrowLeftIcon,
@@ -24,6 +21,7 @@ import {
   SalaryIcon,
 } from '../../lib/svg'
 import { Box, Flex, Heading, Text } from '@chakra-ui/react'
+import prisma from '../../lib/prisma'
 
 type JobsProps = {
   job: Models.JobWithRelations
@@ -31,7 +29,7 @@ type JobsProps = {
   twitterShareLink: string
 }
 
-const Job: FC<JobsProps> = ({ job, relatedJobs, twitterShareLink }) => {
+const Job = ({ job, relatedJobs, twitterShareLink }: JobsProps) => {
   const router = useRouter()
 
   const emailRegEx = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/
@@ -260,8 +258,6 @@ const Job: FC<JobsProps> = ({ job, relatedJobs, twitterShareLink }) => {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const prisma = new PrismaClient()
-
   const jobs = await prisma.job.findMany({
     include: { location: true, category: true, tags: true, type: true },
   })
@@ -288,34 +284,23 @@ interface Params extends ParsedUrlQuery {
 
 export const getStaticProps: GetStaticProps = async (context) => {
   const params = context.params as Params
-  const prisma = new PrismaClient()
 
   // jid Located at End of Url Slug
   const jid = params.slug.split('-').pop()
 
-  const rawData = await prisma.job.findUnique({
+  const job = await prisma.job.findUnique({
     where: {
       jid,
     },
     include: { location: true, category: true, tags: true, type: true },
   })
 
-  if (rawData === null) {
-    await prisma.$disconnect()
-
-    return {
-      props: {
-        job: null,
-        relatedJobs: null,
-      },
-      revalidate: 1,
-    }
-  }
+  if (!job) return { notFound: true }
 
   // related jobs preview
-  const rawRelatedJobs = await prisma.job.findMany({
+  const relatedData = await prisma.job.findMany({
     where: {
-      categoryId: rawData.categoryId,
+      categoryId: job.categoryId,
       jid: {
         not: jid,
       },
@@ -325,17 +310,22 @@ export const getStaticProps: GetStaticProps = async (context) => {
     take: 3,
   })
 
-  // getStaticProps Fails to Serialize Date Object
-  const job = serializeDateObjects(rawData)
-  const relatedJobs = serializeDateObjects(rawRelatedJobs)
+  const relatedJobs = relatedData.map((job) => {
+    return dateStripped({
+      ...job,
+      daysSinceEpoch: Math.floor(
+        (Math.round(Date.now() / 1000) - job.createdEpoch) / 86400
+      ),
+      urlSlug: getUrlSlug(job),
+    }) as JobWithRelations
+  })
 
   await prisma.$disconnect()
 
   return {
     props: {
-      job: job,
-      // Adds .daysSinceEpoch property to job
-      relatedJobs: extendJobsData(relatedJobs),
+      job: dateStripped(job),
+      relatedJobs: relatedJobs,
       twitterShareLink: getJobTwitterShareLink(job),
     },
     // Attempt to re-generate page on request at most once every second

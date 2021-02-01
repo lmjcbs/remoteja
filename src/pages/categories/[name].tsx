@@ -1,18 +1,18 @@
-import { FC } from 'react'
+import React from 'react'
 import Head from 'next/head'
 import { GetStaticPaths, GetStaticProps } from 'next'
-import { PrismaClient } from '@prisma/client'
-import { extendJobsData, capitalize } from '../../utils'
+import prisma from '../../lib/prisma'
+import { capitalize, dateStripped, getUrlSlug } from '../../utils'
 import Header from '../../components/sections/Header'
 import { JobPreviewTile } from '../../components'
 import { ParsedUrlQuery } from 'querystring'
 
-type Props = {
+type CategoriesProps = {
   jobs: Models.JobWithRelations[]
   category: string
 }
 
-const Categories: FC<Props> = ({ jobs, category }) => {
+const Categories = ({ jobs, category }: CategoriesProps) => {
   return (
     <main>
       <Head>
@@ -28,7 +28,7 @@ const Categories: FC<Props> = ({ jobs, category }) => {
           content={`Remote ${capitalize(category)} Jobs | Remoteja`}
         />
         <meta
-          property="description"
+          name="description"
           key="description"
           content={`The lastest remote ${category} jobs from companies across the world.`}
         />
@@ -52,8 +52,6 @@ const Categories: FC<Props> = ({ jobs, category }) => {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const prisma = new PrismaClient()
-
   const categories = await prisma.category.findMany()
 
   const paths = categories.map(({ slug }) => {
@@ -76,30 +74,54 @@ interface Params extends ParsedUrlQuery {
   name: string
 }
 
-export const getStaticProps: GetStaticProps<Props, Params> = async (
+export const getStaticProps: GetStaticProps<CategoriesProps, Params> = async (
   context
 ) => {
   const params = context.params as Params
-  const prisma = new PrismaClient()
 
-  const rawData = await prisma.job.findMany({
+  const category = await prisma.category.findUnique({
+    where: { slug: params.name },
+  })
+
+  if (!category) return { notFound: true }
+
+  const data = await prisma.job.findMany({
+    select: {
+      jid: true,
+      applyCTA: true,
+      createdEpoch: true,
+      companyName: true,
+      datePosted: true,
+      descriptionAsHTML: true,
+      featured: true,
+      salaryCurrency: true,
+      salaryMin: true,
+      salaryMax: true,
+      title: true,
+      location: true,
+      category: true,
+      tags: true,
+      type: true,
+    },
     where: { category: { slug: { contains: params.name } } },
-    include: { location: true, category: true, tags: true, type: true },
     orderBy: [{ featured: 'desc' }, { createdEpoch: 'desc' }],
   })
 
-  // getStaticProps Fails to Serialize Date Object
-  const stringifiedData = JSON.stringify(rawData)
-  const data = JSON.parse(stringifiedData)
-
-  // Adds .daysSinceEpoch & .urlSlug
-  const extendedJobsData = extendJobsData(data)
+  const jobs = data.map((job) => {
+    return dateStripped({
+      ...job,
+      daysSinceEpoch: Math.floor(
+        (Math.round(Date.now() / 1000) - job.createdEpoch) / 86400
+      ),
+      urlSlug: getUrlSlug(job),
+    }) as JobWithRelations
+  })
 
   await prisma.$disconnect()
 
   return {
     props: {
-      jobs: extendedJobsData,
+      jobs: jobs,
       category: params.name,
     },
     // Attempt to re-generate page on request at most once every second

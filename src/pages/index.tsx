@@ -1,16 +1,15 @@
-import { FC } from 'react'
 import Head from 'next/head'
 import Header from '../components/sections/Header'
 import { GetStaticProps } from 'next'
-import { PrismaClient } from '@prisma/client'
-import { extendJobsData } from '../utils'
+import prisma from '../lib/prisma'
+import { dateStripped, getUrlSlug } from '../utils'
 import { JobPreviewTile } from '../components'
 
-type Props = {
-  jobs: Models.JobWithRelations[]
+type HomeProps = {
+  jobs: JobWithRelations[]
 }
 
-const Home: FC<Props> = ({ jobs }) => {
+const Home = ({ jobs }: HomeProps) => {
   return (
     <main>
       <Head>
@@ -29,8 +28,7 @@ const Home: FC<Props> = ({ jobs }) => {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const prisma = new PrismaClient()
-  const rawData = await prisma.job.findMany({
+  const data = await prisma.job.findMany({
     include: {
       location: true,
       category: true,
@@ -41,18 +39,21 @@ export const getStaticProps: GetStaticProps = async () => {
     orderBy: [{ featured: 'desc' }, { createdEpoch: 'desc' }],
   })
 
-  // getStaticProps Fails to Serialize Date Object
-  const stringifiedData = JSON.stringify(rawData)
-  const data = JSON.parse(stringifiedData)
-
-  // Adds .daysSinceEpoch & .urlSlug
-  const extendedJobsData = extendJobsData(data)
+  const jobs = data.map((job) => {
+    return dateStripped({
+      ...job,
+      daysSinceEpoch: Math.floor(
+        (Math.round(Date.now() / 1000) - job.createdEpoch) / 86400
+      ),
+      urlSlug: getUrlSlug(job),
+    }) as JobWithRelations
+  })
 
   await prisma.$disconnect()
 
   return {
     props: {
-      jobs: extendedJobsData,
+      jobs: jobs,
     },
     // Attempt to re-generate page on request at most once every second
     revalidate: 1,

@@ -36,7 +36,7 @@
     "uuid": "^8.3.1"
   },
   "devDependencies": {
-    "@prisma/cli": "^2.12.0",
+    "@prisma/cli": "^2.15.0",
     "@tailwindcss/aspect-ratio": "0.2.0",
     "@tailwindcss/forms": "0.2.1",
     "@tailwindcss/typography": "0.3.1",
