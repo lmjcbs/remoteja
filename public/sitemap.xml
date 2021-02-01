@@ -85,12 +85,6 @@
   </url>
 
   <url>
-    <loc>https://remoteja.com/tags/back-end</loc>
-    <changefreq>hourly</changefreq>
-    <priority>1.0</priority>
-  </url>
-
-  <url>
     <loc>https://remoteja.com/tags/golang</loc>
     <changefreq>hourly</changefreq>
     <priority>1.0</priority>
@@ -128,12 +122,6 @@
 
   <url>
     <loc>https://remoteja.com/tags/react</loc>
-    <changefreq>hourly</changefreq>
-    <priority>1.0</priority>
-  </url>
-
-  <url>
-    <loc>https://remoteja.com/tags/javascript</loc>
     <changefreq>hourly</changefreq>
     <priority>1.0</priority>
   </url>
@@ -188,6 +176,30 @@
 
   <url>
     <loc>https://remoteja.com/tags/ios</loc>
+    <changefreq>hourly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>https://remoteja.com/tags/back-end</loc>
+    <changefreq>hourly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>https://remoteja.com/tags/typescript</loc>
+    <changefreq>hourly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>https://remoteja.com/tags/javascript</loc>
+    <changefreq>hourly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>https://remoteja.com/tags/front-end</loc>
     <changefreq>hourly</changefreq>
     <priority>1.0</priority>
   </url>
@@ -423,6 +435,14 @@
   <url>
     <loc
       >https://remoteja.com/remote-jobs/react-native-developer-mozn-bab9a1cec078</loc
+    >
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc
+      >https://remoteja.com/remote-jobs/front-end-engineer-prisma-873844ff36fd</loc
     >
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
