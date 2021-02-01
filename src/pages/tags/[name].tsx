@@ -34,7 +34,7 @@ const Tags = ({ jobs, tag }: TagProps) => {
           content={`Remote ${tag} Jobs | Remoteja`}
         />
         <meta
-          property="description"
+          name="description"
           key="description"
           content={`The lastest remote ${tag} jobs from companies across the world.`}
         />

@@ -46,7 +46,7 @@ const MyApp: FC<AppProps> = ({ Component, pageProps }) => {
           content="Remoteja | Remote Jobs in Programming, Sales, Marketing, Design and more"
         />
         <meta
-          property="description"
+          name="description"
           key="description"
           content="Say yes to remote working and start hiring the best talent from all corners of the world today. Remoteja has the lastest listings for remote jobs in Programming, Sales, Maketing, Design and more."
         />

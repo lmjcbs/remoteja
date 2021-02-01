@@ -1,25 +1,24 @@
-import { FC } from 'react'
 import Head from 'next/head'
 import Header from '../../components/sections/Header'
+import prisma from '../../lib/prisma'
+import { dateStripped, getUrlSlug } from '../../utils'
 import { GetStaticPaths, GetStaticProps } from 'next'
-import { ParsedUrlQuery } from 'querystring'
-import { PrismaClient } from '@prisma/client'
-import { extendJobsData, capitalize } from '../../utils'
 import { JobPreviewTile } from '../../components'
+import { ParsedUrlQuery } from 'querystring'
 
-type Props = {
-  jobs: Models.JobWithRelations[]
+type LocationProps = {
+  jobs: JobWithRelations[]
   location: string
   locationDescriptionMeta: string
   locationTitleMeta: string
 }
 
-const Locations: FC<Props> = ({
+const Locations = ({
   jobs,
   location,
   locationDescriptionMeta,
   locationTitleMeta,
-}) => {
+}: LocationProps) => {
   return (
     <main>
       <Head>
@@ -35,7 +34,7 @@ const Locations: FC<Props> = ({
           content={`${locationTitleMeta} | Remoteja`}
         />
         <meta
-          property="description"
+          name="description"
           key="description"
           content={`${locationDescriptionMeta}`}
         />
@@ -64,8 +63,6 @@ const Locations: FC<Props> = ({
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const prisma = new PrismaClient()
-
   const locations = await prisma.location.findMany()
 
   const paths = locations.map(({ slug }) => {
@@ -75,8 +72,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
       },
     }
   })
-
-  await prisma.$disconnect()
 
   return {
     paths,
@@ -88,13 +83,19 @@ interface Params extends ParsedUrlQuery {
   name: string
 }
 
-export const getStaticProps: GetStaticProps<Props, Params> = async (
+export const getStaticProps: GetStaticProps<LocationProps, Params> = async (
   context
 ) => {
   const params = context.params as Params
-  const prisma = new PrismaClient()
 
-  const rawData = await prisma.job.findMany({
+  const location = await prisma.location.findUnique({
+    where: { slug: params.name },
+    rejectOnNotFound: true,
+  })
+
+  if (!location) return { notFound: true }
+
+  const data = await prisma.job.findMany({
     where: { location: { slug: { contains: params.name } } },
     include: {
       location: true,
@@ -105,31 +106,32 @@ export const getStaticProps: GetStaticProps<Props, Params> = async (
     orderBy: [{ featured: 'desc' }, { createdEpoch: 'desc' }],
   })
 
-  // getStaticProps Fails to Serialize Date Object
-  const stringifiedData = JSON.stringify(rawData)
-  const data = JSON.parse(stringifiedData)
-
-  // Adds .daysSinceEpoch & .urlSlug
-  const extendedJobsData = extendJobsData(data)
-
-  await prisma.$disconnect()
-
-  const location = params.name.replace('-', ' ')
+  const jobs = data.map((job) => {
+    return dateStripped({
+      ...job,
+      daysSinceEpoch: Math.floor(
+        (Math.round(Date.now() / 1000) - job.createdEpoch) / 86400
+      ),
+      urlSlug: getUrlSlug(job),
+    }) as JobWithRelations
+  })
 
   const locationTitleMeta =
-    location === 'worldwide'
+    location.name === 'Worldwide'
       ? `Worldwide Remote Jobs`
-      : `${capitalize(location)} Remote Jobs`
+      : `Remote Jobs in ${location.name} `
 
   const locationDescriptionMeta =
-    location === 'worldwide'
+    location.name === 'Worldwide'
       ? `The latest Remote Job listings from companies across the world`
       : `The latest Remote Job listings from companies in ${location}`
 
+  await prisma.$disconnect
+
   return {
     props: {
-      jobs: extendedJobsData,
-      location,
+      jobs: jobs,
+      location: location.name,
       locationTitleMeta,
       locationDescriptionMeta,
     },

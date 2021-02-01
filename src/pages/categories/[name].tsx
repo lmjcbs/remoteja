@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import React from 'react'
 import Head from 'next/head'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import { PrismaClient } from '@prisma/client'
@@ -7,12 +7,12 @@ import Header from '../../components/sections/Header'
 import { JobPreviewTile } from '../../components'
 import { ParsedUrlQuery } from 'querystring'
 
-type Props = {
+type CategoriesProps = {
   jobs: Models.JobWithRelations[]
   category: string
 }
 
-const Categories: FC<Props> = ({ jobs, category }) => {
+const Categories = ({ jobs, category }: CategoriesProps) => {
   return (
     <main>
       <Head>
@@ -28,7 +28,7 @@ const Categories: FC<Props> = ({ jobs, category }) => {
           content={`Remote ${capitalize(category)} Jobs | Remoteja`}
         />
         <meta
-          property="description"
+          name="description"
           key="description"
           content={`The lastest remote ${category} jobs from companies across the world.`}
         />
@@ -76,7 +76,7 @@ interface Params extends ParsedUrlQuery {
   name: string
 }
 
-export const getStaticProps: GetStaticProps<Props, Params> = async (
+export const getStaticProps: GetStaticProps<CategoriesProps, Params> = async (
   context
 ) => {
   const params = context.params as Params
@@ -92,14 +92,11 @@ export const getStaticProps: GetStaticProps<Props, Params> = async (
   const stringifiedData = JSON.stringify(rawData)
   const data = JSON.parse(stringifiedData)
 
-  // Adds .daysSinceEpoch & .urlSlug
-  const extendedJobsData = extendJobsData(data)
-
   await prisma.$disconnect()
 
   return {
     props: {
-      jobs: extendedJobsData,
+      jobs: extendJobsData(data),
       category: params.name,
     },
     // Attempt to re-generate page on request at most once every second
