@@ -1,4 +1,3 @@
-import { FC } from 'react'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import { ParsedUrlQuery } from 'querystring'
 import Link from 'next/link'
@@ -30,7 +29,7 @@ type JobsProps = {
   twitterShareLink: string
 }
 
-const Job: FC<JobsProps> = ({ job, relatedJobs, twitterShareLink }) => {
+const Job = ({ job, relatedJobs, twitterShareLink }: JobsProps) => {
   const router = useRouter()
 
   const emailRegEx = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/

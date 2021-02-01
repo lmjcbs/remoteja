@@ -1,7 +1,7 @@
 import 'tailwindcss/tailwind.css'
 import '../styles/globals.css'
 
-import { FC, useEffect } from 'react'
+import { useEffect } from 'react'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import type { AppProps } from 'next/app'
@@ -11,7 +11,7 @@ import { ChakraProvider } from '@chakra-ui/react'
 
 import * as gtag from '../lib/gtag'
 
-const MyApp: FC<AppProps> = ({ Component, pageProps }) => {
+const MyApp = ({ Component, pageProps }: AppProps) => {
   const router = useRouter()
   useEffect(() => {
     const handleRouteChange = (url: string) => {
