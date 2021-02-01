@@ -1,18 +1,74 @@
 declare global {
+  interface Category {
+    id: number
+    name: string
+    slug: string
+    createdAt: Date
+    updatedAt: Date
+  }
+
+  interface Location {
+    id: number
+    name: string
+    slug: string
+    createdAt: Date
+    updatedAt: Date
+  }
+
+  interface Tag {
+    id?: number
+    name: string
+    slug: string
+    createdAt?: Date
+    updatedAt?: Date
+  }
+
+  interface Type {
+    id: number
+    name: string
+    createdAt: Date
+    updatedAt: Date
+  }
+
+  interface Job {
+    id?: number
+    jid: string
+    applyCTA: string
+    companyName: string | null
+    descriptionAsHTML: string
+    createdEpoch: number
+    expiresEpoch?: number
+    datePosted?: string
+    featured: boolean
+    title: string
+    createdAt?: Date
+    updatedAt?: Date
+    urlSlug?: string
+    salaryCurrency?: string | null
+    salaryMin?: number | null
+    salaryMax?: number | null
+    daysSinceEpoch?: number
+  }
+  interface JobWithRelations extends Models.Job {
+    location: Location
+    category: Category
+    tags: Tag[]
+    type: Type
+  }
   namespace Models {
     interface Job {
-      id: number
+      id?: number
       jid: string
       applyCTA: string
       companyName: string | null
       descriptionAsHTML: string
       createdEpoch: number
-      expiresEpoch: number
-      datePosted: string
+      expiresEpoch?: number
+      datePosted?: string
       featured: boolean
       title: string
-      createdAt: Date
-      updatedAt: Date
+      createdAt?: Date
+      updatedAt?: Date
       urlSlug?: string
       salaryCurrency?: string | null
       salaryMin?: number | null
@@ -44,11 +100,11 @@ declare global {
     }
 
     interface Tag {
-      id: number
+      id?: number
       name: string
       slug: string
-      createdAt: Date
-      updatedAt: Date
+      createdAt?: Date
+      updatedAt?: Date
     }
 
     interface Type {

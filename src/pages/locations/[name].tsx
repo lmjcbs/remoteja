@@ -73,6 +73,8 @@ export const getStaticPaths: GetStaticPaths = async () => {
     }
   })
 
+  await prisma.$disconnect()
+
   return {
     paths,
     fallback: false,
@@ -90,19 +92,29 @@ export const getStaticProps: GetStaticProps<LocationProps, Params> = async (
 
   const location = await prisma.location.findUnique({
     where: { slug: params.name },
-    rejectOnNotFound: true,
   })
 
   if (!location) return { notFound: true }
 
   const data = await prisma.job.findMany({
-    where: { location: { slug: { contains: params.name } } },
-    include: {
+    select: {
+      jid: true,
+      applyCTA: true,
+      createdEpoch: true,
+      companyName: true,
+      datePosted: true,
+      descriptionAsHTML: true,
+      featured: true,
+      salaryCurrency: true,
+      salaryMin: true,
+      salaryMax: true,
+      title: true,
       location: true,
       category: true,
       tags: true,
       type: true,
     },
+    where: { location: { slug: { contains: params.name } } },
     orderBy: [{ featured: 'desc' }, { createdEpoch: 'desc' }],
   })
 

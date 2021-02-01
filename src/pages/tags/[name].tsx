@@ -67,6 +67,8 @@ export const getStaticPaths: GetStaticPaths = async () => {
     }
   })
 
+  await prisma.$disconnect()
+
   return {
     paths,
     fallback: true,
@@ -84,7 +86,6 @@ export const getStaticProps: GetStaticProps<TagProps, Params> = async (
 
   const tag = await prisma.tag.findUnique({
     where: { slug: params.name },
-    rejectOnNotFound: true,
   })
 
   if (!tag) return { notFound: true }
