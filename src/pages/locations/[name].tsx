@@ -48,7 +48,7 @@ const Locations = ({
         h1={locationTitleMeta}
         h2={`Looking for remote jobs
           ${
-            location === 'worldwide'
+            location === 'Worldwide'
               ? ' without any geographic restrictions'
               : ` available to applicants in ${location}`
           }
@@ -136,7 +136,7 @@ export const getStaticProps: GetStaticProps<LocationProps, Params> = async (
   const locationDescriptionMeta =
     location.name === 'Worldwide'
       ? `The latest Remote Job listings from companies across the world`
-      : `The latest Remote Job listings from companies in ${location}`
+      : `The latest Remote Job listings from companies in ${location.name}`
 
   await prisma.$disconnect
 
