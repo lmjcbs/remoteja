@@ -99,7 +99,7 @@ const Job = ({ job, relatedJobs, twitterShareLink }: JobsProps) => {
             </Text>
           </Flex>
         </Link>
-        <Link href={`/categories/${job.category.name}`}>
+        <Link href={`/categories/${job.category.slug}`}>
           <Flex direction="row" align="center" cursor="pointer">
             <Text as="a" mr={1} textTransform="capitalize">
               More {job.category.name} Jobs
