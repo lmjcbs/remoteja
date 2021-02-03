@@ -271,6 +271,12 @@
   </url>
 
   <url>
+    <loc>https://remoteja.com/tags/angular</loc>
+    <changefreq>hourly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
     <loc>https://remoteja.com/locations/worldwide</loc>
     <changefreq>hourly</changefreq>
     <priority>1.0</priority>
@@ -548,6 +554,22 @@
 
   <url>
     <loc
+      >https://remoteja.com/remote-jobs/front-end-developer-convertflow-664d3173eed1</loc
+    >
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc
+      >https://remoteja.com/remote-jobs/mid-weight-full-stack-developer-bridebook-3be74155f98f</loc
+    >
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc
       >https://remoteja.com/remote-jobs/senior-full-stack-php-developer-westminster-teak-c5b4d1937937</loc
     >
     <changefreq>weekly</changefreq>
@@ -612,6 +634,14 @@
 
   <url>
     <loc
+      >https://remoteja.com/remote-jobs/senior-front-end-developer-remote-ifit-d1b99da5b890</loc
+    >
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc
       >https://remoteja.com/remote-jobs/architect-developer-containers-integration-kubos-corporation-1ecaa7571530</loc
     >
     <changefreq>weekly</changefreq>
@@ -669,6 +699,70 @@
   <url>
     <loc
       >https://remoteja.com/remote-jobs/java-react-developer-producement-dc0bc53c7347</loc
+    >
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc
+      >https://remoteja.com/remote-jobs/ruby-on-rails-developer-thymebase-ad22f0cb717f</loc
+    >
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc
+      >https://remoteja.com/remote-jobs/devops-engineer-quantic-school-of-business-and-technology-f619d0de676e</loc
+    >
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc
+      >https://remoteja.com/remote-jobs/senior-full-stack-engineer-railsnuxt-legalnature-138e53778b8f</loc
+    >
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc
+      >https://remoteja.com/remote-jobs/senior-android-engineer-crowdcast-875ae642bd8a</loc
+    >
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc
+      >https://remoteja.com/remote-jobs/senior-full-stack-javascript-developer-clevertech-40f598931332</loc
+    >
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc
+      >https://remoteja.com/remote-jobs/senior-full-stack-railsreact-engineer-brightline-health-3fbdaf33ecc2</loc
+    >
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc
+      >https://remoteja.com/remote-jobs/senior-react-native-engineer-clevertech-32143aeca740</loc
+    >
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc
+      >https://remoteja.com/remote-jobs/senior-frontend-angular-engineer-carthook-42395c197d7e</loc
     >
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
