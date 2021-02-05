@@ -2,10 +2,14 @@ import Head from 'next/head'
 import Header from '../../components/sections/Header'
 import prisma from '../../lib/prisma'
 import { dateStripped, getUrlSlug } from '../../utils'
-import { JobPreviewTile } from '../../components'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import { ParsedUrlQuery } from 'querystring'
 import { useRouter } from 'next/router'
+import NavBar from '../../components/sections/NavBar'
+import React from 'react'
+import Footer from '../../components/sections/Footer'
+import JobCardContainer from '../../components/sections/JobCardContainer'
+import { ONE_WEEK_EPOCH } from '../../lib/constants'
 
 type TagProps = {
   jobs: JobWithRelations[]
@@ -20,7 +24,7 @@ const Tags = ({ jobs, tag }: TagProps) => {
   }
 
   return (
-    <main>
+    <>
       <Head>
         <title>Remote {tag} Jobs | Remoteja</title>
         <meta
@@ -44,15 +48,15 @@ const Tags = ({ jobs, tag }: TagProps) => {
           content={`The lastest remote ${tag} jobs from companies across the world.`}
         />
       </Head>
+      <NavBar />
       <Header
         h1={`Remote ${tag} Jobs`}
         h2={`Looking for remote ${tag} jobs? View the lastest job listings from
           companies hiring for ${tag} positions.`}
       />
-      {jobs.map((job) => (
-        <JobPreviewTile job={job} />
-      ))}
-    </main>
+      <JobCardContainer jobs={jobs} />
+      <Footer />
+    </>
   )
 }
 
@@ -90,27 +94,69 @@ export const getStaticProps: GetStaticProps<TagProps, Params> = async (
 
   if (!tag) return { notFound: true }
 
-  const data = await prisma.job.findMany({
-    select: {
-      jid: true,
-      applyCTA: true,
-      createdEpoch: true,
-      companyName: true,
-      datePosted: true,
-      descriptionAsHTML: true,
-      featured: true,
-      salaryCurrency: true,
-      salaryMin: true,
-      salaryMax: true,
-      title: true,
+  const featured = await prisma.job.findMany({
+    where: {
+      AND: [
+        { tags: { some: { slug: { contains: params.name } } } },
+        {
+          AND: [
+            {
+              createdEpoch: {
+                gt: Math.round(Date.now() / 1000) - ONE_WEEK_EPOCH,
+              },
+            },
+            {
+              featured: {
+                equals: true,
+              },
+            },
+          ],
+        },
+      ],
+    },
+    include: {
       location: true,
       category: true,
       tags: true,
+      company: true,
       type: true,
     },
-    where: { tags: { some: { slug: { contains: params.name } } } },
     orderBy: [{ featured: 'desc' }, { createdEpoch: 'desc' }],
   })
+
+  const standard = await prisma.job.findMany({
+    where: {
+      AND: [
+        { tags: { some: { slug: { contains: params.name } } } },
+        {
+          NOT: {
+            AND: [
+              {
+                createdEpoch: {
+                  gt: Math.round(Date.now() / 1000) - ONE_WEEK_EPOCH,
+                },
+              },
+              {
+                featured: {
+                  equals: true,
+                },
+              },
+            ],
+          },
+        },
+      ],
+    },
+    include: {
+      location: true,
+      category: true,
+      tags: true,
+      company: true,
+      type: true,
+    },
+    orderBy: [{ featured: 'desc' }, { createdEpoch: 'desc' }],
+  })
+
+  const data = [...featured, ...standard]
 
   const jobs = data.map((job) => {
     return dateStripped({
