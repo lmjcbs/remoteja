@@ -2,6 +2,7 @@ import { FC } from 'react'
 import Link from 'next/link'
 import { Flex, Text } from '@chakra-ui/react'
 import { TwitterIcon, RedditIcon, CoffeeIcon } from '../../lib/svg'
+import theme from '../../styles/theme'
 
 const FooterBase: FC = () => {
   return (
