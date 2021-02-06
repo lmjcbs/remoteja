@@ -3,7 +3,6 @@ import { ParsedUrlQuery } from 'querystring'
 import Link from 'next/link'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
-import { JobPreviewTile } from '../../components'
 import TagLink from '../../components/ui/TagLink'
 import {
   getUrlSlug,

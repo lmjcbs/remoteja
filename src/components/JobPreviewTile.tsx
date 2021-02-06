@@ -1,7 +1,5 @@
 import React from 'react'
 import Link from 'next/link'
-import { useMedia } from 'react-media'
-import { IS_MOBILE_QUERY } from '../lib/constants'
 import theme from '../styles/theme'
 import { ONE_WEEK_EPOCH } from '../lib/constants'
 
@@ -10,7 +8,6 @@ type Props = {
 }
 
 const JobPreviewTile = ({ job }: Props) => {
-  const isMobile = useMedia({ query: IS_MOBILE_QUERY })
   const {
     urlSlug,
     type,

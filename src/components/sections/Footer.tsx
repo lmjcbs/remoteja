@@ -1,8 +1,6 @@
 import { FC } from 'react'
 import theme from '../../styles/theme'
-import FooterBase from '../ui/FooterBase'
 import Link from 'next/link'
-import { FaArrowCircleUp } from 'react-icons/fa'
 import { categories, locations } from '../../lib/constants'
 
 const Footer: FC = () => {
@@ -38,7 +36,6 @@ const Footer: FC = () => {
         <div id="external-links"></div>
       </div>
 
-      {/* <FooterBase /> */}
       <style jsx>{`
         .footer-main {
           display: flex;
