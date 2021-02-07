@@ -150,9 +150,7 @@ const Job = ({ job, relatedJobs, twitterShareLink }: JobsProps) => {
             >
               <Box>
                 <MapMarkerIcon size={5} color="gray.600" />
-                <Link
-                  href={`/locations/${job.location.name.replace(' ', '-')}`}
-                >
+                <Link href={`/locations/${job.location.slug}`}>
                   <Text
                     as="a"
                     ml={1}
@@ -259,7 +257,7 @@ const Job = ({ job, relatedJobs, twitterShareLink }: JobsProps) => {
           flex-direction: column;
           margin: 2rem auto;
           max-width: 50rem;
-          padding: 0rem 0.3rem 3rem 0.3rem;
+          padding: 0rem 0.3rem 0rem 0.3rem;
         }
         .job-nav {
           display: flex;

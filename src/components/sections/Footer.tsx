@@ -66,7 +66,7 @@ const Footer: FC = () => {
         .footer-main {
           display: flex;
           background-color: ${theme.colors.tertiary};
-          padding: 2rem 1rem;
+          padding: 1rem 0rem;
           div {
             margin: 0 auto;
           }
