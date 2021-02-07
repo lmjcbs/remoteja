@@ -1,19 +1,15 @@
-import 'tailwindcss/tailwind.css'
-import '../styles/globals.css'
-
-import { useEffect } from 'react'
+import React from 'react'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
-import type { AppProps } from 'next/app'
-import NavBar from '../components/sections/NavBar'
-import Footer from '../components/sections/Footer'
-import { ChakraProvider } from '@chakra-ui/react'
-
+import Layout from '../components/Layout'
 import * as gtag from '../lib/gtag'
+
+import type { AppProps } from 'next/app'
+import { ChakraProvider } from '@chakra-ui/react'
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   const router = useRouter()
-  useEffect(() => {
+  React.useEffect(() => {
     const handleRouteChange = (url: string) => {
       gtag.pageview(url)
     }
@@ -24,49 +20,66 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
   }, [router.events])
 
   return (
-    <ChakraProvider>
+    <Layout>
       <Head>
+        {/* Primary Meta Tags */}
         <meta charSet="utf-8" key="charSet" />
+        <title>
+          Remoteja | Remote Jobs in Programming, Sales, Marketing, Design and
+          more
+        </title>
+        <meta
+          name="title"
+          content="Remoteja | Remote Jobs in Programming, Sales, Marketing, Design and more"
+        />
+        <meta
+          name="description"
+          content="Remoteja has the lastest listings for remote jobs in Programming, Sales, Maketing, Design and more. Say yes to remote working and start hiring the best talent from all corners of the world today."
+        />
         <meta
           name="viewport"
           content="initial-scale=1.0, width=device-width"
           key="viewport"
         />
-        <title>
-          Remoteja | Remote Jobs in Programming, Marketing, Design and more
-        </title>
-        <meta
-          property="title"
-          key="title"
-          content="Remoteja | Remote Jobs in Programming, Marketing, Design and more"
-        />
+        <meta property="og:site_name" content="Remoteja" />
+        <link rel="icon" type="image/x-icon" href="favicon.ico" />
+
+        {/* Open Graph / Facebook */}
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://remoteja.com/" />
         <meta
           property="og:title"
-          key="og:title"
           content="Remoteja | Remote Jobs in Programming, Sales, Marketing, Design and more"
         />
         <meta
-          name="description"
-          key="description"
-          content="Say yes to remote working and start hiring the best talent from all corners of the world today. Remoteja has the lastest listings for remote jobs in Programming, Sales, Maketing, Design and more."
+          property="og:description"
+          content="Remoteja has the lastest listings for remote jobs in Programming, Sales, Maketing, Design and more. Say yes to remote working and start hiring the best talent from all corners of the world today."
         />
         <meta
-          property="og:description"
-          key="og:description"
-          content="Say yes to remote working and start hiring the best talent from all corners of the world today. Remoteja has the lastest listings for remote jobs in Programming, Sales, Maketing, Design and more."
+          property="og:image"
+          content={`https://i.ibb.co/FsYTW2Z/remoteja1200x628.png`}
         />
-        <meta name="twitter:card" content="summary" />
-        <meta name="twitter:site" content="@remoteja" />
-        <link rel="icon" type="image/x-icon" href="favicon.ico" />
+
+        {/* Twitter */}
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:url" content="https://remoteja.com/" />
+        <meta
+          property="twitter:title"
+          content="Remoteja | Remote Jobs in Programming, Sales, Marketing, Design and more"
+        />
+        <meta
+          property="twitter:description"
+          content="Remoteja has the lastest listings for remote jobs in Programming, Sales, Maketing, Design and more. Say yes to remote working and start hiring the best talent from all corners of the world today."
+        />
+        <meta
+          property="twitter:image"
+          content={`https://i.ibb.co/FsYTW2Z/remoteja1200x628.png`}
+        />
       </Head>
-      <div id="wrapper" className="h-full flex flex-col">
-        <NavBar />
-        <div className="flex-grow w-full mx-auto justify-center max-w-5xl px-2 sm:px-6 lg:px-8">
-          <Component {...pageProps} />
-        </div>
-        <Footer />
-      </div>
-    </ChakraProvider>
+      <ChakraProvider>
+        <Component {...pageProps} />
+      </ChakraProvider>
+    </Layout>
   )
 }
 

@@ -1,6 +1,7 @@
 import { FC } from 'react'
 import { Icon } from '@chakra-ui/react'
 import { FaReddit, FaCoffee, FaFileContract, FaMoneyBill } from 'react-icons/fa'
+import theme from '../styles/theme'
 
 export const SalaryIcon: FC<ContractIconProps> = ({ size }) => {
   return (
@@ -128,13 +129,13 @@ export const TwitterIcon: FC<TwitterIconProps> = ({ size }) => {
   return (
     <Icon
       aria-label="twitter icon"
-      color="gray.600"
+      color={theme.colors.primary}
       cursor="pointer"
       xmlns="http://www.w3.org/2000/svg"
       width={size}
       height={size}
       viewBox="0 0 24 24"
-      _hover={{ color: '#6366F1' }}
+      _hover={{ color: theme.colors.secondary }}
     >
       <path
         fill="currentColor"
@@ -152,13 +153,13 @@ export const MailtoIcon: FC<MailtoIconProps> = ({ size }) => {
   return (
     <Icon
       aria-label="mail to icon"
-      color="gray.600"
+      color={theme.colors.primary}
       cursor="pointer"
       xmlns="http://www.w3.org/2000/svg"
       width={size}
       height={size}
       viewBox="0 0 24 24"
-      _hover={{ color: '#6366F1' }}
+      _hover={{ color: theme.colors.secondary }}
     >
       <path
         fill="currentColor"

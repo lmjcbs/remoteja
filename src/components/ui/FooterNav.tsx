@@ -7,7 +7,7 @@ import { categories, locations } from '../../lib/constants'
 const FooterNav: FC = () => {
   return (
     <div className="flex-grow w-full mx-auto justify-center max-w-5xl">
-      <Flex as="nav" justify="space-between" px={[2, 2, 4, 4]} my={8}>
+      <Flex as="nav" justify="space-between" px={[2, 2, 4, 4]} py={8}>
         <VStack spacing={1} align="stretch">
           <Heading as="h4" fontSize={['md', 'md', 'lg', 'lg']}>
             Categories

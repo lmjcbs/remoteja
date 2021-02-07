@@ -1,12 +1,13 @@
-import { FC } from 'react'
+import React from 'react'
 import Link from 'next/link'
-import { MapMarkerIcon } from '../lib/svg'
+import theme from '../styles/theme'
+import { ONE_WEEK_EPOCH } from '../lib/constants'
 
 type Props = {
   job: Models.JobWithRelations
 }
 
-const JobPreviewTile: FC<Props> = ({ job }) => {
+const JobPreviewTile = ({ job }: Props) => {
   const {
     urlSlug,
     type,
@@ -14,63 +15,158 @@ const JobPreviewTile: FC<Props> = ({ job }) => {
     companyName,
     location,
     title,
+    createdEpoch,
     daysSinceEpoch,
     tags,
   } = job
+
   return (
     <Link href={`/remote-jobs/${urlSlug}`}>
-      <div
-        className={`${
-          featured
-            ? 'bg-yellow-100 hover:bg-yellow-200 border-yellow-200 hover:bg-opacity-75'
-            : 'bg-white hover:bg-gray-50'
-        } w-full group rounded-lg border-2 shadow-lg px-2 lg:my-3 md:px-4 xl:px-6 py-2 my-2 flex justify-between cursor-pointer`}
-      >
-        <div>
-          <div className="text-sm md:text-base font-medium text-gray-700">
-            {companyName}
+      <section className={featured ? 'job-card premium' : 'job-card'}>
+        <div id="left">
+          <h4>{companyName}</h4>
+          <h3 className="title custom-underline">{title}</h3>
+          <p>
+            {location.name} · {type.name}
+          </p>
+          <div className="tags">
+            {tags.map(({ name, slug }) => (
+              <Link href={`/tags/${slug}`}>
+                <a id="tag-link">{name}</a>
+              </Link>
+            ))}
           </div>
-          <h3 className="text-sm md:text-lg max-w-xs md:max-w-lg lg:max-w-2xl font-semibold capitalize tracking-wide text-gray-800">
-            {title}
-          </h3>
-          <div className="flex items-center text-gray-800 font-medium tracking-wide md:mb-1">
-            <MapMarkerIcon
-              size={18}
-              color={featured ? '#FBD34C' : 'gray.600'}
-            />
-            <Link href={`/locations/${location.slug}`}>
-              <a className="text-xs md:text-sm ml-0.5 hover:underline capitalize">
-                {location.name}
-              </a>
-            </Link>
-            <div className="mx-1 text-based">·</div>
-            <p className="text-xs md:text-sm capitalize">{type.name}</p>
-          </div>
-
-          {tags.map(({ name, slug, id }) => (
-            <Link key={id} href={`/tags/${slug}`}>
-              <a className="inline-block bg-indigo-200 hover:bg-indigo-300 border-2 hover:border-indigo-300 border-indigo-200 rounded-md px-1 md:px-2 py-0 text-xs md:text-sm font-medium text-gray-700 mr-1 mb-1 shadow-md tracking-wide">
-                <span className="font-semibold">#</span>
-                {name}
-              </a>
-            </Link>
-          ))}
         </div>
-
-        <div className="flex justify-end">
-          <div className="relative flex flex-col">
-            <div className="justify-items-end text-gray-700 font-medium mr-1 mt-0. text-xs md:text-sm mb-5">
-              {daysSinceEpoch}
-              <span>d</span>
-            </div>
-            {featured ? (
-              <div className="absolute mt-10 -ml-24 md:-ml-36 text-gray-700 text-xs md:text-sm font-semibold border-2 border-yellow-300 bg-yellow-300 px-1 rounded-md text-center">
-                Featured
-              </div>
+        {featured && (
+          <div id="center">
+            {/* Check featured posting is less than 1 Week Old */}
+            {Math.round(Date.now() / 1000) - ONE_WEEK_EPOCH < createdEpoch ? (
+              <div id="featured">Featured</div>
             ) : null}
           </div>
-        </div>
-      </div>
+        )}
+
+        <div id="right">{daysSinceEpoch}d</div>
+
+        <style jsx>{`
+          .job-card {
+            display: flex;
+            background-color: white;
+            width: 100%;
+            max-width: 800px;
+            margin: 0.3rem 0;
+            padding: 0.75rem 0.25rem;
+            font-family: ${theme.fontFamily.sansSerif};
+            border: 1px solid lightgray;
+            box-shadow: -1px 1px lightgray, -2px 2px lightgray,
+              -3px 3px lightgray, -4px 4px lightgray;
+            cursor: pointer;
+            &:hover {
+              background-color: whitesmoke;
+              .custom-underline:before {
+                visibility: visible;
+                width: 100%;
+              }
+            }
+          }
+          #left {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            flex-grow: 1;
+            width: 75%;
+            padding: 0 0.25rem;
+            h4 {
+              margin-top: -5px;
+              line-height: 1.5rem;
+              font-weight: bold;
+              color: gray;
+              overflow: hidden;
+              text-overflow: ellipsis;
+            }
+            .title {
+              max-width: 100%;
+              display: inline-block;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              font-weight: 600;
+              font-size: 1.25rem;
+              line-height: 1.5rem;
+            }
+            p {
+              text-transform: capitalize;
+              line-height: 1.25rem;
+              font-size: 0.9rem;
+              font-weight: 500;
+              margin-top: -3px;
+              margin-bottom: 0.4rem;
+            }
+            .tags {
+              z-index: 100;
+              overflow: visible;
+              margin-left: -2px;
+              margin-top: -4px;
+              padding: 0;
+            }
+          }
+          #center {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }
+          #right {
+            width: 10%;
+            align-items: right;
+            text-align: right;
+            margin-right: 5px;
+            padding: 0 0.25rem;
+            font-size: 0.9rem;
+            font-weight: 500;
+          }
+          #featured {
+            background-color: ${theme.colors.secondary};
+            color: ${theme.colors.primary};
+            font-size: 0.9rem;
+            font-weight: bold;
+            padding: 0 0.25rem;
+            border-radius: 0.25rem;
+          }
+          #tag-link {
+            overflow: visible;
+            background-color: ${theme.colors.primary};
+            margin: 0 0.125rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border-radius: 0.25rem;
+            padding: 0.2rem 0.25rem;
+            color: whitesmoke;
+            &:hover {
+              color: ${theme.colors.secondary};
+            }
+          }
+          .custom-underline {
+            position: relative;
+            &:before {
+              content: '';
+              position: absolute;
+              width: 0;
+              height: 2px;
+              bottom: 0;
+              left: 0;
+              background-color: ${theme.colors.primary};
+              visibility: hidden;
+              transition: all 0.3s ease-in-out;
+            }
+          }
+          .premium {
+            border: 1px solid ${theme.colors.secondary};
+            box-shadow: -1px 1px ${theme.colors.secondary},
+              -2px 2px ${theme.colors.secondary},
+              -3px 3px ${theme.colors.secondary},
+              -4px 4px ${theme.colors.secondary};
+          }
+        `}</style>
+      </section>
     </Link>
   )
 }
