@@ -29,8 +29,8 @@ const JobPreviewTile = ({ job }: Props) => {
           <p>
             {location.name} · {type.name}
           </p>
-          <div id="tags">
-            {tags?.map(({ name, slug }) => (
+          <div className="tags">
+            {tags.map(({ name, slug }) => (
               <Link href={`/tags/${slug}`}>
                 <a id="tag-link">{name}</a>
               </Link>
@@ -101,7 +101,7 @@ const JobPreviewTile = ({ job }: Props) => {
               margin-top: -3px;
               margin-bottom: 0.4rem;
             }
-            #tags {
+            .tags {
               z-index: 100;
               overflow: visible;
               margin-left: -2px;

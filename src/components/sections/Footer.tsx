@@ -1,11 +1,23 @@
 import { FC } from 'react'
 import theme from '../../styles/theme'
 import Link from 'next/link'
+import Image from 'next/image'
 import { categories, locations } from '../../lib/constants'
+import { TwitterIcon } from '../../lib/svg'
 
 const Footer: FC = () => {
   return (
     <footer className="footer-main">
+      <div className="logo">
+        <Link href="/">
+          <Image
+            src="/remoteja-primary.svg"
+            alt="Remoteja logo"
+            width="150"
+            height="50"
+          />
+        </Link>
+      </div>
       <div>
         <nav className="footer-nav">
           <div>
@@ -33,10 +45,24 @@ const Footer: FC = () => {
             </ul>
           </div>
         </nav>
-        <div id="external-links"></div>
+        <div id="external-links">
+          <Link href="http://twitter.com/remoteja">
+            <a>
+              <TwitterIcon size={6} />
+            </a>
+          </Link>
+        </div>
       </div>
 
       <style jsx>{`
+        .logo {
+          cursor: pointer;
+        }
+        #external-links {
+          display: flex;
+          width: 100%;
+          padding: 1rem 0.5rem;
+        }
         .footer-main {
           display: flex;
           background-color: ${theme.colors.tertiary};

@@ -193,7 +193,7 @@ const Job = ({ job, relatedJobs, twitterShareLink }: JobsProps) => {
           dangerouslySetInnerHTML={{ __html: job.descriptionAsHTML }}
         ></div>
 
-        <Flex direction="row" align="center" justify="space-between">
+        <Flex direction="row" align="center" justify="space-between" mt={10}>
           <div className="apply-cta">
             {emailRegEx.test(job.applyCTA) ? (
               <Link
@@ -212,7 +212,7 @@ const Job = ({ job, relatedJobs, twitterShareLink }: JobsProps) => {
             )}
           </div>
 
-          <Flex direction="row" items="center" p={1} mt={8}>
+          <Flex direction="row" items="center" p={1}>
             <Text fontWeight="semibold" mx={1}>
               Share
             </Text>

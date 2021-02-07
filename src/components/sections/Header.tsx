@@ -60,7 +60,7 @@ const Header = ({ h1, h2 }: HeaderProps) => {
           transform: rotate(180deg);
           width: 100%;
           height: 80px;
-          background: whitesmoke;
+          background: white;
           svg {
             position: absolute;
             width: 100%;
