@@ -14,6 +14,8 @@ function Layout({ children }: LayoutProps) {
           padding: 0;
           font-size: 18px;
           font-weight: 500;
+          height: 100vh;
+          width: 100%;
           background-color: whitesmoke;
           color: #333;
           font-family: sans -apple-system, BlinkMacSystemFont, 'Segoe UI',
