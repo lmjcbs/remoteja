@@ -34,7 +34,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
         />
         <meta
           name="description"
-          content="Say yes to remote working and start hiring the best talent from all corners of the world today. Remoteja has the lastest listings for remote jobs in Programming, Sales, Maketing, Design and more."
+          content="Remoteja has the lastest listings for remote jobs in Programming, Sales, Maketing, Design and more. Say yes to remote working and start hiring the best talent from all corners of the world today."
         />
         <meta
           name="viewport"
@@ -53,9 +53,12 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
         />
         <meta
           property="og:description"
-          content="Say yes to remote working and start hiring the best talent from all corners of the world today. Remoteja has the lastest listings for remote jobs in Programming, Sales, Maketing, Design and more."
+          content="Remoteja has the lastest listings for remote jobs in Programming, Sales, Maketing, Design and more. Say yes to remote working and start hiring the best talent from all corners of the world today."
         />
-        <meta property="og:image" content={`/public/remoteja1200x628.png`} />
+        <meta
+          property="og:image"
+          content={`https://i.ibb.co/FsYTW2Z/remoteja1200x628.png`}
+        />
 
         {/* Twitter */}
         <meta property="twitter:card" content="summary_large_image" />
@@ -66,11 +69,11 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
         />
         <meta
           property="twitter:description"
-          content="Say yes to remote working and start hiring the best talent from all corners of the world today. Remoteja has the lastest listings for remote jobs in Programming, Sales, Maketing, Design and more."
+          content="Remoteja has the lastest listings for remote jobs in Programming, Sales, Maketing, Design and more. Say yes to remote working and start hiring the best talent from all corners of the world today."
         />
         <meta
           property="twitter:image"
-          content={`/public/remoteja1200x628.png`}
+          content={`https://i.ibb.co/FsYTW2Z/remoteja1200x628.png`}
         />
       </Head>
       <ChakraProvider>
