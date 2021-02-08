@@ -56,8 +56,7 @@ const Locations = ({
             location === 'Worldwide'
               ? ' without any geographic restrictions'
               : ` available to applicants in ${location}`
-          }
-          ? View ${locationDescriptionMeta}.`}
+          }? View ${locationDescriptionMeta}.`}
       ></Header>
       <JobCardContainer jobs={jobs} />
       <Footer />
@@ -183,7 +182,7 @@ export const getStaticProps: GetStaticProps<LocationProps, Params> = async (
       ? `The latest Remote Job listings from companies across the world`
       : `The latest Remote Job listings from companies in ${location.name}`
 
-  await prisma.$disconnect
+  await prisma.$disconnect()
 
   return {
     props: {
