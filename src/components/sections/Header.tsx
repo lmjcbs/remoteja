@@ -1,16 +1,13 @@
 import Link from 'next/link'
 import theme from '../../styles/theme'
-import { useMedia } from 'react-media'
-import { IS_MOBILE_QUERY } from '../../lib/constants'
+import { device } from '../../lib/mediaQueries'
 
 type HeaderProps = {
-  h1: string
-  h2: string
+  h1?: string
+  h2?: string
 }
 
 const Header = ({ h1, h2 }: HeaderProps) => {
-  const isMobile = useMedia({ query: IS_MOBILE_QUERY })
-
   return (
     <section>
       <div className="wrapper">
@@ -45,13 +42,33 @@ const Header = ({ h1, h2 }: HeaderProps) => {
           margin: 0 auto;
           .heading {
             margin-bottom: 1rem;
-            font-size: 3rem;
             font-weight: bold;
+            font-size: 1.75rem;
+
+            @media ${device.sm} {
+              font-size: 2.5rem;
+            }
+
+            @media ${device.md} {
+              font-size: 3rem;
+            }
           }
           .sub-heading {
             padding: 0 1.5rem;
-            font-size: 1.35rem;
-            font-weight: 600;
+            font-size: 1rem;
+            font-weight: bold;
+            max-width: 40rem;
+            margin: 0 auto;
+
+            @media ${device.sm} {
+              font-size: 1.25rem;
+              max-width: 45rem;
+            }
+
+            @media ${device.md} {
+              font-size: 1.5rem;
+              max-width: 50rem;
+            }
           }
         }
         .svg-wrapper {
@@ -70,19 +87,6 @@ const Header = ({ h1, h2 }: HeaderProps) => {
           }
         }
       `}</style>
-      <style jsx>
-        {`
-          .wrapper {
-            padding: ${isMobile ? '1rem' : '1.5rem'};
-            .heading {
-              font-size: ${isMobile ? '2.25rem' : '3rem'};
-            }
-            .sub-heading {
-              font-size: ${isMobile ? '1rem' : '1.35rem'};
-            }
-          }
-        `}
-      </style>
     </section>
   )
 }

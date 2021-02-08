@@ -3,6 +3,7 @@ import theme from '../styles/theme'
 import { categories, locations } from '../lib/constants'
 import { FaChevronDown } from 'react-icons/fa'
 import Link from 'next/link'
+import { device } from '../lib/mediaQueries'
 
 type MobileDropdownProps = {
   isOpen: boolean
@@ -81,6 +82,11 @@ const MobileDropdown = ({ isOpen }: MobileDropdownProps) => {
             align-items: center;
             display: flex;
             flex-direction: column;
+            padding-bottom: 1.5rem;
+
+            @media ${device.sm} {
+              display: none;
+            }
           }
           .menu-item {
             position: relative;

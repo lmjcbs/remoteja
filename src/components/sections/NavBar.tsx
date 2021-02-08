@@ -2,7 +2,7 @@ import React from 'react'
 import theme from '../../styles/theme'
 import Link from 'next/link'
 import Image from 'next/image'
-import { useMedia } from 'react-media'
+import { device } from '../../lib/mediaQueries'
 import NavDropdown from '../ui/NavDropdown'
 import { FaBars, FaTimes } from 'react-icons/fa'
 import MobileDropdown from '../MobileDropdown'
@@ -10,7 +10,6 @@ import { categories, locations } from '../../lib/constants'
 
 const NavBar = () => {
   const [isOpen, setIsOpen] = React.useState(false)
-  const isMobile = useMedia({ query: '(max-width: 767px)' })
 
   const toggle = (): void => setIsOpen(!isOpen)
 
@@ -27,18 +26,15 @@ const NavBar = () => {
             />
           </Link>
         </div>
-        {isMobile ? (
-          <div className="main-navigation__items" onClick={toggle}>
-            {isOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
-          </div>
-        ) : (
-          <nav className="main-navigation__items">
-            <NavDropdown name="categories" options={categories} />
-            <NavDropdown name="locations" options={locations} />
-          </nav>
-        )}
+        <div className="main-navigation__items_mobile" onClick={toggle}>
+          {isOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
+        </div>
+        <nav className="main-navigation__items">
+          <NavDropdown name="categories" options={categories} />
+          <NavDropdown name="locations" options={locations} />
+        </nav>
       </div>
-      {isMobile && <MobileDropdown isOpen={isOpen} />}
+      <MobileDropdown isOpen={isOpen} />
       <style jsx>{`
         .main-navigation {
           left: 0;
@@ -59,13 +55,25 @@ const NavBar = () => {
           cursor: pointer;
         }
 
+        .main-navigation__items_mobile {
+          display: flex;
+
+          @media ${device.md} {
+            display: none;
+          }
+        }
+
         .main-navigation__items {
           margin: 0 0 0 1.5rem;
           padding: 0;
           margin-right: 40px;
           list-style: none;
-          display: flex;
+          display: none;
           cursor: default;
+
+          @media ${device.md} {
+            display: flex;
+          }
         }
 
         .main-navigation__item {
