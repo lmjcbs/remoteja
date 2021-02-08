@@ -19,10 +19,11 @@ const NavBar = () => {
         <div className="main-navigation__logo">
           <Link href="/">
             <Image
+              priority={true}
               src="/remoteja-white.svg"
               alt="Remoteja logo"
-              width="150"
-              height="50"
+              width={150}
+              height={50}
             />
           </Link>
         </div>
