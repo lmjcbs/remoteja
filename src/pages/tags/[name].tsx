@@ -168,7 +168,7 @@ export const getStaticProps: GetStaticProps<TagProps, Params> = async (
     }) as JobWithRelations
   })
 
-  await prisma.$disconnect
+  await prisma.$disconnect()
 
   return {
     props: {

@@ -26,6 +26,7 @@ import NavBar from '../../components/sections/NavBar'
 import Footer from '../../components/sections/Footer'
 import theme from '../../styles/theme'
 import JobCardContainer from '../../components/sections/JobCardContainer'
+import { device } from '../../lib/mediaQueries'
 
 type JobsProps = {
   job: JobWithRelations
@@ -268,6 +269,11 @@ const Job = ({ job, relatedJobs, twitterShareLink }: JobsProps) => {
           align-items: center;
           font-weight: bold;
           cursor: pointer;
+          font-size: 0.85rem;
+
+          @media ${device.sm} {
+            font-size: 1rem;
+          }
         }
         .apply-cta {
           background-color: ${theme.colors.primary};
@@ -282,6 +288,13 @@ const Job = ({ job, relatedJobs, twitterShareLink }: JobsProps) => {
         .related-jobs {
           margin: 2rem 0;
           font-weight: bolder;
+        }
+        .description {
+          font-size: 1rem;
+
+          @media ${device.sm} {
+            font-size: 1.125rem;
+          }
         }
         :global(.description ul) {
           list-style: none;
