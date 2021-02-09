@@ -13,6 +13,7 @@ import { ONE_WEEK_EPOCH } from '../../lib/constants'
 type LocationProps = {
   jobs: JobWithRelations[]
   location: string
+  slug: string
   locationDescriptionMeta: string
   locationTitleMeta: string
 }
@@ -20,6 +21,7 @@ type LocationProps = {
 const Locations = ({
   jobs,
   location,
+  slug,
   locationDescriptionMeta,
   locationTitleMeta,
 }: LocationProps) => {
@@ -28,24 +30,56 @@ const Locations = ({
       <Head>
         <title>{locationTitleMeta} | Remoteja</title>
         <meta
-          property="title"
           key="title"
+          name="title"
           content={`${locationTitleMeta} | Remoteja`}
         />
         <meta
-          property="og:title"
-          key="og:title"
-          content={`${locationTitleMeta} | Remoteja`}
-        />
-        <meta
-          name="description"
           key="description"
-          content={`${locationDescriptionMeta}`}
+          name="description"
+          content={`Looking for remote jobs
+          ${
+            location === 'Worldwide'
+              ? ' without any geographic restrictions'
+              : ` available to applicants in ${location}`
+          }? View ${locationDescriptionMeta}.`}
+        />
+
+        {/* Open Graph / Facebook */}
+        <meta key="og:type" property="og:type" content="website" />
+        <meta
+          key="og:url"
+          property="og:url"
+          content={`https://remoteja.com/locations/${slug}`}
         />
         <meta
-          property="og:description"
+          key="og:title"
+          property="og:title"
+          content={`${locationTitleMeta} | Remoteja`}
+        />
+        <meta
           key="og:description"
-          content={`${locationDescriptionMeta}`}
+          property="og:description"
+          content={`Looking for remote jobs
+          ${
+            location === 'Worldwide'
+              ? ' without any geographic restrictions'
+              : ` available to applicants in ${location}`
+          }? View ${locationDescriptionMeta}.`}
+        />
+        <meta
+          key="og:image"
+          property="og:image"
+          content={`https://i.ibb.co/FsYTW2Z/remoteja1200x628.png`}
+        />
+
+        {/* Twitter */}
+        <meta key="twitter:site" name="twitter:site" content="@remoteja" />
+        <meta key="twitter:card" name="twitter:card" content="summary" />
+        <meta
+          key="twitter:image:alt"
+          name="twitter:image:alt"
+          content="Remoteja logo"
         />
       </Head>
       <NavBar />
@@ -188,6 +222,7 @@ export const getStaticProps: GetStaticProps<LocationProps, Params> = async (
     props: {
       jobs: jobs,
       location: location.name,
+      slug: location.slug,
       locationTitleMeta,
       locationDescriptionMeta,
     },

@@ -93,8 +93,44 @@ const Job = ({ job, relatedJobs, twitterShareLink }: JobsProps) => {
     <>
       <Head>
         <title>Remote {job.title}</title>
-        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-        {/* meta description first 300  */}
+        <meta key="title" name="title" content={`Remote ${job.title}`} />
+        <meta
+          key="description"
+          name="description"
+          content={`${job.companyName} is hiring for a ${job.title}`}
+        />
+
+        {/* Open Graph / Facebook */}
+        <meta key="og:type" property="og:type" content="website" />
+        <meta
+          key="og:url"
+          property="og:url"
+          content={`https://remoteja.com/remote-jobs/${getUrlSlug(job)}`}
+        />
+        <meta
+          key="og:title"
+          property="og:title"
+          content={`Remote ${job.title}`}
+        />
+        <meta
+          key="og:description"
+          property="og:description"
+          content={`${job.companyName} is hiring for a ${job.title}`}
+        />
+        <meta
+          key="og:image"
+          property="og:image"
+          content={`https://i.ibb.co/FsYTW2Z/remoteja1200x628.png`}
+        />
+
+        {/* Twitter */}
+        <meta key="twitter:site" name="twitter:site" content="@remoteja" />
+        <meta key="twitter:card" name="twitter:card" content="summary" />
+        <meta
+          key="twitter:image:alt"
+          name="twitter:image:alt"
+          content="Remoteja logo"
+        />
       </Head>
       <NavBar />
 

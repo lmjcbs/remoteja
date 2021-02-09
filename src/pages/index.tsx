@@ -17,31 +17,46 @@ const Home = ({ jobs }: HomeProps) => {
     <>
       <Head>
         <title>
-          Remoteja | Remote Jobs in Programming, Marketing, Design and more
+          Remote Jobs in Programming, Marketing, Design and more | Remoteja
         </title>
         <meta
-          property="title"
           key="title"
-          content="Remoteja | Remote Jobs in Programming, Marketing, Design and more"
+          name="title"
+          content="Remote Jobs in Programming, Marketing, Design and more | Remoteja"
         />
         <meta
-          name="description"
           key="description"
-          content="Say yes to remote working and start hiring the best talent from all corners of the world today. Remoteja has the lastest listings for remote jobs in Programming, Sales, Maketing, Design and more."
+          name="description"
+          content="Remoteja has the lastest listings for remote jobs in Programming, Sales, Maketing, Design and more. Say yes to remote working and start hiring the best talent from all corners of the world today."
         />
-        <meta property="og:url" content="https://remoteja.com/" />
+
+        {/* Open Graph / Facebook */}
+        <meta key="og:type" property="og:type" content="website" />
+        <meta key="og:url" property="og:url" content="https://remoteja.com/" />
         <meta
-          property="og:title"
           key="og:title"
-          content="Remoteja | Remote Jobs in Programming, Sales, Marketing, Design and more"
+          property="og:title"
+          content="Remote Jobs in Programming, Marketing, Design and more | Remoteja"
         />
         <meta
-          property="og:description"
           key="og:description"
-          content="Say yes to remote working and start hiring the best talent from all corners of the world today. Remoteja has the lastest listings for remote jobs in Programming, Sales, Maketing, Design and more."
+          property="og:description"
+          content="Remoteja has the lastest listings for remote jobs in Programming, Sales, Maketing, Design and more. Say yes to remote working and start hiring the best talent from all corners of the world today."
         />
-        <meta name="twitter:card" content="summary" />
-        <meta name="twitter:site" content="@remoteja" />
+        <meta
+          key="og:image"
+          property="og:image"
+          content={`https://i.ibb.co/FsYTW2Z/remoteja1200x628.png`}
+        />
+
+        {/* Twitter */}
+        <meta key="twitter:site" name="twitter:site" content="@remoteja" />
+        <meta key="twitter:card" name="twitter:card" content="summary" />
+        <meta
+          key="twitter:image:alt"
+          name="twitter:image:alt"
+          content="Remoteja logo"
+        />
       </Head>
       <NavBar />
       <Header

@@ -14,9 +14,10 @@ import { ONE_WEEK_EPOCH } from '../../lib/constants'
 type TagProps = {
   jobs: JobWithRelations[]
   tag: string
+  slug: string
 }
 
-const Tags = ({ jobs, tag }: TagProps) => {
+const Tags = ({ jobs, tag, slug }: TagProps) => {
   const { isFallback } = useRouter()
 
   if (isFallback) {
@@ -28,32 +29,52 @@ const Tags = ({ jobs, tag }: TagProps) => {
       <Head>
         <title>Remote {tag} Jobs | Remoteja</title>
         <meta
-          property="title"
           key="title"
+          name="title"
           content={`Remote ${tag} Jobs | Remoteja`}
         />
         <meta
-          property="og:title"
-          key="og:title"
-          content={`Remote ${tag} Jobs | Remoteja`}
-        />
-        <meta
-          name="description"
           key="description"
-          content={`The lastest remote ${tag} jobs from companies across the world.`}
+          name="description"
+          content={`Looking for remote ${tag} jobs? View the lastest job listings from
+          companies hiring for ${tag} positions.`}
+        />
+
+        {/* Open Graph / Facebook */}
+        <meta key="og:type" property="og:type" content="website" />
+        <meta
+          key="og:url"
+          property="og:url"
+          content={`https://remoteja.com/tags/${slug}`}
         />
         <meta
-          property="og:description"
+          key="og:title"
+          property="og:title"
+          content={`Remote ${tag} Jobs | Remoteja`}
+        />
+        <meta
           key="og:description"
-          content={`The lastest remote ${tag} jobs from companies across the world.`}
+          property="og:description"
+          content={`Looking for remote ${tag} jobs? View the lastest job listings from
+          companies hiring for ${tag} positions.`}
+        />
+        <meta
+          key="og:image"
+          property="og:image"
+          content={`https://i.ibb.co/FsYTW2Z/remoteja1200x628.png`}
+        />
+
+        {/* Twitter */}
+        <meta key="twitter:site" name="twitter:site" content="@remoteja" />
+        <meta key="twitter:card" name="twitter:card" content="summary" />
+        <meta
+          key="twitter:image:alt"
+          name="twitter:image:alt"
+          content="Remoteja logo"
         />
       </Head>
       <NavBar />
-      <Header
-        h1={`Remote ${tag} Jobs`}
-        h2={`Looking for remote ${tag} jobs? View the lastest job listings from
-          companies hiring for ${tag} positions.`}
-      />
+      <Header h1={`Remote ${tag} Jobs`} h2={``} />
       <JobCardContainer jobs={jobs} />
       <Footer />
     </>
@@ -174,6 +195,7 @@ export const getStaticProps: GetStaticProps<TagProps, Params> = async (
     props: {
       jobs: jobs,
       tag: tag.name,
+      slug: tag.slug,
     },
     // Attempt to re-generate page on request at most once every second
     revalidate: 1,
