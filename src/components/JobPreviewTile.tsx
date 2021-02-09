@@ -23,7 +23,7 @@ const JobPreviewTile = ({ job }: Props) => {
 
   return (
     <Link href={`/remote-jobs/${urlSlug}`}>
-      <a className={featured ? 'job-card premium' : 'job-card'}>
+      <section className={featured ? 'job-card premium' : 'job-card'}>
         <div id="left">
           <h4>{companyName}</h4>
           <h3 className="title custom-underline">{title}</h3>
@@ -192,8 +192,15 @@ const JobPreviewTile = ({ job }: Props) => {
               -3px 3px ${theme.colors.secondary},
               -4px 4px ${theme.colors.secondary};
           }
+
+          @media ${device.sm} {
+            #tag-link {
+              font-size: 0.9rem;
+              margin: 0 0.125rem;
+            }
+          }
         `}</style>
-      </a>
+      </section>
     </Link>
   )
 }
