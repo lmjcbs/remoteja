@@ -21,24 +21,48 @@ const Categories = ({ jobs, category }: CategoriesProps) => {
       <Head>
         <title>Remote {capitalize(category)} Jobs | Remoteja</title>
         <meta
-          property="title"
           key="title"
+          name="title"
           content={`Remote ${capitalize(category)} Jobs | Remoteja`}
         />
         <meta
-          property="og:title"
-          key="og:title"
-          content={`Remote ${capitalize(category)} Jobs | Remoteja`}
-        />
-        <meta
-          name="description"
           key="description"
-          content={`The lastest remote ${category} jobs from companies across the world.`}
+          name="description"
+          content={`Looking for remote ${category} jobs? View the lastest job listings from
+          companies hiring for ${category} positions.`}
+        />
+
+        {/* Open Graph / Facebook */}
+        <meta key="og:type" property="og:type" content="website" />
+        <meta
+          key="og:url"
+          property="og:url"
+          content={`https://remoteja.com/categories/${category}`}
         />
         <meta
-          property="og:description"
+          key="og:title"
+          property="og:title"
+          content={`Remote ${capitalize(category)} Jobs | Remoteja`}
+        />
+        <meta
           key="og:description"
-          content={`The lastest remote ${category} jobs from companies across the world.`}
+          property="og:description"
+          content={`Looking for remote ${category} jobs? View the lastest job listings from
+          companies hiring for ${category} positions.`}
+        />
+        <meta
+          key="og:image"
+          property="og:image"
+          content={`https://i.ibb.co/FsYTW2Z/remoteja1200x628.png`}
+        />
+
+        {/* Twitter */}
+        <meta key="twitter:site" name="twitter:site" content="@remoteja" />
+        <meta key="twitter:card" name="twitter:card" content="summary" />
+        <meta
+          key="twitter:image:alt"
+          name="twitter:image:alt"
+          content="Remoteja logo"
         />
       </Head>
       <NavBar />
