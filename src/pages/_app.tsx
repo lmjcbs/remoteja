@@ -36,11 +36,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
           name="description"
           content="Remoteja has the lastest listings for remote jobs in Programming, Sales, Maketing, Design and more. Say yes to remote working and start hiring the best talent from all corners of the world today."
         />
-        <meta
-          name="viewport"
-          content="initial-scale=1.0, width=device-width"
-          key="viewport"
-        />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta property="og:site_name" content="Remoteja" />
         <link rel="icon" type="image/x-icon" href="favicon.ico" />
 
