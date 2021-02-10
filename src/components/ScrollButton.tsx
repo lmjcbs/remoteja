@@ -3,7 +3,7 @@ import { FaChevronUp } from 'react-icons/fa'
 import theme from '../styles/theme'
 
 const ScrollButton = () => {
-  const [showScroll, setShowScroll] = useState(true)
+  const [showScroll, setShowScroll] = useState(false)
   const ref = useRef<HTMLDivElement>(null)
 
   const checkScroll = (): void => {
@@ -46,7 +46,6 @@ const ScrollButton = () => {
       <style jsx>
         {`
           .base {
-            display: flex;
             z-index: 100;
             align-items: center;
             justify-content: middle;
@@ -69,7 +68,7 @@ const ScrollButton = () => {
       <style jsx>
         {`
           .base {
-            opacity: ${showScroll ? '1' : '0'};
+            display: ${showScroll ? 'flex' : 'none'};
           }
         `}
       </style>
