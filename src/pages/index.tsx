@@ -2,17 +2,19 @@ import Head from 'next/head'
 import Header from '../components/sections/Header'
 import { GetStaticProps } from 'next'
 import prisma from '../lib/prisma'
-import { dateStripped, getUrlSlug } from '../utils'
+import { getUrlSlug, sortFeaturedJobs } from '../utils'
 import NavBar from '../components/sections/NavBar'
 import Footer from '../components/sections/Footer'
-import JobCardContainer from '../components/sections/JobCardContainer'
-import { ONE_WEEK_EPOCH } from '../lib/constants'
+import { ONE_MONTH_EPOCH } from '../lib/constants'
+import CategoryPreview from '../components/sections/CategoryPreview'
 
 type HomeProps = {
-  jobs: JobWithRelations[]
+  categories: Category[] & {
+    jobs: JobWithRelations[]
+  }
 }
 
-const Home = ({ jobs }: HomeProps) => {
+const Home = ({ categories }: HomeProps) => {
   return (
     <>
       <Head>
@@ -63,85 +65,78 @@ const Home = ({ jobs }: HomeProps) => {
         h1="The Latest Remote Jobs"
         h2="Browse thousands of jobs in Programming, Design, Sales and more from the companies hiring global talent."
       />
-      <JobCardContainer jobs={jobs} />
+      {/* @ts-ignore */}
+      {categories.map(({ name, slug, jobs }) => (
+        <CategoryPreview name={name} slug={slug} jobs={jobs} />
+      ))}
       <Footer />
     </>
   )
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const featured = await prisma.job.findMany({
-    where: {
-      AND: [
-        {
+  const categories = await prisma.category.findMany({
+    select: {
+      name: true,
+      slug: true,
+      jobs: {
+        where: {
           createdEpoch: {
-            gt: Math.round(Date.now() / 1000) - ONE_WEEK_EPOCH,
+            gt: Math.round(Date.now() / 1000) - ONE_MONTH_EPOCH,
           },
         },
-        {
-          featured: {
-            equals: true,
+        select: {
+          jid: true,
+          applyCTA: true,
+          companyName: true,
+          createdEpoch: true,
+          featured: true,
+          tags: {
+            select: {
+              name: true,
+              slug: true,
+            },
+          },
+          location: {
+            select: {
+              name: true,
+            },
+          },
+          title: true,
+          type: {
+            select: {
+              name: true,
+            },
           },
         },
-      ],
-    },
-    include: {
-      location: true,
-      category: true,
-      tags: true,
-      company: true,
-      type: true,
-    },
-    orderBy: [{ createdEpoch: 'desc' }],
-  })
-
-  const standard = await prisma.job.findMany({
-    where: {
-      NOT: {
-        AND: [
-          {
-            createdEpoch: {
-              gt: Math.round(Date.now() / 1000) - ONE_WEEK_EPOCH,
-            },
-          },
-          {
-            featured: {
-              equals: true,
-            },
-          },
-        ],
+        take: 25,
+        orderBy: { createdEpoch: 'desc' },
       },
     },
-    include: {
-      location: true,
-      category: true,
-      tags: true,
-      company: true,
-      type: true,
-    },
-    orderBy: { createdEpoch: 'desc' },
   })
 
-  // Orders all job postings by data posted.
-  // Priority - Job postings that are featured and less than week old.
-  // Low Priorirty - Standard Job postings and featured that are over a week old.
-  const data = [...featured, ...standard]
-
-  const jobs = data.map((job) => {
-    return dateStripped({
-      ...job,
-      daysSinceEpoch: Math.floor(
-        (Math.round(Date.now() / 1000) - job.createdEpoch) / 86400
-      ),
-      urlSlug: getUrlSlug(job),
-    }) as JobWithRelations
+  const extendedData = categories.map((category) => {
+    const extendedJobData = category.jobs.map((job) => {
+      return {
+        ...job,
+        daysSinceEpoch: Math.floor(
+          (Math.round(Date.now() / 1000) - job.createdEpoch) / 86400
+        ),
+        urlSlug: getUrlSlug(job),
+      }
+    })
+    return {
+      ...category,
+      // @ts-ignore
+      jobs: sortFeaturedJobs(extendedJobData),
+    }
   })
 
   await prisma.$disconnect()
 
   return {
     props: {
-      jobs: jobs,
+      categories: extendedData,
     },
     // Attempt to re-generate page on request at most once every second
     revalidate: 1,
