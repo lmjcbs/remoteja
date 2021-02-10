@@ -4,6 +4,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { categories, locations } from '../../lib/constants'
 import { TwitterIcon } from '../../lib/svg'
+import { device } from '../../lib/mediaQueries'
 
 const Footer: FC = () => {
   return (
@@ -66,8 +67,13 @@ const Footer: FC = () => {
         }
         .footer-main {
           display: flex;
+          flex-direction: column;
           background-color: ${theme.colors.tertiary};
           padding: 1rem 0rem;
+
+          @media ${device.sm} {
+            flex-direction: row;
+          }
           div {
             margin: 0 auto;
           }

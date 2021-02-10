@@ -51,12 +51,12 @@ const ScrollButton = () => {
             align-items: center;
             justify-content: middle;
             position: fixed;
-            bottom: 30px;
-            right: 30px;
+            bottom: 25px;
+            right: 25px;
             border-radius: 50%;
-            height: 50px;
-            width: 50px;
-            background-color: #e0e0e0;
+            height: 40px;
+            width: 40px;
+            background-color: #eeeeee;
             color: ${theme.colors.primary};
             box-shadow: 0 0 3pt 1.5pt ${theme.colors.primary};
             cursor: pointer;
