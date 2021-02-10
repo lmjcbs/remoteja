@@ -94,11 +94,10 @@ const MobileDropdown = ({ isOpen }: MobileDropdownProps) => {
             padding: 0.5rem 0;
             width: 100%;
             align-items: center;
-            border-top: lightskyblue;
             cursor: pointer;
             font-weight: bold;
-
             border-top: 0.25px solid rgba(197, 239, 255, 0.1);
+            border-bottom: 0.25px solid rgba(197, 239, 255, 0.1);
             div {
               margin: 0 auto;
               display: flex;
@@ -120,6 +119,7 @@ const MobileDropdown = ({ isOpen }: MobileDropdownProps) => {
             a {
               padding: 0.5rem 0;
               border-top: 0.25px solid rgba(197, 239, 255, 0.1);
+              border-bottom: 0.25px solid rgba(197, 239, 255, 0.1);
               &:hover {
                 color: ${theme.colors.secondary};
               }

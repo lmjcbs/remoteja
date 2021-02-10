@@ -56,7 +56,7 @@ const JobPreviewTile = ({ job }: Props) => {
             width: 100%;
             max-width: 600px;
             margin: 0.3rem 0;
-            padding: 0.75rem 0.25rem;
+            padding: 0.55rem 0.25rem;
             font-family: ${theme.fontFamily.sansSerif};
             border: 1px solid lightgray;
             box-shadow: -1px 1px lightgray, -2px 2px lightgray,
@@ -83,7 +83,7 @@ const JobPreviewTile = ({ job }: Props) => {
             padding: 0 0.25rem;
             h4 {
               margin-top: -5px;
-              line-height: 1.3rem;
+              line-height: 1.5rem;
               font-weight: bold;
               color: gray;
               overflow: hidden;

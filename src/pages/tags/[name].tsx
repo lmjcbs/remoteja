@@ -74,7 +74,11 @@ const Tags = ({ jobs, tag, slug }: TagProps) => {
         />
       </Head>
       <NavBar />
-      <Header h1={`Remote ${tag} Jobs`} h2={``} />
+      <Header
+        h1={`Remote ${tag} Jobs`}
+        h2={`Looking for remote ${tag} jobs? View the lastest job listings from
+          companies hiring for ${tag} positions.`}
+      />
       <JobCardContainer jobs={jobs} />
       <Footer />
     </>
