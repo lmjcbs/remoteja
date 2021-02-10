@@ -6,6 +6,7 @@ import * as gtag from '../lib/gtag'
 
 import type { AppProps } from 'next/app'
 import { ChakraProvider } from '@chakra-ui/react'
+import ScrollButton from '../components/ScrollButton'
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   const router = useRouter()
@@ -30,6 +31,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
       </Head>
       <ChakraProvider>
         <Component {...pageProps} />
+        <ScrollButton />
       </ChakraProvider>
     </Layout>
   )
